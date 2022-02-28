@@ -11,6 +11,7 @@ import LoyaltyScreen from "./screens/LoyaltyScreen";
 import AccountScreen from "./screens/AccountScreen";
 
 import { Ionicons } from "@expo/vector-icons";
+import SignUpScreen from "./screens/SignUpScreen";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -46,7 +47,7 @@ const BottomNavigator = () => {
       <Tab.Screen name="Accueil" component={HomeScreen} />
       <Tab.Screen name="Menu" component={ProductsScreen} />
       <Tab.Screen name="Fidélité" component={LoyaltyScreen} />
-      <Tab.Screen name="Mon compte" component={AccountScreen} />
+      <Tab.Screen name="Mon compte" component={SignUpScreen} />
     </Tab.Navigator>
   );
 };
