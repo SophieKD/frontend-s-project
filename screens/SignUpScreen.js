@@ -4,7 +4,9 @@ import { Button, Input } from "react-native-elements";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-function SignUpScreen() {
+import { connect } from "react-redux";
+
+function SignUpScreen(props) {
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
   const [pseudo, setPseudo] = useState("");
@@ -15,16 +17,18 @@ function SignUpScreen() {
   const [isUserRegistered, setIsUserRegistered] = useState(false);
 
   useEffect(() => {
-    console.log("#1- useEffect");
-    AsyncStorage.getItem("userLocalStorage", function (error, dataUser) {
-      console.log("---userLocalStorageInGetItem =>", JSON.parse(dataUser));
-      let dataUserParsed = JSON.parse(dataUser);
-      if (dataUserParsed) {
-        setPseudo(dataUserParsed.pseudo);
-        setIsUserRegistered(true);
+    AsyncStorage.getItem(
+      "userLocalStorage",
+      function (error, userInLocalStorage) {
+        if (userInLocalStorage) {
+          let userInLocalStorageParsed = JSON.parse(userInLocalStorage);
+          let pseudoOfUserInLocalStorage = userInLocalStorageParsed.pseudo;
+          setPseudo(pseudoOfUserInLocalStorage);
+          setIsUserRegistered(true);
+        }
       }
-    });
-  }, [isUserRegistered]);
+    );
+  }, []);
 
   let loginJSX = (
     <View style={styles.container}>
@@ -116,7 +120,7 @@ function SignUpScreen() {
     );
   }
 
-  const onPressSignUp = (
+  const onPressSignUp = async (
     firstname,
     lastname,
     pseudo,
@@ -124,9 +128,21 @@ function SignUpScreen() {
     email,
     password
   ) => {
+    const data = await fetch("/users/actions/sign-up", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: `firstname=${firstname}&lastname=${lastname}&pseudo=${pseudo}&mobile=${mobile}&email=${email}&password=${password}`,
+    });
+
+    const response = await data.json();
+
+    if (response.result === true) {
+      props.onUserSignUp(response.userLoggedIn);
+    }
+
     AsyncStorage.setItem(
       "userLocalStorage",
-      JSON.stringify({ firstname, lastname, pseudo, mobile, email, password })
+      JSON.stringify({ userInLocaleStorage: response.userLoggedIn })
     );
 
     //Par la suite cette fonction enverra un lien vers:
@@ -135,16 +151,17 @@ function SignUpScreen() {
   };
 
   const goToSignIn = () => {
-    console.log("---click détecté goToSignIn");
     AsyncStorage.removeItem("userLocalStorage");
+    props.logOutReducer();
     setPseudo("");
+    setIsUserRegistered(false);
 
     //Par la suite cette fonction enverra un lien vers la Page de sign-in pas encore créée
   };
 
   const goToSignUp = () => {
-    console.log("---click détecté goToSignUp");
     AsyncStorage.removeItem("userLocalStorage");
+    props.logOutReducer();
     setPseudo("");
     setIsUserRegistered(false);
   };
@@ -161,4 +178,15 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SignUpScreen;
+function mapDispatchToProps(dispatch) {
+  return {
+    onUserSignUp: function (userSignedUp) {
+      dispatch({ type: "SignUp", userSignedUp });
+    },
+    logOutReducer: function () {
+      dispatch({ type: "logOut" });
+    },
+  };
+}
+
+export default connect(null, mapDispatchToProps)(SignUpScreen);
