@@ -84,7 +84,7 @@ function SignUpScreen() {
         title="Créer son compte"
         type="solid"
         onPress={() =>
-          onPressSignUp(firstname, lastname, pseudo, mobile, email, password)
+          onPressSignUp(firstname, lastname, pseudo, mobile, email)
         }
       />
       <Text
