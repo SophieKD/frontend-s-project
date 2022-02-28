@@ -4,7 +4,9 @@ import { Button, Input } from "react-native-elements";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-function SignUpScreen() {
+import { connect } from "react-redux";
+
+function SignUpScreen(props) {
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
   const [pseudo, setPseudo] = useState("");
@@ -15,16 +17,14 @@ function SignUpScreen() {
   const [isUserRegistered, setIsUserRegistered] = useState(false);
 
   useEffect(() => {
-    console.log("#1- useEffect");
-    AsyncStorage.getItem("userLocalStorage", function (error, dataUser) {
-      console.log("---userLocalStorageInGetItem =>", JSON.parse(dataUser));
-      let dataUserParsed = JSON.parse(dataUser);
-      if (dataUserParsed) {
-        setPseudo(dataUserParsed.pseudo);
+    AsyncStorage.getItem("userLocalStorage", function (error, pseudo) {
+      if (pseudo) {
+        setPseudo(pseudo);
         setIsUserRegistered(true);
+        console.log("---props.userLoggedIn", props.userLoggedIn);
       }
     });
-  }, [isUserRegistered]);
+  }, [props.userLoggedIn]);
 
   let loginJSX = (
     <View style={styles.container}>
@@ -124,10 +124,18 @@ function SignUpScreen() {
     email,
     password
   ) => {
-    AsyncStorage.setItem(
-      "userLocalStorage",
-      JSON.stringify({ firstname, lastname, pseudo, mobile, email, password })
-    );
+    let userSignedUp = {
+      firstname,
+      lastname,
+      pseudo,
+      mobile,
+      email,
+      password,
+    };
+
+    props.onUserSignUp(userSignedUp);
+
+    AsyncStorage.setItem("userLocalStorage", pseudo);
 
     //Par la suite cette fonction enverra un lien vers:
     //  Si commande en cours = page relative à la commande
@@ -135,16 +143,17 @@ function SignUpScreen() {
   };
 
   const goToSignIn = () => {
-    console.log("---click détecté goToSignIn");
     AsyncStorage.removeItem("userLocalStorage");
+    props.logOutReducer();
     setPseudo("");
+    setIsUserRegistered(false);
 
     //Par la suite cette fonction enverra un lien vers la Page de sign-in pas encore créée
   };
 
   const goToSignUp = () => {
-    console.log("---click détecté goToSignUp");
     AsyncStorage.removeItem("userLocalStorage");
+    props.logOutReducer();
     setPseudo("");
     setIsUserRegistered(false);
   };
@@ -161,4 +170,15 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SignUpScreen;
+function mapDispatchToProps(dispatch) {
+  return {
+    onUserSignUp: function (userSignedUp) {
+      dispatch({ type: "SignUp", userSignedUp });
+    },
+    logOutReducer: function () {
+      dispatch({ type: "logOut" });
+    },
+  };
+}
+
+export default connect(null, mapDispatchToProps)(SignUpScreen);
