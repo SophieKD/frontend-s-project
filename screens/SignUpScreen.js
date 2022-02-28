@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { StyleSheet, View, Text } from "react-native";
-import { Button, Input } from "react-native-elements";
+import { Button, Input, Overlay } from "react-native-elements";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
@@ -15,6 +15,10 @@ function SignUpScreen(props) {
   const [password, setPassword] = useState("");
 
   const [isUserRegistered, setIsUserRegistered] = useState(false);
+
+  const [visible, setVisible] = useState(false);
+  const [error, setError] = useState([]);
+  console.log("---error", error);
 
   useEffect(() => {
     AsyncStorage.getItem(
@@ -44,6 +48,7 @@ function SignUpScreen(props) {
         }}
         placeholder="Prénom"
         onChangeText={(val) => setFirstname(val)}
+        value={firstname}
       />
       <Text>Nom</Text>
       <Input
@@ -51,6 +56,7 @@ function SignUpScreen(props) {
         inputStyle={{ marginLeft: 10 }}
         placeholder="Nom"
         onChangeText={(val) => setLastname(val)}
+        value={lastname}
       />
       <Text>Pseudo</Text>
       <Input
@@ -58,6 +64,7 @@ function SignUpScreen(props) {
         inputStyle={{ marginLeft: 10 }}
         placeholder="Pseudo"
         onChangeText={(val) => setPseudo(val)}
+        value={pseudo}
       />
       <Text>Mobile</Text>
       <Input
@@ -73,6 +80,7 @@ function SignUpScreen(props) {
         placeholder="Email"
         inputStyle="email"
         onChangeText={(val) => setEmail(val)}
+        value={email}
       />
       <Text>Password</Text>
       <Input
@@ -82,6 +90,7 @@ function SignUpScreen(props) {
         inputStyle="password"
         secureTextEntry={true}
         onChangeText={(val) => setPassword(val)}
+        value={password}
       />
       <Button
         buttonStyle={{ marginTop: 0 }}
@@ -97,6 +106,11 @@ function SignUpScreen(props) {
       >
         Already have an account? Press here to Sign-In!
       </Text>
+      <Overlay isVisible={visible}>
+        <Text>Error!</Text>
+
+        <Button title="Got it" onPress={() => toggleOverlay()} />
+      </Overlay>
     </View>
   );
 
@@ -128,22 +142,25 @@ function SignUpScreen(props) {
     email,
     password
   ) => {
-    const data = await fetch("/users/actions/sign-up", {
+    const data = await fetch("http://192.168.1.58:3000/users/actions/sign-up", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: `firstname=${firstname}&lastname=${lastname}&pseudo=${pseudo}&mobile=${mobile}&email=${email}&password=${password}`,
     });
 
     const response = await data.json();
+    console.log("---response", response);
 
     if (response.result === true) {
       props.onUserSignUp(response.userLoggedIn);
+      AsyncStorage.setItem(
+        "userLocalStorage",
+        JSON.stringify(response.userLoggedIn)
+      );
+    } else {
+      setError(response.error);
+      setVisible(true);
     }
-
-    AsyncStorage.setItem(
-      "userLocalStorage",
-      JSON.stringify({ userInLocaleStorage: response.userLoggedIn })
-    );
 
     //Par la suite cette fonction enverra un lien vers:
     //  Si commande en cours = page relative à la commande
@@ -164,6 +181,10 @@ function SignUpScreen(props) {
     props.logOutReducer();
     setPseudo("");
     setIsUserRegistered(false);
+  };
+
+  const toggleOverlay = () => {
+    setVisible(!visible);
   };
 
   return <View style={{ flex: 1 }}>{loginJSX}</View>;

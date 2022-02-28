@@ -1,7 +1,4 @@
 export default function (userLoggedIn = {}, action) {
-  console.log("---action", action);
-  console.log("---userLoggedIn reducer =>", userLoggedIn);
-
   if (action.type === "SignUp") {
     let firstname = action.userSignedUp.firstname;
     let lastname = action.userSignedUp.lastname;
