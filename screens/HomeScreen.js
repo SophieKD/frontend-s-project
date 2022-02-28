@@ -30,20 +30,37 @@ function Home(props) {
         />
       </Card>
 
-      <Card>
-        <Card.Image
-          style={{ padding: 0 }}
-          source={images[1]}
-          onPress={() =>
-            props.navigation.navigate("BottomNavigator", {
-              screen: "Products",
-            })
-          }
-        />
-        <Text style={{ marginBottom: 10, justifyContent: "center" }}>
-          Formules du Jour
-        </Text>
-      </Card>
+      <View style={{ flex: 1, flexWrap: "wrap", flexDirection: "row" }}>
+        <Card>
+          <Card.Image
+            style={{ padding: 0 }}
+            source={images[1]}
+            onPress={() =>
+              props.navigation.navigate("BottomNavigator", {
+                screen: "Products",
+              })
+            }
+          />
+          <Text style={{ marginBottom: 10, justifyContent: "center" }}>
+            Formules du Jour
+          </Text>
+        </Card>
+
+        <Card>
+          <Card.Image
+            style={{ padding: 0 }}
+            source={images[1]}
+            onPress={() =>
+              props.navigation.navigate("BottomNavigator", {
+                screen: "Products",
+              })
+            }
+          />
+          <Text style={{ marginBottom: 10, justifyContent: "center" }}>
+            Formules du Jour
+          </Text>
+        </Card>
+      </View>
     </ScrollView>
   );
 }
