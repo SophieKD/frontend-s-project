@@ -17,14 +17,18 @@ function SignUpScreen(props) {
   const [isUserRegistered, setIsUserRegistered] = useState(false);
 
   useEffect(() => {
-    AsyncStorage.getItem("userLocalStorage", function (error, pseudo) {
-      if (pseudo) {
-        setPseudo(pseudo);
-        setIsUserRegistered(true);
-        console.log("---props.userLoggedIn", props.userLoggedIn);
+    AsyncStorage.getItem(
+      "userLocalStorage",
+      function (error, userInLocalStorage) {
+        if (userInLocalStorage) {
+          let userInLocalStorageParsed = JSON.parse(userInLocalStorage);
+          let pseudoOfUserInLocalStorage = userInLocalStorageParsed.pseudo;
+          setPseudo(pseudoOfUserInLocalStorage);
+          setIsUserRegistered(true);
+        }
       }
-    });
-  }, [props.userLoggedIn]);
+    );
+  }, []);
 
   let loginJSX = (
     <View style={styles.container}>
@@ -116,7 +120,7 @@ function SignUpScreen(props) {
     );
   }
 
-  const onPressSignUp = (
+  const onPressSignUp = async (
     firstname,
     lastname,
     pseudo,
@@ -124,18 +128,22 @@ function SignUpScreen(props) {
     email,
     password
   ) => {
-    let userSignedUp = {
-      firstname,
-      lastname,
-      pseudo,
-      mobile,
-      email,
-      password,
-    };
+    const data = await fetch("/users/actions/sign-up", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: `firstname=${firstname}&lastname=${lastname}&pseudo=${pseudo}&mobile=${mobile}&email=${email}&password=${password}`,
+    });
 
-    props.onUserSignUp(userSignedUp);
+    const response = await data.json();
 
-    AsyncStorage.setItem("userLocalStorage", pseudo);
+    if (response.result === true) {
+      props.onUserSignUp(response.userLoggedIn);
+    }
+
+    AsyncStorage.setItem(
+      "userLocalStorage",
+      JSON.stringify({ userInLocaleStorage: response.userLoggedIn })
+    );
 
     //Par la suite cette fonction enverra un lien vers:
     //  Si commande en cours = page relative à la commande
