@@ -206,8 +206,7 @@ function SignUpScreen(props) {
     props.logOutReducer();
     setPseudo("");
     setIsUserRegistered(false);
-
-    //Par la suite cette fonction enverra un lien vers la Page de sign-in pas encore créée
+    props.navigation.navigate("SignIn");
   };
 
   const goToSignUp = () => {
@@ -215,6 +214,7 @@ function SignUpScreen(props) {
     props.logOutReducer();
     setPseudo("");
     setIsUserRegistered(false);
+    props.navigation.navigate("SignUp");
   };
 
   const toggleOverlay = () => {
