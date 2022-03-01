@@ -16,9 +16,8 @@ function SignUpScreen(props) {
 
   const [isUserRegistered, setIsUserRegistered] = useState(false);
 
-  const [visible, setVisible] = useState(false);
+  // const [visible, setVisible] = useState(false);
   const [error, setError] = useState([]);
-  console.log("---error", error);
 
   useEffect(() => {
     AsyncStorage.getItem(
@@ -78,7 +77,6 @@ function SignUpScreen(props) {
         containerStyle={{ marginBottom: 0, width: "70%" }}
         inputStyle={{ marginLeft: 10 }}
         placeholder="Email"
-        inputStyle="email"
         onChangeText={(val) => setEmail(val)}
         value={email}
       />
@@ -87,8 +85,7 @@ function SignUpScreen(props) {
         containerStyle={{ marginBottom: 0, width: "70%" }}
         inputStyle={{ marginLeft: 10 }}
         placeholder="Password"
-        inputStyle="password"
-        secureTextEntry={true}
+        // secureTextEntry={true}
         onChangeText={(val) => setPassword(val)}
         value={password}
       />
@@ -97,7 +94,7 @@ function SignUpScreen(props) {
         title="Créer son compte"
         type="solid"
         onPress={() =>
-          onPressSignUp(firstname, lastname, pseudo, mobile, email)
+          onPressSignUp(firstname, lastname, pseudo, mobile, email, password)
         }
       />
       <Text
@@ -106,11 +103,11 @@ function SignUpScreen(props) {
       >
         Already have an account? Press here to Sign-In!
       </Text>
-      <Overlay isVisible={visible}>
+      {/* <Overlay isVisible={visible}>
         <Text>Error!</Text>
 
         <Button title="Got it" onPress={() => toggleOverlay()} />
-      </Overlay>
+      </Overlay> */}
     </View>
   );
 
@@ -159,7 +156,7 @@ function SignUpScreen(props) {
       );
     } else {
       setError(response.error);
-      setVisible(true);
+      // setVisible(true);
     }
 
     //Par la suite cette fonction enverra un lien vers:
@@ -183,9 +180,9 @@ function SignUpScreen(props) {
     setIsUserRegistered(false);
   };
 
-  const toggleOverlay = () => {
-    setVisible(!visible);
-  };
+  // const toggleOverlay = () => {
+  //   setVisible(!visible);
+  // };
 
   return <View style={{ flex: 1 }}>{loginJSX}</View>;
 }
