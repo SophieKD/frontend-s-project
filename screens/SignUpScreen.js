@@ -15,9 +15,28 @@ function SignUpScreen(props) {
   const [password, setPassword] = useState("");
 
   const [isUserRegistered, setIsUserRegistered] = useState(false);
-
-  // const [visible, setVisible] = useState(false);
+  const [visible, setVisible] = useState(false);
   const [error, setError] = useState([]);
+
+  let errorToDisplay = [];
+  for (let i = 0; i < error.length; i++) {
+    if (error.length > 0) {
+      if (error[i].lastname) {
+        errorToDisplay.push(error[i].lastname);
+      } else if (error[i].firstname) {
+        errorToDisplay.push(error[i].firstname);
+      } else if (error[i].password) {
+        errorToDisplay.push(error[i].password);
+      } else if (error[i].pseudo) {
+        errorToDisplay.push(error[i].pseudo);
+      } else if (error[i].email) {
+        errorToDisplay.push(error[i].email);
+      } else if (error[i].mobile) {
+        errorToDisplay.push(error[i].mobile);
+      }
+    }
+  }
+  console.log("---errorToDisplay =>", errorToDisplay);
 
   useEffect(() => {
     AsyncStorage.getItem(
@@ -71,6 +90,7 @@ function SignUpScreen(props) {
         inputStyle={{ marginLeft: 10 }}
         placeholder="Mobile"
         onChangeText={(val) => setMobile(val)}
+        value={mobile}
       />
       <Text>Email</Text>
       <Input
@@ -85,7 +105,7 @@ function SignUpScreen(props) {
         containerStyle={{ marginBottom: 0, width: "70%" }}
         inputStyle={{ marginLeft: 10 }}
         placeholder="Password"
-        // secureTextEntry={true}
+        secureTextEntry={true}
         onChangeText={(val) => setPassword(val)}
         value={password}
       />
@@ -103,11 +123,28 @@ function SignUpScreen(props) {
       >
         Already have an account? Press here to Sign-In!
       </Text>
-      {/* <Overlay isVisible={visible}>
-        <Text>Error!</Text>
-
-        <Button title="Got it" onPress={() => toggleOverlay()} />
-      </Overlay> */}
+      <Overlay isVisible={visible}>
+        <Text
+          style={{
+            fontSize: 20,
+            fontWeight: "bold",
+            textAlign: "center",
+            marginBottom: 10,
+          }}
+        >
+          Error!
+        </Text>
+        {errorToDisplay.map((e, i) => (
+          <Text key={i} style={{ marginTop: 3, fontSize: 15 }}>
+            {e}
+          </Text>
+        ))}
+        <Button
+          title="Got it!"
+          onPress={() => toggleOverlay()}
+          style={{ marginTop: 15 }}
+        />
+      </Overlay>
     </View>
   );
 
@@ -156,7 +193,7 @@ function SignUpScreen(props) {
       );
     } else {
       setError(response.error);
-      // setVisible(true);
+      setVisible(true);
     }
 
     //Par la suite cette fonction enverra un lien vers:
@@ -180,9 +217,9 @@ function SignUpScreen(props) {
     setIsUserRegistered(false);
   };
 
-  // const toggleOverlay = () => {
-  //   setVisible(!visible);
-  // };
+  const toggleOverlay = () => {
+    setVisible(!visible);
+  };
 
   return <View style={{ flex: 1 }}>{loginJSX}</View>;
 }
