@@ -22,11 +22,9 @@ function Home(props) {
     <ScrollView style={{ marginTop: 25 }}>
       <Card>
         <Card.Image
-          style={{ width: "100%", height: 170, marginBottom: 10 }}
+          style={{ padding: 0, width: "100%", height: 170, marginBottom: 10 }}
           source={images[0]}
-          onPress={() =>
-            props.navigation.navigate("BottomNavigator", { screen: "Products" })
-          }
+          onPress={() => props.navigation.navigate("Menu")}
         />
       </Card>
 
@@ -37,7 +35,7 @@ function Home(props) {
             source={images[1]}
             onPress={() =>
               props.navigation.navigate("BottomNavigator", {
-                screen: "Products",
+                screen: "ProductsScreen",
               })
             }
           />
@@ -50,11 +48,7 @@ function Home(props) {
           <Card.Image
             style={{ padding: 0 }}
             source={images[1]}
-            onPress={() =>
-              props.navigation.navigate("BottomNavigator", {
-                screen: "Products",
-              })
-            }
+            onPress={() => props.navigation.navigate("Menu")}
           />
           <Text style={{ marginBottom: 10, justifyContent: "center" }}>
             Formules du Jour

@@ -1,10 +1,9 @@
 import React from "react";
 import { StyleSheet, View, Text, ScrollView } from "react-native";
-import { Card } from "react-native-elements";
 import NavCategories from "../components/Products/NavCategories";
 import ProductCard from "../components/Products/ProductCard";
 
-function Products() {
+function Products(props) {
   return (
     <ScrollView>
       <View style={{ backgroundColor: "#136979", height: 50 }} />
@@ -17,6 +16,7 @@ function Products() {
           justifyContent: "center",
           height: 40,
         }}
+        onPress={() => props.navigation.navigate("ProductDetailScreen")}
       >
         <Text
           style={{

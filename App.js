@@ -17,6 +17,7 @@ const store = createStore(combineReducers({ userLoggedIn }));
 
 import { Ionicons } from "@expo/vector-icons";
 import SignUpScreen from "./screens/SignUpScreen";
+import LeS from "./screens/LeS";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -62,8 +63,11 @@ function App() {
     <Provider store={store}>
       <NavigationContainer>
         <Stack.Navigator screenOptions={{ headerShown: false }}>
-          <Stack.Screen name="Accueil" component={HomeScreen} />
+          <Stack.Screen name="LeS" component={LeS} />
           <Stack.Screen name="BottomNavigator" component={BottomNavigator} />
+          <Stack.Screen name="Menu" component={ProductsScreen} />
+          <Stack.Screen name="Fidélité" component={LoyaltyScreen} />
+          <Stack.Screen name="Mon compte" component={SignUpScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>
