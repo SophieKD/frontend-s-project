@@ -1,58 +1,44 @@
 import React from "react";
-import {
-  StyleSheet,
-  View,
-  Text,
-  Button,
-  SafeAreaView,
-  ScrollView,
-  Image,
-} from "react-native";
-import { Card, Badge } from "react-native-elements";
+import { StyleSheet, View, Text, ScrollView } from "react-native";
+import { Card, Image } from "react-native-elements";
 
-function Home(props) {
-  var images = [
-    require("../assets/homescreen1.jpeg"),
-    require("../assets/plat-jour.jpeg"),
-    require("../assets/desserts.jpeg"),
-    require("../assets/boissons.jpeg"),
-  ];
-
+function HomeScreen(props) {
   return (
-    <ScrollView style={{ marginTop: 25 }}>
-      <Card>
-        <Card.Image
-          style={{ padding: 0, width: "100%", height: 170, marginBottom: 10 }}
-          source={images[0]}
-          onPress={() => props.navigation.navigate("Menu")}
-        />
-      </Card>
+    <ScrollView style={{ marginTop: 10 }}>
+      <Image
+        source={require("../assets/homescreen1.jpeg")}
+        containerStyle={styles.item}
+        onPress={() => props.navigation.navigate("Menu")}
+      />
 
       <View style={{ flex: 1, flexWrap: "wrap", flexDirection: "row" }}>
-        <Card>
+        <Card containerStyle={{ width: "46%", margin: "2%" }}>
           <Card.Image
             style={{ padding: 0 }}
-            source={images[1]}
-            onPress={() =>
-              props.navigation.navigate("BottomNavigator", {
-                screen: "ProductsScreen",
-              })
-            }
-          />
-          <Text style={{ marginBottom: 10, justifyContent: "center" }}>
-            Formules du Jour
-          </Text>
-        </Card>
-
-        <Card>
-          <Card.Image
-            style={{ padding: 0 }}
-            source={images[1]}
+            source={require("../assets/cat-jour.png")}
             onPress={() => props.navigation.navigate("Menu")}
           />
-          <Text style={{ marginBottom: 10, justifyContent: "center" }}>
-            Formules du Jour
-          </Text>
+        </Card>
+        <Card containerStyle={{ width: "46%", margin: "2%" }}>
+          <Card.Image
+            style={{ padding: 0 }}
+            source={require("../assets/cat-bowls.png")}
+            onPress={() => props.navigation.navigate("Menu")}
+          />
+        </Card>
+        <Card containerStyle={{ width: "46%", margin: "2%" }}>
+          <Card.Image
+            style={{ padding: 0 }}
+            source={require("../assets/cat-boissons.png")}
+            onPress={() => props.navigation.navigate("Menu")}
+          />
+        </Card>
+        <Card containerStyle={{ width: "46%", margin: "2%" }}>
+          <Card.Image
+            style={{ padding: 0 }}
+            source={require("../assets/cat-dessert.png")}
+            onPress={() => props.navigation.navigate("Menu")}
+          />
         </Card>
       </View>
     </ScrollView>
@@ -69,26 +55,11 @@ const styles = StyleSheet.create({
     height: 30,
     marginRight: 10,
   },
+  item: {
+    aspectRatio: 1,
+    width: "100%",
+    flex: 1,
+  },
 });
 
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     backgroundColor: "#f7f7fb",
-//   },
-//   viewstyle: {
-//     backgroundColor: "#FFFFFF",
-//     padding: 15,
-//   },
-//   cardstyle: {
-//     alignItems: "center",
-//     width: 150,
-//     height: 150,
-//     marginRight: 10,
-//     display: "flex",
-//     flexDirection: "column",
-//     justifyContent: "space-between",
-//   },
-// });
-
-export default Home;
+export default HomeScreen;

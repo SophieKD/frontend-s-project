@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, View, Text, ScrollView } from "react-native";
+import { View, Text, ScrollView } from "react-native";
 import NavCategories from "../components/Products/NavCategories";
 import ProductCard from "../components/Products/ProductCard";
 
@@ -16,7 +16,6 @@ function Products(props) {
           justifyContent: "center",
           height: 40,
         }}
-        onPress={() => props.navigation.navigate("ProductDetailScreen")}
       >
         <Text
           style={{
