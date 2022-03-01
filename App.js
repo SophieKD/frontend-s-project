@@ -10,7 +10,6 @@ import ProductsScreen from "./screens/ProductsScreen";
 import LoyaltyScreen from "./screens/LoyaltyScreen";
 import AccountScreen from "./screens/AccountScreen";
 import SignUpScreen from "./screens/SignUpScreen";
-import SignInScreen from "./screens/SignInScreen";
 
 import { Provider } from "react-redux";
 import { createStore, combineReducers } from "redux";
@@ -65,7 +64,6 @@ function App() {
         <Stack.Navigator screenOptions={{ headerShown: false }}>
           <Stack.Screen name="Accueil" component={HomeScreen} />
           <Stack.Screen name="BottomNavigator" component={BottomNavigator} />
-          <Stack.Screen name="SignIn" component={SignInScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>
