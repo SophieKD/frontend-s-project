@@ -8,7 +8,7 @@ import {
 import { Button, Input, Text } from "react-native-elements";
 import Icon from "react-native-vector-icons/FontAwesome";
 
-// Sophie à finaliser : Position button en bas ou écran switch Accueil au bout de 3s
+// Sophie à finaliser :  écran switch Accueil au bout de 3s
 function LeS(props) {
   return (
     <ImageBackground
