@@ -14,15 +14,14 @@ function Products(props) {
 
       <View
         style={{
-          backgroundColor: "white",
+          backgroundColor: "#acdcdc",
           justifyContent: "center",
-          height: 40,
+          height: 30,
         }}
       >
         <Text
           style={{
-            marginBottom: 20,
-            marginLeft: 30,
+            marginLeft: 20,
             fontWeight: "bold",
           }}
         >
@@ -64,6 +63,7 @@ function Products(props) {
           <Card.Image
             style={{ padding: 0 }}
             source={require("../assets/moelleux.png")}
+            onPress={() => props.navigation.navigate("Produit")}
           />
           <View style={{ flex: 1 }}>
             <Text
@@ -94,15 +94,14 @@ function Products(props) {
 
       <View
         style={{
-          backgroundColor: "white",
+          backgroundColor: "#acdcdc",
           justifyContent: "center",
-          height: 40,
+          height: 30,
         }}
       >
         <Text
           style={{
-            marginBottom: 20,
-            marginLeft: 30,
+            marginLeft: 20,
             fontWeight: "bold",
           }}
         >
@@ -124,7 +123,7 @@ function Products(props) {
                 fontWeight: "bold",
               }}
             >
-              Sandwich
+              Club S
             </Text>
             <Text>Le traditionnel club sandwich, revisité à l'avocat...</Text>
             <Text
@@ -142,6 +141,7 @@ function Products(props) {
           <Card.Image
             style={{ padding: 0 }}
             source={require("../assets/Sandwich2.png")}
+            onPress={() => props.navigation.navigate("Produit")}
           />
           <View style={{ flex: 1 }}>
             <Text
@@ -170,13 +170,5 @@ function Products(props) {
     </ScrollView>
   );
 }
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     alignItems: "center",
-//     justifyContent: "center",
-//   },
-// });
 
 export default Products;
