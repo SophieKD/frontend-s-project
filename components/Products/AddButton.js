@@ -1,31 +1,60 @@
 import React, { useState } from "react";
-import { StyleSheet, View, Text, ScrollView } from "react-native";
+import { StyleSheet, View, ScrollView } from "react-native";
 import { Button, ButtonGroup, withTheme, Text } from "react-native-elements";
-import { Card } from "react-native-elements";
 
 // en cours ADD BUTTON
 function AddButton() {
+  const buttons = ["-", "1", "+"];
+
   return (
-    //Ajouter Button
-    <View>
-      <Button
-        title="LOG IN"
+    <View
+      style={{
+        flex: 1,
+        backgroundColor: "white",
+        flexWrap: "wrap",
+        flexDirection: "row",
+      }}
+    >
+      {/* Border radius ? et encadrement */}
+      <View style={styles.container}>
+        <ButtonGroup
+          innerBorderStyle={{ color: "#F7F7FB" }}
+          buttons={buttons}
+          containerStyle={{ height: 40 }}
+          buttonContainerStyle={{
+            backgroundColor: "#F7F7FB",
+            borderColor: "#F7F7FB",
+          }}
+          textStyle={{ color: "black" }}
+        />
+      </View>
+      {/* TEST1 */}
+      {/* <Button
+        title="Ajouter"
         buttonStyle={{
-          backgroundColor: "black",
-          borderWidth: 2,
-          borderColor: "white",
+          backgroundColor: "#F7F7FB",
           borderRadius: 30,
         }}
         containerStyle={{
-          width: 200,
-          marginHorizontal: 50,
-          marginVertical: 10,
+          width: "32%",
+          margin: "2%",
         }}
-        titleStyle={{ fontWeight: "bold" }}
+        titleStyle={{ fontWeight: "bold", color: "black" }}
+      /> */}
+      {/*  Button "AJOUTER" */}
+      <Button
+        title="Ajouter   11,90€"
+        buttonStyle={{
+          backgroundColor: "#FFFACD",
+          borderRadius: 30,
+        }}
+        containerStyle={{
+          width: "60%",
+          margin: "2%",
+        }}
+        titleStyle={{ fontWeight: "bold", color: "black" }}
       />
     </View>
-
-    //+ -  BUTTON Ex mymoviz
   );
 }
 
