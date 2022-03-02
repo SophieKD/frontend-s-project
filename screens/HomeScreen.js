@@ -6,7 +6,7 @@ function HomeScreen(props) {
   return (
     <ScrollView style={{ marginTop: 10 }}>
       <Image
-        source={require("../assets/homescreen1.jpeg")}
+        source={require("../assets/Home-bagels.png")}
         containerStyle={styles.item}
         onPress={() => props.navigation.navigate("Menu")}
       />
@@ -15,28 +15,28 @@ function HomeScreen(props) {
         <Card containerStyle={{ width: "46%", margin: "2%" }}>
           <Card.Image
             style={{ padding: 0 }}
-            source={require("../assets/cat-jour.png")}
+            source={require("../assets/home-platdujour.png")}
             onPress={() => props.navigation.navigate("Menu")}
           />
         </Card>
         <Card containerStyle={{ width: "46%", margin: "2%" }}>
           <Card.Image
             style={{ padding: 0 }}
-            source={require("../assets/cat-bowls.png")}
+            source={require("../assets/home-bowls.png")}
             onPress={() => props.navigation.navigate("Menu")}
           />
         </Card>
         <Card containerStyle={{ width: "46%", margin: "2%" }}>
           <Card.Image
             style={{ padding: 0 }}
-            source={require("../assets/cat-boissons.png")}
+            source={require("../assets/home-boissons.png")}
             onPress={() => props.navigation.navigate("Menu")}
           />
         </Card>
         <Card containerStyle={{ width: "46%", margin: "2%" }}>
           <Card.Image
             style={{ padding: 0 }}
-            source={require("../assets/cat-dessert.png")}
+            source={require("../assets/home-desserts.png")}
             onPress={() => props.navigation.navigate("Menu")}
           />
         </Card>

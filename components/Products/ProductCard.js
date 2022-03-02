@@ -9,7 +9,7 @@ function ProductCard(props) {
         <Card containerStyle={{ width: "46%", margin: "2%" }}>
           <Card.Image
             style={{ padding: 0 }}
-            source={require("../../assets/lasagnes.png")}
+            source={require("../../assets/lasagnes-jour.png")}
             // Navigation cassee
             // onPress={() =>
             //   props.navigation.navigate("Produit2", { screen: "Produit" })

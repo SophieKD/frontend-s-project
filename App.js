@@ -69,8 +69,6 @@ function App() {
           <Stack.Screen name="Fidélité" component={LoyaltyScreen} />
           <Stack.Screen name="Mon compte" component={SignUpScreen} />
           <Stack.Screen name="Produit" component={ProductDetailScreen} />
-          {/* Navigation en test: */}
-          <Stack.Screen name="Produit2" component={ProductCard} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>

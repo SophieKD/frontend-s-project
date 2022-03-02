@@ -12,6 +12,10 @@ function LeS(props) {
       <Button
         buttonStyle={{
           backgroundColor: "white",
+          borderRadius: 30,
+          marginRight: 5,
+          marginLeft: 10,
+          marginVertical: 5,
         }}
         titleStyle={{ color: "#136979", marginHorizontal: 20 }}
         icon={<Icon name="arrow-right" size={20} color="#136979" />}
