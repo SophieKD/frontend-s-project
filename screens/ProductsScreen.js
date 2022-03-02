@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { View, Text, ScrollView } from "react-native";
 import { Card } from "react-native-elements";
 import NavCategories from "../components/Products/NavCategories";
+import ViewCartButton from "../components/Products/ViewCartButton";
 
 // import ProductCard from "../components/Products/ProductCard";
 
@@ -91,6 +92,8 @@ function Products(props) {
     }
   });
 
+  // Sophie à faire : optimizer Image card espace et contour / prix en bas de Card / pour test j'ai mis ici ligne 8 navigation avec le composant View CartButton ligne 167 qui s'affiche mais à mettre en state
+
   return (
     <ScrollView>
       <View style={{ backgroundColor: "#136979", height: 50 }} />
@@ -99,15 +102,14 @@ function Products(props) {
 
       <View
         style={{
-          backgroundColor: "white",
+          backgroundColor: "#acdcdc",
           justifyContent: "center",
-          height: 40,
+          height: 30,
         }}
       >
         <Text
           style={{
-            marginBottom: 20,
-            marginLeft: 30,
+            marginLeft: 20,
             fontWeight: "bold",
           }}
         >
@@ -119,21 +121,18 @@ function Products(props) {
         {platEtDessertDuJour}
       </View>
 
-      {/* <ProductCard /> */}
-
       <View style={{ height: 20 }} />
 
       <View
         style={{
-          backgroundColor: "white",
+          backgroundColor: "#acdcdc",
           justifyContent: "center",
-          height: 40,
+          height: 30,
         }}
       >
         <Text
           style={{
-            marginBottom: 20,
-            marginLeft: 30,
+            marginLeft: 20,
             fontWeight: "bold",
           }}
         >
@@ -145,17 +144,9 @@ function Products(props) {
         {sandwichs}
       </View>
 
-      {/* <ProductCard /> */}
+      <ViewCartButton navigation={navigation} />
     </ScrollView>
   );
 }
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     alignItems: "center",
-//     justifyContent: "center",
-//   },
-// });
 
 export default Products;
