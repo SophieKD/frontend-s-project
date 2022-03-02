@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { View, Text, ScrollView } from "react-native";
 import { Card } from "react-native-elements";
 import NavCategories from "../components/Products/NavCategories";
@@ -6,6 +6,91 @@ import NavCategories from "../components/Products/NavCategories";
 // import ProductCard from "../components/Products/ProductCard";
 
 function Products(props) {
+  const [productsCategory, setProductsCategory] = useState([]);
+  console.log("productsCategory", productsCategory);
+
+  useEffect(() => {
+    async function loadProductsCategory() {
+      var rawResponse = await fetch(
+        "https://ls-project-capsule.herokuapp.com/products-find-by-category"
+      );
+      console.log("rawResponse", rawResponse);
+
+      var response = await rawResponse.json();
+      console.log("response", response);
+
+      setProductsCategory(response.productFind);
+    }
+    loadProductsCategory();
+  }, []);
+
+  var platEtDessertDuJour;
+  var sandwichs;
+
+  var productsCategoryMap = productsCategory.map((product, i) => {
+    for (let j = 0; j < productsCategory.length; j++) {
+      if (product.category[j].name === "PLAT ET DESSERT DU JOUR") {
+        return (platEtDessertDuJour = (
+          <Card key={i} containerStyle={{ width: "46%", margin: "2%" }}>
+            <Card.Image
+              style={{ padding: 0, height: 100, width: 150 }}
+              source={{ uri: product.img }}
+              onPress={() => props.navigation.navigate("Produit")}
+            />
+            <View style={{ flex: 1 }}>
+              <Text
+                style={{
+                  marginBottom: 15,
+                  fontWeight: "bold",
+                }}
+              >
+                {product.title}
+              </Text>
+              <Text>{product.description}</Text>
+              <Text
+                style={{
+                  fontWeight: "bold",
+                  textAlignVertical: "bottom",
+                }}
+              >
+                {product.price}€
+              </Text>
+            </View>
+          </Card>
+        ));
+      } else if (product.category[j].name === "SANDWICHS") {
+        return (sandwichs = (
+          <Card key={i} containerStyle={{ width: "46%", margin: "2%" }}>
+            <Card.Image
+              style={{ padding: 0, height: 100, width: 150 }}
+              source={{ uri: product.img }}
+              onPress={() => props.navigation.navigate("Produit")}
+            />
+            <View style={{ flex: 1 }}>
+              <Text
+                style={{
+                  marginBottom: 15,
+                  fontWeight: "bold",
+                }}
+              >
+                {product.title}
+              </Text>
+              <Text>{product.description}</Text>
+              <Text
+                style={{
+                  fontWeight: "bold",
+                  textAlignVertical: "bottom",
+                }}
+              >
+                {product.price}€
+              </Text>
+            </View>
+          </Card>
+        ));
+      }
+    }
+  });
+
   return (
     <ScrollView>
       <View style={{ backgroundColor: "#136979", height: 50 }} />
@@ -31,61 +116,7 @@ function Products(props) {
       </View>
 
       <View style={{ flex: 1, flexWrap: "wrap", flexDirection: "row" }}>
-        <Card containerStyle={{ width: "46%", margin: "2%" }}>
-          <Card.Image
-            style={{ padding: 0 }}
-            source={require("../assets/lasagnes-jour.png")}
-            onPress={() => props.navigation.navigate("Produit")}
-          />
-          <View style={{ flex: 1 }}>
-            <Text
-              style={{
-                marginBottom: 15,
-                fontWeight: "bold",
-              }}
-            >
-              Lasagnes Maison
-            </Text>
-            <Text>
-              Les meilleures lasagnes du monde, au bron ragù à la bolognese...
-            </Text>
-            <Text
-              style={{
-                fontWeight: "bold",
-                textAlignVertical: "bottom",
-              }}
-            >
-              9,90€
-            </Text>
-          </View>
-        </Card>
-
-        <Card containerStyle={{ width: "46%", margin: "2%" }}>
-          <Card.Image
-            style={{ padding: 0 }}
-            source={require("../assets/moelleux.png")}
-          />
-          <View style={{ flex: 1 }}>
-            <Text
-              style={{
-                marginBottom: 15,
-                justifyContent: "center",
-                fontWeight: "bold",
-              }}
-            >
-              Fondant au chocolat
-            </Text>
-            <Text>Au bon chocolat coulant à l'intérieur...</Text>
-            <Text
-              style={{
-                fontWeight: "bold",
-                textAlignVertical: "bottom",
-              }}
-            >
-              3,90€
-            </Text>
-          </View>
-        </Card>
+        {platEtDessertDuJour}
       </View>
 
       {/* <ProductCard /> */}
@@ -111,59 +142,7 @@ function Products(props) {
       </View>
 
       <View style={{ flex: 1, flexWrap: "wrap", flexDirection: "row" }}>
-        <Card containerStyle={{ width: "46%", margin: "2%" }}>
-          <Card.Image
-            style={{ padding: 0 }}
-            source={require("../assets/sandwich1.png")}
-            onPress={() => props.navigation.navigate("Produit")}
-          />
-          <View style={{ flex: 1 }}>
-            <Text
-              style={{
-                marginBottom: 15,
-                fontWeight: "bold",
-              }}
-            >
-              Sandwich
-            </Text>
-            <Text>Le traditionnel club sandwich, revisité à l'avocat...</Text>
-            <Text
-              style={{
-                fontWeight: "bold",
-                textAlignVertical: "bottom",
-              }}
-            >
-              5,90€
-            </Text>
-          </View>
-        </Card>
-
-        <Card containerStyle={{ width: "46%", margin: "2%" }}>
-          <Card.Image
-            style={{ padding: 0 }}
-            source={require("../assets/Sandwich2.png")}
-          />
-          <View style={{ flex: 1 }}>
-            <Text
-              style={{
-                marginBottom: 15,
-                justifyContent: "center",
-                fontWeight: "bold",
-              }}
-            >
-              Sandwich Poulet
-            </Text>
-            <Text>Avec un pain maison et au poulet mariné...</Text>
-            <Text
-              style={{
-                fontWeight: "bold",
-                textAlignVertical: "bottom",
-              }}
-            >
-              6,90€
-            </Text>
-          </View>
-        </Card>
+        {sandwichs}
       </View>
 
       {/* <ProductCard /> */}
