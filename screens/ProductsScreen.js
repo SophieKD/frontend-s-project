@@ -4,7 +4,7 @@ import { Card } from "react-native-elements";
 import NavCategories from "../components/Products/NavCategories";
 import ViewCartButton from "../components/Products/ViewCartButton";
 
-// Sophie à faire : optimizer Image card espace et contour / prix en bas de Card /
+// Sophie à faire : optimizer Image card espace et contour / prix en bas de Card / pour test j'ai mis ici ligne 8 navigation avec le composant View CartButton ligne 167 qui s'affiche mais à mettre en state
 function Products(props, navigation) {
   return (
     <ScrollView>
@@ -163,8 +163,6 @@ function Products(props, navigation) {
           </View>
         </Card>
       </View>
-
-      {/* <ProductCard /> */}
 
       <ViewCartButton navigation={navigation} />
     </ScrollView>

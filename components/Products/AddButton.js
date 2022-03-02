@@ -16,7 +16,7 @@ function AddButton() {
         flexDirection: "row",
       }}
     >
-      {/* Border radius ? et encadrement */}
+      {/* BUTTON -+ / Border radius ? et encadrement */}
       <View style={styles.container}>
         <ButtonGroup
           innerBorderStyle={{ color: "#F7F7FB" }}
@@ -29,28 +29,16 @@ function AddButton() {
           textStyle={{ color: "black" }}
         />
       </View>
-      {/* TEST1 */}
-      {/* <Button
-        title="Ajouter"
-        buttonStyle={{
-          backgroundColor: "#F7F7FB",
-          borderRadius: 30,
-        }}
-        containerStyle={{
-          width: "32%",
-          margin: "2%",
-        }}
-        titleStyle={{ fontWeight: "bold", color: "black" }}
-      /> */}
-      {/*  Button "AJOUTER" */}
+
+      {/* BUTTON AJOUTER */}
       <Button
-        title="Ajouter   11,90€"
+        title="Ajouter   9,90€"
         buttonStyle={{
           backgroundColor: "#FFFACD",
           borderRadius: 30,
         }}
         containerStyle={{
-          width: "60%",
+          width: "70%",
           margin: "2%",
         }}
         titleStyle={{ fontWeight: "bold", color: "black" }}

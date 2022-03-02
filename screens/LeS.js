@@ -1,5 +1,10 @@
 import React from "react";
-import { StyleSheet, ImageBackground } from "react-native";
+import {
+  StyleSheet,
+  ImageBackground,
+  View,
+  TouchableOpacity,
+} from "react-native";
 import { Button, Input, Text } from "react-native-elements";
 import Icon from "react-native-vector-icons/FontAwesome";
 
@@ -10,7 +15,53 @@ function LeS(props) {
       source={require("../assets/LeS-Screen.png")}
       style={styles.container}
     >
-      <Button
+      <View
+        style={{
+          flex: 1,
+          alignItems: "center",
+          justifyContent: "center",
+          flexDirection: "row",
+          position: "absolute",
+          bottom: 80,
+          zIndex: 999,
+        }}
+      >
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "center",
+            width: "100%",
+          }}
+        >
+          <TouchableOpacity
+            style={{
+              marginTop: 80,
+              backgroundColor: "white",
+              alignItems: "center",
+              padding: 13,
+              borderRadius: 30,
+              // width: "30%",
+              position: "relative",
+            }}
+            onPress={() => {
+              props.navigation.navigate("BottomNavigator", {
+                screen: "ProductsScreen",
+              });
+            }}
+          >
+            <Text
+              style={{
+                color: "#136979",
+                fontSize: 20,
+                // fontWeight: "bold",
+              }}
+            >
+              Click et Chill
+            </Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+      {/* <Button
         buttonStyle={{
           backgroundColor: "white",
           borderRadius: 30,
@@ -27,7 +78,7 @@ function LeS(props) {
             screen: "ProductsScreen",
           });
         }}
-      />
+      /> */}
     </ImageBackground>
   );
 }
