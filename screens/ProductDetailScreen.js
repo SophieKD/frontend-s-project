@@ -3,8 +3,9 @@ import { View, Text, ScrollView, StyleSheet } from "react-native";
 import { Card, Image } from "react-native-elements";
 import NavCategories from "../components/Products/NavCategories";
 import AddButton from "../components/Products/AddButton";
+import ViewCartButton from "../components/Products/ViewCartButton";
 
-// EN COURS
+//Nav Bottom se met en bas (sans s'afficher juste l'espace). Inutile, pas besoin de la nav bottom ici
 function ProductDetailScreen() {
   return (
     <ScrollView>

@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { StyleSheet, View, ScrollView } from "react-native";
 import { Button, ButtonGroup, withTheme, Text } from "react-native-elements";
 
-// en cours ADD BUTTON
+// Sophie : optimizer Border radius Button +- / composant global à mettre en fixe en bottom avec scroll du contenu de la page ProductDetailScreen en dessous
+
 function AddButton() {
   const buttons = ["-", "1", "+"];
 
@@ -63,13 +64,6 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-  },
-  checkboxContainer: {
-    flexDirection: "row",
-    marginBottom: 20,
-  },
-  checkbox: {
-    alignSelf: "center",
   },
   label: {
     margin: 8,

@@ -1,6 +1,8 @@
 import React from "react";
 import { View, Text, ScrollView } from "react-native";
 
+// Sophie: souligner le lien en navigation active
+
 const items = [
   {
     text: "Formules",

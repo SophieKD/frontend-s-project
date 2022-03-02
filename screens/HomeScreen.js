@@ -2,6 +2,7 @@ import React from "react";
 import { StyleSheet, View, Text, ScrollView } from "react-native";
 import { Card, Image } from "react-native-elements";
 
+// Sophie à Finaliser:Image 1 size + Card enlever marges et contour
 function HomeScreen(props) {
   return (
     <ScrollView style={{ marginTop: 10 }}>

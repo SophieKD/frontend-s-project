@@ -2,10 +2,10 @@ import React from "react";
 import { View, Text, ScrollView } from "react-native";
 import { Card } from "react-native-elements";
 import NavCategories from "../components/Products/NavCategories";
+import ViewCartButton from "../components/Products/ViewCartButton";
 
-// import ProductCard from "../components/Products/ProductCard";
-
-function Products(props) {
+// Sophie à faire : optimizer Image card espace et contour / prix en bas de Card /
+function Products(props, navigation) {
   return (
     <ScrollView>
       <View style={{ backgroundColor: "#136979", height: 50 }} />
@@ -88,8 +88,6 @@ function Products(props) {
         </Card>
       </View>
 
-      {/* <ProductCard /> */}
-
       <View style={{ height: 20 }} />
 
       <View
@@ -167,6 +165,8 @@ function Products(props) {
       </View>
 
       {/* <ProductCard /> */}
+
+      <ViewCartButton navigation={navigation} />
     </ScrollView>
   );
 }
