@@ -20,28 +20,8 @@ function SignUpScreen(props) {
 
   const [isUserRegistered, setIsUserRegistered] = useState("SignUp");
   console.log("isUserRegistered =>", isUserRegistered);
-  const [visible, setVisible] = useState(false);
   const [error, setError] = useState([]);
-
-  let errorToDisplay = [];
-  for (let i = 0; i < error.length; i++) {
-    if (error.length > 0) {
-      if (error[i].lastname) {
-        errorToDisplay.push(error[i].lastname);
-      } else if (error[i].firstname) {
-        errorToDisplay.push(error[i].firstname);
-      } else if (error[i].password) {
-        errorToDisplay.push(error[i].password);
-      } else if (error[i].pseudo) {
-        errorToDisplay.push(error[i].pseudo);
-      } else if (error[i].email) {
-        errorToDisplay.push(error[i].email);
-      } else if (error[i].mobile) {
-        errorToDisplay.push(error[i].mobile);
-      }
-    }
-  }
-  console.log("---errorToDisplay =>", errorToDisplay);
+  console.log("---error =>", error);
 
   useEffect(() => {
     AsyncStorage.getItem(
@@ -56,13 +36,18 @@ function SignUpScreen(props) {
       }
     );
   }, []);
+
   let loginJSX;
   if (isUserRegistered === "SignUp") {
     loginJSX = (
       <View style={styles.container}>
-        <Text style={{ fontWeight: "bold" }}>Créer un compte</Text>
-        <Text style={{ marginTop: 10 }}>Prénom</Text>
+        <Text style={{ fontWeight: "bold", fontSize: 20, marginBottom: 12 }}>
+          Créer un compte
+        </Text>
         <Input
+          inputContainerStyle={{ height: 35 }}
+          label={"Prénom"}
+          labelStyle={{ color: "black", fontSize: 18 }}
           containerStyle={{
             marginBottom: 0,
             width: "70%",
@@ -70,50 +55,66 @@ function SignUpScreen(props) {
           inputStyle={{
             marginLeft: 10,
           }}
-          placeholder="Prénom"
+          placeholder="prénom"
           onChangeText={(val) => setFirstname(val)}
           value={firstname}
+          errorMessage={error.firstname}
         />
-        <Text>Nom</Text>
         <Input
+          inputContainerStyle={{ height: 35 }}
+          label={"Nom"}
+          labelStyle={{ color: "black", fontSize: 15 }}
           containerStyle={{ marginBottom: 0, width: "70%" }}
           inputStyle={{ marginLeft: 10 }}
-          placeholder="Nom"
+          placeholder="nom"
           onChangeText={(val) => setLastname(val)}
           value={lastname}
+          errorMessage={error.lastname}
         />
-        <Text>Pseudo</Text>
         <Input
+          inputContainerStyle={{ height: 35 }}
+          label={"Pseudo"}
+          labelStyle={{ color: "black", fontSize: 15 }}
           containerStyle={{ marginBottom: 0, width: "70%" }}
           inputStyle={{ marginLeft: 10 }}
-          placeholder="Pseudo"
+          placeholder="pseudo"
           onChangeText={(val) => setPseudo(val)}
           value={pseudo}
+          errorMessage={error.pseudo}
         />
-        <Text>Mobile</Text>
         <Input
+          inputContainerStyle={{ height: 35 }}
+          label={"Mobile"}
+          labelStyle={{ color: "black", fontSize: 15 }}
           containerStyle={{ marginBottom: 0, width: "70%" }}
           inputStyle={{ marginLeft: 10 }}
-          placeholder="Mobile"
+          placeholder="mobile"
           onChangeText={(val) => setMobile(val)}
           value={mobile}
+          errorMessage={error.mobile}
         />
-        <Text>Email</Text>
         <Input
+          inputContainerStyle={{ height: 35 }}
+          label={"Email"}
+          labelStyle={{ color: "black", fontSize: 15 }}
           containerStyle={{ marginBottom: 0, width: "70%" }}
           inputStyle={{ marginLeft: 10 }}
-          placeholder="Email"
-          onChangeText={(val) => setEmail(val)}
+          placeholder="email"
+          onChangeText={(val) => onChangeEmail(val)}
           value={email}
+          errorMessage={error.email}
         />
-        <Text>Password</Text>
         <Input
+          inputContainerStyle={{ height: 35 }}
+          label={"Password"}
+          labelStyle={{ color: "black", fontSize: 15 }}
           containerStyle={{ marginBottom: 0, width: "70%" }}
           inputStyle={{ marginLeft: 10 }}
-          placeholder="Password"
+          placeholder="password"
           secureTextEntry={true}
           onChangeText={(val) => setPassword(val)}
           value={password}
+          errorMessage={error.password}
         />
         <Button
           buttonStyle={{ marginTop: 0 }}
@@ -129,28 +130,6 @@ function SignUpScreen(props) {
         >
           Already have an account? Press here to Sign-In!
         </Text>
-        <Overlay isVisible={visible}>
-          <Text
-            style={{
-              fontSize: 20,
-              fontWeight: "bold",
-              textAlign: "center",
-              marginBottom: 10,
-            }}
-          >
-            Error!
-          </Text>
-          {errorToDisplay.map((e, i) => (
-            <Text key={i} style={{ marginTop: 3, fontSize: 15 }}>
-              {e}
-            </Text>
-          ))}
-          <Button
-            title="Got it!"
-            onPress={() => toggleOverlay()}
-            style={{ marginTop: 15 }}
-          />
-        </Overlay>
       </View>
     );
   }
@@ -160,7 +139,8 @@ function SignUpScreen(props) {
       <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
         <Text style={{ marginBottom: 25 }}>
           <MaterialCommunityIcons name="party-popper" size={24} color="black" />{" "}
-          Welcome Back <Text style={{ fontWeight: "bold" }}>{pseudo}</Text>!{" "}
+          Welcome to The "S" App{" "}
+          <Text style={{ fontWeight: "bold" }}>{pseudo}</Text>!{" "}
           <MaterialCommunityIcons name="party-popper" size={24} color="black" />
         </Text>
         <View style={{ marginBottom: 25 }}>
@@ -197,19 +177,22 @@ function SignUpScreen(props) {
   if (isUserRegistered === "SignIn") {
     loginJSX = (
       <View style={styles.container}>
-        <Text style={{ fontWeight: "bold" }}>Email</Text>
         <Input
+          label={"Email"}
+          labelStyle={{ color: "black", fontSize: 15 }}
           containerStyle={{ marginBottom: 0, width: "70%" }}
           inputStyle={{ marginLeft: 10 }}
-          placeholder="Email"
-          onChangeText={(val) => setEmail(val)}
+          placeholder="email"
+          onChangeText={(val) => onChangeEmail(val)}
           value={email}
+          errorMessage={error.email}
         />
-        <Text style={{ fontWeight: "bold" }}>Password</Text>
         <Input
+          label={"Password"}
+          labelStyle={{ color: "black", fontSize: 15 }}
           containerStyle={{ marginBottom: 0, width: "70%" }}
           inputStyle={{ marginLeft: 10 }}
-          placeholder="Password"
+          placeholder="password"
           secureTextEntry={hidePassword}
           onChangeText={(val) => setPassword(val)}
           value={password}
@@ -221,9 +204,10 @@ function SignUpScreen(props) {
               onPress={() => changeSecureTextEntry()}
             />
           }
+          errorMessage={error.password}
         />
         <Button
-          buttonStyle={{ marginTop: 0 }}
+          buttonStyle={{ marginTop: 5, marginBottom: 5 }}
           title="S'identifier"
           type="solid"
           onPress={() => onPressSignIn(email, password)}
@@ -268,9 +252,9 @@ function SignUpScreen(props) {
         JSON.stringify(response.userLoggedIn)
       );
       setIsUserRegistered("inLocalStorage");
+      setPseudo(response.userLoggedIn.pseudo);
     } else {
       setError(response.error);
-      setVisible(true);
     }
 
     //Par la suite cette fonction enverra un lien vers:
@@ -278,12 +262,27 @@ function SignUpScreen(props) {
     //  Si pas de commande en cours = page du profil
   };
 
-  const onPressSignIn = (email, password) => {
-    console.log(
-      "---onPressSignIn détecté, email, password =>",
-      email,
-      password
-    );
+  const onPressSignIn = async (email, password) => {
+    const data = await fetch("http://192.168.1.58:3000/users/actions/sign-in", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: `email=${email}&password=${password}`,
+    });
+
+    const response = await data.json();
+    console.log("---response", response);
+
+    if (response.result === true) {
+      props.onUserSignIn(response.userLoggedIn);
+      AsyncStorage.setItem(
+        "userLocalStorage",
+        JSON.stringify(response.userLoggedIn)
+      );
+      setIsUserRegistered("inLocalStorage");
+      setPseudo(response.userLoggedIn.pseudo);
+    } else {
+      setError(response.error);
+    }
   };
 
   const goToSignIn = () => {
@@ -291,7 +290,6 @@ function SignUpScreen(props) {
     props.logOutReducer();
     setPseudo("");
     setIsUserRegistered("SignIn");
-    props.navigation.navigate("SignIn");
   };
 
   const goToSignUp = () => {
@@ -299,15 +297,15 @@ function SignUpScreen(props) {
     props.logOutReducer();
     setPseudo("");
     setIsUserRegistered("SignUp");
-    props.navigation.navigate("SignUp");
   };
 
   const goToAccountPage = () => {
     console.log("--- press on goToAccountPage détected");
   };
 
-  const toggleOverlay = () => {
-    setVisible(!visible);
+  const onChangeEmail = (val) => {
+    let emailToLowerCase = val.toLowerCase();
+    setEmail(emailToLowerCase);
   };
 
   const changeSecureTextEntry = () => {
@@ -330,6 +328,9 @@ function mapDispatchToProps(dispatch) {
   return {
     onUserSignUp: function (userSignedUp) {
       dispatch({ type: "SignUp", userSignedUp });
+    },
+    onUserSignIn: function (userSignedIn) {
+      dispatch({ type: "SignIn", userSignedIn });
     },
     logOutReducer: function () {
       dispatch({ type: "logOut" });
