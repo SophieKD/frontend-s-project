@@ -5,8 +5,6 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-import { connect } from "react-redux";
-
 function LocaleStorageLogScreen(props) {
   const [pseudo, setPseudo] = useState("");
 
@@ -18,28 +16,21 @@ function LocaleStorageLogScreen(props) {
           let userInLocalStorageParsed = JSON.parse(userInLocalStorage);
           let pseudoOfUserInLocalStorage = userInLocalStorageParsed.pseudo;
           setPseudo(pseudoOfUserInLocalStorage);
-          //   setIsUserRegistered("inLocalStorage");
         }
       }
     );
   }, []);
 
   const goToSignIn = () => {
-    AsyncStorage.removeItem("userLocalStorage");
-    props.logOutReducer();
-    props.stateOfUserLogReducer("signIn");
-    // props.navigation.navigate("BottomNavigator", { screen: "Mon compte" });
+    props.goToSignInParent();
   };
 
   const goToSignUp = () => {
-    AsyncStorage.removeItem("userLocalStorage");
-    props.logOutReducer();
-    setPseudo("");
-    setIsUserRegistered("SignUp");
+    props.goToSignUpParent();
   };
 
   const goToAccountPage = () => {
-    console.log("--- press on goToAccountPage détected");
+    console.log("--- press on goToAccountPage detected");
   };
 
   return (
@@ -81,15 +72,4 @@ function LocaleStorageLogScreen(props) {
   );
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    logOutReducer: function () {
-      dispatch({ type: "logOut" });
-    },
-    stateOfUserLogReducer: function () {
-      dispatch({ type: "signIn" });
-    },
-  };
-}
-
-export default connect(null, mapDispatchToProps)(LocaleStorageLogScreen);
+export default LocaleStorageLogScreen;
