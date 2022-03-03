@@ -1,7 +1,9 @@
 import React from "react";
 import { View, Text, ScrollView, StyleSheet } from "react-native";
+import { Divider } from "react-native-elements";
 import OrderValidationButton from "../components/Orders/OrderValidationButton";
 import ProductCard from "../components/Orders/ProductCard";
+import TimePicker from "../components/Orders/TimePicker";
 
 // EN COURS
 function OrderRecapScreen(props) {
@@ -9,37 +11,112 @@ function OrderRecapScreen(props) {
     <ScrollView style={{ flex: 1 }}>
       <View>
         <View style={{ backgroundColor: "#136979", height: 50 }} />
-
+        <Text style={styles.title}>Ma commande</Text>
+        {/* Recap commande */}
         <View
           style={{
             flex: 1,
             backgroundColor: "white",
-            flexDirection: "column",
-            width: "100%",
+            flexDirection: "row",
+            width: "90%",
+            margin: "5%",
+            flexWrap: "wrap",
           }}
         >
-          <View style={styles.container}>
-            <Text style={styles.title}>Ma commande</Text>
-            <View>
-              <View></View>
-            </View>
-          </View>
+          <Text
+            style={{
+              fontWeight: "bold",
+              fontSize: 15,
+              color: "black",
+              width: "10%",
+              margin: "5%",
+              justifyContent: "center",
+              alignContent: "center",
+            }}
+          >
+            1
+          </Text>
+          <Text
+            style={{
+              fontWeight: "bold",
+              fontSize: 15,
+              color: "black",
+              width: "40%",
+              margin: "5%",
+            }}
+          >
+            Lasagnes Maison
+          </Text>
+          <Text
+            style={{
+              fontWeight: "bold",
+              fontSize: 15,
+              color: "black",
+              width: "20%",
+              margin: "5%",
+            }}
+          >
+            9,90€
+          </Text>
         </View>
 
-        <View>
-          <Text>un petit extra?</Text>
-        </View>
+        {/* Divider */}
+        <Divider />
+
+        <Text style={styles.title}>Un petit Extra ?</Text>
 
         <ProductCard />
 
-        <View>
-          <Text>heure de retrait</Text>
-        </View>
+        {/* Divider */}
+        <Divider />
 
-        <View>
-          <Text>Total</Text>
-        </View>
+        <Text style={styles.title}>Heure de retrait</Text>
+        {/* composant à faire */}
+        <TimePicker />
 
+        <View
+          style={{
+            flex: 1,
+            flexDirection: "row",
+            width: "90%",
+            margin: "5%",
+            flexWrap: "wrap",
+          }}
+        >
+          <Text
+            style={{
+              fontWeight: "bold",
+              fontSize: 20,
+              color: "black",
+              width: "60%",
+              margin: "5%",
+              justifyContent: "center",
+              alignContent: "center",
+            }}
+          >
+            Total
+          </Text>
+          <Text
+            style={{
+              fontWeight: "bold",
+              fontSize: 20,
+              color: "black",
+              width: "20%",
+              margin: "5%",
+            }}
+          >
+            9,90€
+          </Text>
+        </View>
+      </View>
+
+      {/* BOUTON validation commande */}
+      <View
+        style={{
+          flex: 1,
+          backgroundColor: "white",
+        }}
+      >
         <OrderValidationButton navigation={props.navigation} />
       </View>
     </ScrollView>
@@ -47,32 +124,18 @@ function OrderRecapScreen(props) {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "white",
-    width: "90%",
-    margin: "5%",
-  },
   title: {
-    marginBottom: 15,
     fontWeight: "bold",
-    fontSize: 17,
+    fontSize: 20,
     color: "#136979",
+    margin: "5%",
+    marginBottom: 0,
   },
-  price: {
-    marginBottom: 10,
-    fontWeight: "bold",
-    fontSize: 15,
-  },
-  productName: {
-    marginBottom: 10,
-    fontSize: 14,
-  },
-  item: {
-    aspectRatio: 1,
-    width: "100%",
-    flex: 1,
-  },
+  //   horizontalText: {
+  //     textAlign: "center",
+  //     fontSize: 16,
+  //     marginVertical: 10,
+  //   },
 });
 
 export default OrderRecapScreen;

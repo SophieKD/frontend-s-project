@@ -35,14 +35,14 @@ function AddButton() {
       <Button
         title="Ajouter   9,90€"
         buttonStyle={{
-          backgroundColor: "#FFFACD",
+          backgroundColor: "#136979",
           borderRadius: 30,
         }}
         containerStyle={{
           width: "60%",
           marginLeft: "20%",
         }}
-        titleStyle={{ fontWeight: "bold", color: "black" }}
+        titleStyle={{ fontWeight: "bold", color: "white" }}
       />
     </View>
   );

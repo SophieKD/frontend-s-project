@@ -77,7 +77,6 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     margin: 20,
   },
-
   titleStyle: {
     fontWeight: "bold",
     marginBottom: 15,
