@@ -5,7 +5,8 @@ import OrderValidationButton from "../components/Orders/OrderValidationButton";
 import ProductCard from "../components/Orders/ProductCard";
 import TimePicker from "../components/Orders/TimePicker";
 
-// EN COURS
+// EN COURS. reste à faire: Timer + Bouton en bas
+
 function OrderRecapScreen(props) {
   return (
     <ScrollView style={{ flex: 1 }}>
