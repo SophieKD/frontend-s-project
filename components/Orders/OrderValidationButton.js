@@ -1,18 +1,21 @@
 import React from "react";
-import { StyleSheet, View, TouchableOpacity } from "react-native";
+import { StyleSheet, View, TouchableOpacity, ScrollView } from "react-native";
 import { Button, ButtonGroup, withTheme, Text } from "react-native-elements";
 
+//SOPHIE: Bouton à faire apparaitre en bas
 function OrderValidationButton() {
   return (
+    // <ScrollView style={{ flex: 1 }}>
     <View
       style={{
         flex: 1,
         alignItems: "center",
         justifyContent: "center",
         flexDirection: "row",
-        position: "absolute",
+        position: "center",
         bottom: 10,
         zIndex: 999,
+        backgroundColor: "white",
       }}
     >
       <View
@@ -24,8 +27,8 @@ function OrderValidationButton() {
       >
         <TouchableOpacity
           style={{
-            marginTop: 20,
-            backgroundColor: "#FFFACD",
+            marginTop: 10,
+            backgroundColor: "#136979",
             alignItems: "center",
             padding: 13,
             borderRadius: 30,
@@ -39,7 +42,7 @@ function OrderValidationButton() {
         >
           <Text
             style={{
-              color: "black",
+              color: "white",
               fontSize: 20,
               fontWeight: "bold",
               textAlign: "right",
@@ -50,6 +53,7 @@ function OrderValidationButton() {
         </TouchableOpacity>
       </View>
     </View>
+    // </ScrollView>
   );
 }
 

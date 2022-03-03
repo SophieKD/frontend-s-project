@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
   title: {
     marginBottom: 15,
     fontWeight: "bold",
-    fontSize: 17,
+    fontSize: 20,
     color: "#136979",
   },
   price: {

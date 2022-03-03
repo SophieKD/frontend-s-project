@@ -1,44 +1,87 @@
 import React from "react";
-import { View, Text, ScrollView } from "react-native";
-import { Card } from "react-native-elements";
+import {
+  View,
+  Text,
+  ScrollView,
+  StyleSheet,
+  TouchableOpacity,
+} from "react-native";
+import { Card, Image, Divider } from "react-native-elements";
 
-// EN COURS A FINIR
+// Sophie optimize style : prix à mettre en bas aligné à la photo
 function ProductCard(props) {
   return (
     <ScrollView style={{ flex: 1 }}>
-      <View style={{ flex: 1, flexWrap: "wrap", flexDirection: "row" }}>
-        <Card containerStyle={{ width: "96%", margin: "2%" }}>
-          <Card.Image
-            style={{ padding: 0 }}
-            source={require("../../assets/moelleux.png")}
-            // onPress={() =>
-            //   ajout au panier
-            // }
-          />
-          <View style={{ flex: 1 }}>
-            <Text
+      <View style={styles.container}>
+        <View style={styles.menuItemStyle}>
+          <View>
+            <Image
+              source={require("../../assets/cookie.png")}
               style={{
-                marginBottom: 15,
-                fontWeight: "bold",
+                width: 75,
+                height: 75,
+                borderRadius: 8,
               }}
-            >
-              Cookie Noisettes
-            </Text>
-
-            <Text
-              style={{
-                // textAlign: "right",
-                fontWeight: "bold",
-                textAlignVertical: "bottom",
-              }}
-            >
-              2,90€
-            </Text>
+            />
           </View>
-        </Card>
+          <View style={{ width: 240 }}>
+            <Text style={styles.titleStyle}>Cookie Noisettes</Text>
+            <View style={{ flex: 1, flexDirection: "row" }}>
+              <Text
+                style={{
+                  fontWeight: "bold",
+                  textAlignVertical: "bottom",
+                  fontSize: 15,
+                  color: "#136979",
+                }}
+              >
+                2,90€
+              </Text>
+
+              <TouchableOpacity
+                style={{
+                  backgroundColor: "#136979",
+                  alignItems: "center",
+                  padding: 13,
+                  borderRadius: 30,
+                  marginLeft: 100,
+                }}
+              >
+                <Text
+                  style={{
+                    color: "white",
+                    fontSize: 15,
+                    fontWeight: "bold",
+                  }}
+                >
+                  + Ajouter
+                </Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </View>
       </View>
     </ScrollView>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "white",
+    width: "90%",
+    margin: "5%",
+  },
+  menuItemStyle: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    margin: 20,
+  },
+  titleStyle: {
+    fontWeight: "bold",
+    marginBottom: 15,
+    fontSize: 15,
+  },
+});
 
 export default ProductCard;

@@ -27,7 +27,7 @@ function ViewCartButton(props) {
         <TouchableOpacity
           style={{
             marginTop: 20,
-            backgroundColor: "#FFFACD",
+            backgroundColor: "#136979",
             alignItems: "center",
             padding: 13,
             borderRadius: 30,
@@ -42,7 +42,7 @@ function ViewCartButton(props) {
         >
           <Text
             style={{
-              color: "black",
+              color: "white",
               fontSize: 20,
               fontWeight: "bold",
               textAlign: "right",
