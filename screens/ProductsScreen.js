@@ -6,8 +6,11 @@ import ViewCartButton from "../components/Products/ViewCartButton";
 
 // Sophie à faire : optimizer Image card espace et contour / prix en bas de Card / pour test j'ai mis ici ligne 8 navigation avec le composant View CartButton ligne 167 qui s'affiche mais à mettre en state
 
-function Products(props) {
+function Products(props, navigation) {
   const [productsCategory, setProductsCategory] = useState([]);
+  console.log("productsCategory", productsCategory);
+
+  const [products, setProducts] = useState([]);
   console.log("productsCategory", productsCategory);
 
   useEffect(() => {
@@ -20,76 +23,63 @@ function Products(props) {
       var response = await rawResponse.json();
       console.log("response", response);
 
-      // setProductsCategory(response.productFind);
+      setProductsCategory(response.data);
     }
     loadProductsCategory();
   }, []);
 
-  var platEtDessertDuJour;
-  var sandwichs;
-
-  var productsCategoryMap = productsCategory.map((product, i) => {
-    for (let j = 0; j < productsCategory.length; j++) {
-      if (product.category[j].name === "PLAT ET DESSERT DU JOUR") {
-        return (platEtDessertDuJour = (
-          <Card key={i} containerStyle={{ width: "46%", margin: "2%" }}>
-            <Card.Image
-              style={{ padding: 0, height: 100, width: 150 }}
-              source={{ uri: product.img }}
-              onPress={() => props.navigation.navigate("Produit")}
-            />
-            <View style={{ flex: 1 }}>
-              <Text
-                style={{
-                  marginBottom: 15,
-                  fontWeight: "bold",
-                }}
-              >
-                {product.title}
-              </Text>
-              <Text>{product.description}</Text>
-              <Text
-                style={{
-                  fontWeight: "bold",
-                  textAlignVertical: "bottom",
-                }}
-              >
-                {product.price}€
-              </Text>
-            </View>
-          </Card>
-        ));
-      } else if (product.category[j].name === "SANDWICHS") {
-        return (sandwichs = (
-          <Card key={i} containerStyle={{ width: "46%", margin: "2%" }}>
-            <Card.Image
-              style={{ padding: 0, height: 100, width: 150 }}
-              source={{ uri: product.img }}
-              onPress={() => props.navigation.navigate("Produit")}
-            />
-            <View style={{ flex: 1 }}>
-              <Text
-                style={{
-                  marginBottom: 15,
-                  fontWeight: "bold",
-                }}
-              >
-                {product.title}
-              </Text>
-              <Text>{product.description}</Text>
-              <Text
-                style={{
-                  fontWeight: "bold",
-                  textAlignVertical: "bottom",
-                }}
-              >
-                {product.price}€
-              </Text>
-            </View>
-          </Card>
-        ));
-      }
-    }
+  var productsMap = productsCategory.map((product, i) => {
+    return (
+      <View>
+        <View
+          key={i}
+          style={{
+            backgroundColor: "#acdcdc",
+            justifyContent: "center",
+            height: 30,
+          }}
+        >
+          <Text
+            style={{
+              marginLeft: 20,
+              fontWeight: "bold",
+            }}
+          >
+            {product.category}
+          </Text>
+        </View>
+        {product.products.map((producto, j) => {
+          return (
+            <Card key={j} containerStyle={{ width: "46%", margin: "2%" }}>
+              <Card.Image
+                style={{ padding: 0, height: 100, width: 150 }}
+                source={producto.img}
+                onPress={() => props.navigation.navigate("Produit")}
+              />
+              <View style={{ flex: 1 }}>
+                <Text
+                  style={{
+                    marginBottom: 15,
+                    fontWeight: "bold",
+                  }}
+                >
+                  {producto.title}
+                </Text>
+                <Text>{producto.description}</Text>
+                <Text
+                  style={{
+                    fontWeight: "bold",
+                    textAlignVertical: "bottom",
+                  }}
+                >
+                  {producto.price}€
+                </Text>
+              </View>
+            </Card>
+          );
+        })}
+      </View>
+    );
   });
 
   // Sophie à faire : optimizer Image card espace et contour / prix en bas de Card / pour test j'ai mis ici ligne 8 navigation avec le composant View CartButton ligne 167 qui s'affiche mais à mettre en state
@@ -100,49 +90,13 @@ function Products(props) {
 
       <NavCategories />
 
-      <View
-        style={{
-          backgroundColor: "#acdcdc",
-          justifyContent: "center",
-          height: 30,
-        }}
-      >
-        <Text
-          style={{
-            marginLeft: 20,
-            fontWeight: "bold",
-          }}
-        >
-          PLAT ET DESSERT DU JOUR
-        </Text>
-      </View>
+      {productsMap}
 
-      <View style={{ flex: 1, flexWrap: "wrap", flexDirection: "row" }}>
-        {platEtDessertDuJour}
-      </View>
+      <View style={{ flex: 1, flexWrap: "wrap", flexDirection: "row" }}></View>
 
       <View style={{ height: 20 }} />
 
-      <View
-        style={{
-          backgroundColor: "#acdcdc",
-          justifyContent: "center",
-          height: 30,
-        }}
-      >
-        <Text
-          style={{
-            marginLeft: 20,
-            fontWeight: "bold",
-          }}
-        >
-          SANDWICHS
-        </Text>
-      </View>
-
-      <View style={{ flex: 1, flexWrap: "wrap", flexDirection: "row" }}>
-        {sandwichs}
-      </View>
+      <View style={{ flex: 1, flexWrap: "wrap", flexDirection: "row" }}></View>
 
       <ViewCartButton navigation={props.navigation} />
     </ScrollView>
