@@ -4,9 +4,9 @@ import { StyleSheet, View, Text } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import { connect } from "react-redux";
-import LocalStorageLogScreen from "../components/LocalStorageLogScreen";
-import SignInScreen from "../components/SignInScreen";
-import SignUpScreen from "../components/SignUpScreen";
+import LocalStorageLogScreen from "../components/Account/LocalStorageLogScreen";
+import SignInScreen from "../components/Account/SignInScreen";
+import SignUpScreen from "../components/Account/SignUpScreen";
 
 function LogScreen(props) {
   const [logComponent, setLogComponent] = useState("signIn");
@@ -43,11 +43,14 @@ function LogScreen(props) {
   };
 
   const onPressSignIn = async (email, password) => {
-    const data = await fetch("http://192.168.1.58:3000/users/actions/sign-in", {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: `email=${email}&password=${password}`,
-    });
+    const data = await fetch(
+      "https://ls-project-capsule.herokuapp.com/users/actions/sign-in",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: `email=${email}&password=${password}`,
+      }
+    );
 
     const response = await data.json();
 
@@ -72,11 +75,14 @@ function LogScreen(props) {
     email,
     password
   ) => {
-    const data = await fetch("http://192.168.1.58:3000/users/actions/sign-up", {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: `firstname=${firstname}&lastname=${lastname}&pseudo=${pseudo}&mobile=${mobile}&email=${email}&password=${password}`,
-    });
+    const data = await fetch(
+      "https://ls-project-capsule.herokuapp.com/users/actions/sign-up",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: `firstname=${firstname}&lastname=${lastname}&pseudo=${pseudo}&mobile=${mobile}&email=${email}&password=${password}`,
+      }
+    );
 
     const response = await data.json();
 
