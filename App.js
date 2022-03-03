@@ -15,8 +15,7 @@ import OrderRecapScreen from "./screens/OrderRecapScreen";
 import { Provider } from "react-redux";
 import { createStore, combineReducers } from "redux";
 import userLoggedIn from "./reducers/user";
-import stateOfUserLog from "./reducers/stateOfUserLog";
-const store = createStore(combineReducers({ userLoggedIn, stateOfUserLog }));
+const store = createStore(combineReducers({ userLoggedIn }));
 
 import { Ionicons } from "@expo/vector-icons";
 
