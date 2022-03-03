@@ -3,6 +3,7 @@ import { StyleSheet, View, ScrollView } from "react-native";
 import { Button, ButtonGroup, withTheme, Text } from "react-native-elements";
 
 // Sophie : optimizer Border radius Button +- / composant global à mettre en fixe en bottom avec scroll du contenu de la page ProductDetailScreen en dessous
+// Ajouter à la commande avec retour sur page d'accueil
 
 function AddButton() {
   const buttons = ["-", "1", "+"];
@@ -17,18 +18,18 @@ function AddButton() {
       }}
     >
       {/* BUTTON -+ / Border radius ? et encadrement */}
-      <View style={styles.container}>
+      {/* <View style={styles.container}>
         <ButtonGroup
           innerBorderStyle={{ color: "#F7F7FB" }}
           buttons={buttons}
-          containerStyle={{ height: 40 }}
+          containerStyle={{ height: 30 }}
           buttonContainerStyle={{
             backgroundColor: "#F7F7FB",
             borderColor: "#F7F7FB",
           }}
           textStyle={{ color: "black" }}
         />
-      </View>
+      </View> */}
 
       {/* BUTTON AJOUTER */}
       <Button
@@ -38,8 +39,8 @@ function AddButton() {
           borderRadius: 30,
         }}
         containerStyle={{
-          width: "70%",
-          margin: "2%",
+          width: "60%",
+          marginLeft: "20%",
         }}
         titleStyle={{ fontWeight: "bold", color: "black" }}
       />

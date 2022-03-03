@@ -4,7 +4,7 @@ import { Button, ButtonGroup, withTheme, Text } from "react-native-elements";
 
 // Sophie : a afficher uniquement si des produits dans le panier
 
-function ViewCartButton() {
+function ViewCartButton(props) {
   return (
     <View
       style={{
@@ -34,6 +34,7 @@ function ViewCartButton() {
             width: "90%",
             position: "relative",
           }}
+          onPress={() => props.navigation.navigate("Commande")}
           // onPress={() => {
           //   addOrderToMongoDB();
           //   setModalVisible(false);

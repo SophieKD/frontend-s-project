@@ -1,11 +1,12 @@
 import React from "react";
 import { View, Text, ScrollView, StyleSheet } from "react-native";
 import OrderValidationButton from "../components/Orders/OrderValidationButton";
+import ProductCard from "../components/Orders/ProductCard";
 
-// EN COURS - PAS DE LIEN POUR ACCEDER
-function ProductDetailScreen() {
+// EN COURS
+function OrderRecapScreen(props) {
   return (
-    <ScrollView>
+    <ScrollView style={{ flex: 1 }}>
       <View>
         <View style={{ backgroundColor: "#136979", height: 50 }} />
 
@@ -29,6 +30,8 @@ function ProductDetailScreen() {
           <Text>un petit extra?</Text>
         </View>
 
+        <ProductCard />
+
         <View>
           <Text>heure de retrait</Text>
         </View>
@@ -37,7 +40,7 @@ function ProductDetailScreen() {
           <Text>Total</Text>
         </View>
 
-        <OrderValidationButton />
+        <OrderValidationButton navigation={props.navigation} />
       </View>
     </ScrollView>
   );
@@ -72,4 +75,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ProductDetailScreen;
+export default OrderRecapScreen;

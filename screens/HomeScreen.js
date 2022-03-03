@@ -5,7 +5,7 @@ import { Card, Image } from "react-native-elements";
 // Sophie à Finaliser:Image 1 size + Card enlever marges et contour
 function HomeScreen(props) {
   return (
-    <ScrollView style={{ marginTop: 10 }}>
+    <ScrollView style={{ flex: 1, marginTop: 10 }}>
       <Image
         source={require("../assets/Home-bagels.png")}
         containerStyle={styles.item}

@@ -2,8 +2,6 @@ import React from "react";
 import { StyleSheet, View, TouchableOpacity } from "react-native";
 import { Button, ButtonGroup, withTheme, Text } from "react-native-elements";
 
-// Sophie : a afficher dans la page Ma Commande (à importer quandla page sera faite)
-
 function OrderValidationButton() {
   return (
     <View

@@ -10,6 +10,7 @@ import AccountScreen from "./screens/AccountScreen";
 import LogScreen from "./screens/LogScreen";
 import LeS from "./screens/LeS";
 import ProductDetailScreen from "./screens/ProductDetailScreen";
+import OrderRecapScreen from "./screens/OrderRecapScreen";
 
 import { Provider } from "react-redux";
 import { createStore, combineReducers } from "redux";
@@ -18,7 +19,6 @@ import stateOfUserLog from "./reducers/stateOfUserLog";
 const store = createStore(combineReducers({ userLoggedIn, stateOfUserLog }));
 
 import { Ionicons } from "@expo/vector-icons";
-import ProductCard from "./components/Products/ProductCard";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -69,6 +69,7 @@ function App() {
           <Stack.Screen name="Menu" component={ProductsScreen} />
           <Stack.Screen name="Fidélité" component={LoyaltyScreen} />
           <Stack.Screen name="Produit" component={ProductDetailScreen} />
+          <Stack.Screen name="Commande" component={OrderRecapScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>

@@ -5,10 +5,9 @@ import NavCategories from "../components/Products/NavCategories";
 import AddButton from "../components/Products/AddButton";
 import ViewCartButton from "../components/Products/ViewCartButton";
 
-//Nav Bottom se met en bas (sans s'afficher juste l'espace). Inutile, pas besoin de la nav bottom ici
-function ProductDetailScreen() {
+function ProductDetailScreen(props) {
   return (
-    <ScrollView>
+    <ScrollView style={{ flex: 1, backgroundColor: "white" }}>
       <View style={{ backgroundColor: "#136979", height: 50 }} />
 
       <NavCategories />
@@ -41,8 +40,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "white",
-    width: "90%",
-    margin: "5%",
+    width: "80%",
+    margin: "10%",
   },
   title: {
     marginBottom: 15,
