@@ -37,7 +37,7 @@ function TimePicker() {
       <View>
         <Button
           buttonStyle={{
-            backgroundColor: "#fffacd",
+            backgroundColor: "white",
             borderRadius: 30,
           }}
           containerStyle={{

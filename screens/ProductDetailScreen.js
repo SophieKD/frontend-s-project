@@ -31,7 +31,7 @@ function ProductDetailScreen(props) {
           </Text>
         </View>
       </View>
-      <AddButton />
+      <AddButton navigation={props.navigation} />
     </ScrollView>
   );
 }

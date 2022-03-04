@@ -3,7 +3,7 @@ import { StyleSheet, View, TouchableOpacity, ScrollView } from "react-native";
 import { Button, ButtonGroup, withTheme, Text } from "react-native-elements";
 
 //SOPHIE: Bouton à faire apparaitre en bas
-function OrderValidationButton() {
+function OrderValidationButton(props) {
   return (
     // <ScrollView style={{ flex: 1 }}>
     <View
@@ -35,6 +35,7 @@ function OrderValidationButton() {
             width: "90%",
             position: "relative",
           }}
+          onPress={() => props.navigation.navigate("Commande Finale")}
           // onPress={() => {
           //   addOrderToMongoDB();
           //   setModalVisible(false);

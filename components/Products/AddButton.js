@@ -5,7 +5,7 @@ import { Button, ButtonGroup, withTheme, Text } from "react-native-elements";
 // Sophie : optimizer Border radius Button +- / composant global à mettre en fixe en bottom avec scroll du contenu de la page ProductDetailScreen en dessous
 // Ajouter à la commande avec retour sur page d'accueil
 
-function AddButton() {
+function AddButton(props) {
   const buttons = ["-", "1", "+"];
 
   return (
@@ -43,6 +43,7 @@ function AddButton() {
           marginLeft: "20%",
         }}
         titleStyle={{ fontWeight: "bold", color: "white" }}
+        onPress={() => props.navigation.navigate("Menu")}
       />
     </View>
   );
