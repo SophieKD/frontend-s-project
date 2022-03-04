@@ -67,8 +67,6 @@ function App() {
         <Stack.Navigator screenOptions={{ headerShown: false }}>
           <Stack.Screen name="LeS" component={LeS} />
           <Stack.Screen name="BottomNavigator" component={BottomNavigator} />
-          <Stack.Screen name="Menu" component={ProductsScreen} />
-          <Stack.Screen name="Fidélité" component={LoyaltyScreen} />
           <Stack.Screen name="Produit" component={ProductDetailScreen} />
           <Stack.Screen name="Commande" component={OrderRecapScreen} />
           <Stack.Screen name="Commande Finale" component={OrderFinalScreen} />

@@ -72,7 +72,7 @@ function OrderRecapScreen(props) {
         <Divider />
 
         <Text style={styles.title}>Heure de retrait</Text>
-        {/* composant à faire */}
+
         <TimePicker />
 
         <View
