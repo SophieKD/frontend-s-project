@@ -4,62 +4,72 @@ import { Divider } from "react-native-elements";
 import OrderValidationButton from "../components/Orders/OrderValidationButton";
 import ProductCard from "../components/Orders/ProductCard";
 import TimePicker from "../components/Orders/TimePicker";
+import { connect } from "react-redux";
 
 // EN COURS. reste à faire: Bouton en bas
 
 function OrderRecapScreen(props) {
+  var productOrderRecap = props.productDetails.map((product, i) => {
+    console.log("product productOrderRecap", product);
+    return (
+      <View
+        key={i}
+        style={{
+          flex: 1,
+          backgroundColor: "white",
+          flexDirection: "row",
+          width: "90%",
+          margin: "5%",
+          flexWrap: "wrap",
+        }}
+      >
+        <Text
+          style={{
+            fontWeight: "bold",
+            fontSize: 15,
+            color: "black",
+            width: "10%",
+            margin: "5%",
+            justifyContent: "center",
+            alignContent: "center",
+          }}
+        >
+          1
+        </Text>
+        <Text
+          style={{
+            fontWeight: "bold",
+            fontSize: 15,
+            color: "black",
+            width: "40%",
+            margin: "5%",
+          }}
+        >
+          {product.title}
+        </Text>
+        <Text
+          style={{
+            fontWeight: "bold",
+            fontSize: 15,
+            color: "black",
+            width: "20%",
+            margin: "5%",
+          }}
+        >
+          {product.price}€
+        </Text>
+      </View>
+    );
+  });
+
   return (
     <ScrollView style={{ flex: 1 }}>
       <View>
         <View style={{ backgroundColor: "#136979", height: 50 }} />
         <Text style={styles.title}>Ma commande</Text>
         {/* Recap commande */}
-        <View
-          style={{
-            flex: 1,
-            backgroundColor: "white",
-            flexDirection: "row",
-            width: "90%",
-            margin: "5%",
-            flexWrap: "wrap",
-          }}
-        >
-          <Text
-            style={{
-              fontWeight: "bold",
-              fontSize: 15,
-              color: "black",
-              width: "10%",
-              margin: "5%",
-              justifyContent: "center",
-              alignContent: "center",
-            }}
-          >
-            1
-          </Text>
-          <Text
-            style={{
-              fontWeight: "bold",
-              fontSize: 15,
-              color: "black",
-              width: "40%",
-              margin: "5%",
-            }}
-          >
-            Lasagnes Maison
-          </Text>
-          <Text
-            style={{
-              fontWeight: "bold",
-              fontSize: 15,
-              color: "black",
-              width: "20%",
-              margin: "5%",
-            }}
-          >
-            9,90€
-          </Text>
-        </View>
+
+        {productOrderRecap}
 
         {/* Divider */}
         <Divider />
@@ -139,4 +149,9 @@ const styles = StyleSheet.create({
   //   },
 });
 
-export default OrderRecapScreen;
+function mapStateToProps(state) {
+  console.log("state OrderRecapScreen", state);
+  return { productDetails: state.productDetails };
+}
+
+export default connect(mapStateToProps, null)(OrderRecapScreen);

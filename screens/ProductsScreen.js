@@ -28,6 +28,7 @@ function Products(props, navigation) {
   }, []);
 
   var productsMap = productsCategory.map((product, i) => {
+    console.log("product productsMap", product);
     return (
       <View key={i}>
         <View
@@ -101,7 +102,7 @@ function Products(props, navigation) {
 function mapDispatchToProps(dispatch) {
   return {
     onImagePress: function (productData) {
-      console.log("productData", productData);
+      console.log("productData Products", productData);
       dispatch({ type: "sendProductDetails", productData });
     },
   };

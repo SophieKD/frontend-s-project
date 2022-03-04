@@ -8,6 +8,7 @@ import { connect } from "react-redux";
 
 function ProductDetailScreen(props) {
   var productDetailsSelected = props.productDetails.map((product, i) => {
+    console.log("product productDetailsSelected", product);
     return (
       <View key={i} style={{ flex: 1, backgroundColor: "white" }}>
         <Image source={{ uri: product.img }} containerStyle={styles.item} />
