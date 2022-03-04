@@ -48,36 +48,38 @@ function Products(props, navigation) {
             {product.category}
           </Text>
         </View>
-        {product.products.map((producto, j) => {
-          return (
-            <Card key={j} containerStyle={{ width: "46%", margin: "2%" }}>
-              <Card.Image
-                style={{ padding: 0, height: 100, width: 150 }}
-                source={producto.img}
-                onPress={() => props.navigation.navigate("Produit")}
-              />
-              <View style={{ flex: 1 }}>
-                <Text
-                  style={{
-                    marginBottom: 15,
-                    fontWeight: "bold",
-                  }}
-                >
-                  {producto.title}
-                </Text>
-                <Text>{producto.description}</Text>
-                <Text
-                  style={{
-                    fontWeight: "bold",
-                    textAlignVertical: "bottom",
-                  }}
-                >
-                  {producto.price}€
-                </Text>
-              </View>
-            </Card>
-          );
-        })}
+        <View style={{ flex: 1, flexWrap: "wrap", flexDirection: "row" }}>
+          {product.products.map((producto, j) => {
+            return (
+              <Card key={j} containerStyle={{ width: "46%", margin: "2%" }}>
+                <Card.Image
+                  style={{ padding: 0, height: 100, width: 150 }}
+                  source={producto.img}
+                  onPress={() => props.navigation.navigate("Produit")}
+                />
+                <View style={{ flex: 1 }}>
+                  <Text
+                    style={{
+                      marginBottom: 15,
+                      fontWeight: "bold",
+                    }}
+                  >
+                    {producto.title}
+                  </Text>
+                  <Text>{producto.description}</Text>
+                  <Text
+                    style={{
+                      fontWeight: "bold",
+                      textAlignVertical: "bottom",
+                    }}
+                  >
+                    {producto.price}€
+                  </Text>
+                </View>
+              </Card>
+            );
+          })}
+        </View>
       </View>
     );
   });
@@ -91,12 +93,6 @@ function Products(props, navigation) {
       <NavCategories />
 
       {productsMap}
-
-      <View style={{ flex: 1, flexWrap: "wrap", flexDirection: "row" }}></View>
-
-      <View style={{ height: 20 }} />
-
-      <View style={{ flex: 1, flexWrap: "wrap", flexDirection: "row" }}></View>
 
       <ViewCartButton navigation={props.navigation} />
     </ScrollView>
