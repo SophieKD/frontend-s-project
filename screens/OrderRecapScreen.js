@@ -64,7 +64,7 @@ function OrderRecapScreen(props) {
         {/* Divider */}
         <Divider />
 
-        <Text style={styles.title}>Un petit Extra ?</Text>
+        <Text style={styles.title}>Un petit extra ?</Text>
 
         <ProductCard />
 

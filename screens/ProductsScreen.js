@@ -4,8 +4,6 @@ import { Card } from "react-native-elements";
 import NavCategories from "../components/Products/NavCategories";
 import ViewCartButton from "../components/Products/ViewCartButton";
 
-// Sophie à faire : optimizer Image card espace et contour / prix en bas de Card / pour test j'ai mis ici ligne 8 navigation avec le composant View CartButton ligne 167 qui s'affiche mais à mettre en state
-
 function Products(props, navigation) {
   const [productsCategory, setProductsCategory] = useState([]);
   console.log("productsCategory", productsCategory);
@@ -54,7 +52,7 @@ function Products(props, navigation) {
               <Card key={j} containerStyle={{ width: "46%", margin: "2%" }}>
                 <Card.Image
                   style={{ padding: 0, height: 100, width: 150 }}
-                  source={producto.img}
+                  source={{ uri: producto.img }}
                   onPress={() => props.navigation.navigate("Produit")}
                 />
                 <View style={{ flex: 1 }}>
@@ -66,7 +64,7 @@ function Products(props, navigation) {
                   >
                     {producto.title}
                   </Text>
-                  <Text>{producto.description}</Text>
+                  <Text>{producto.description.slice(0, 59) + "..."}</Text>
                   <Text
                     style={{
                       fontWeight: "bold",
@@ -83,8 +81,6 @@ function Products(props, navigation) {
       </View>
     );
   });
-
-  // Sophie à faire : optimizer Image card espace et contour / prix en bas de Card / pour test j'ai mis ici ligne 8 navigation avec le composant View CartButton ligne 167 qui s'affiche mais à mettre en state
 
   return (
     <ScrollView style={{ flex: 1 }}>
