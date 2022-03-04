@@ -3,7 +3,7 @@ import { StyleSheet, View, TouchableOpacity, ScrollView } from "react-native";
 import { Button, ButtonGroup, withTheme, Text } from "react-native-elements";
 
 //SOPHIE: Bouton à faire apparaitre en bas
-function OrderValidationButton(props) {
+function LoyaltyButton(props) {
   return (
     // <ScrollView style={{ flex: 1 }}>
     <View
@@ -28,14 +28,14 @@ function OrderValidationButton(props) {
         <TouchableOpacity
           style={{
             marginTop: 10,
-            backgroundColor: "#136979",
+            backgroundColor: "#ffb3c1",
             alignItems: "center",
             padding: 13,
             borderRadius: 30,
             width: "90%",
             position: "relative",
           }}
-          onPress={() => props.navigation.navigate("Commande Finale")}
+          onPress={() => props.navigation.navigate("Fidélité")}
           // onPress={() => {
           //   addOrderToMongoDB();
           //   setModalVisible(false);
@@ -49,7 +49,7 @@ function OrderValidationButton(props) {
               textAlign: "right",
             }}
           >
-            Valider ma commande
+            30 S cumulés
           </Text>
         </TouchableOpacity>
       </View>
@@ -66,4 +66,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default OrderValidationButton;
+export default LoyaltyButton;

@@ -3,7 +3,7 @@ import { StyleSheet, View, TouchableOpacity, ScrollView } from "react-native";
 import { Button, ButtonGroup, withTheme, Text } from "react-native-elements";
 
 //SOPHIE: Bouton à faire apparaitre en bas
-function OrderValidationButton(props) {
+function PaymentButton(props) {
   return (
     // <ScrollView style={{ flex: 1 }}>
     <View
@@ -35,7 +35,7 @@ function OrderValidationButton(props) {
             width: "90%",
             position: "relative",
           }}
-          onPress={() => props.navigation.navigate("Commande Finale")}
+          onPress={() => props.navigation.navigate("Commande Confirmation")}
           // onPress={() => {
           //   addOrderToMongoDB();
           //   setModalVisible(false);
@@ -49,7 +49,7 @@ function OrderValidationButton(props) {
               textAlign: "right",
             }}
           >
-            Valider ma commande
+            Payer
           </Text>
         </TouchableOpacity>
       </View>
@@ -66,4 +66,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default OrderValidationButton;
+export default PaymentButton;

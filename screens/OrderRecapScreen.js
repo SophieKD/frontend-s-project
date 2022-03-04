@@ -64,7 +64,7 @@ function OrderRecapScreen(props) {
         {/* Divider */}
         <Divider />
 
-        <Text style={styles.title}>Un petit Extra ?</Text>
+        <Text style={styles.title}>Un petit extra ?</Text>
 
         <ProductCard />
 
@@ -72,7 +72,7 @@ function OrderRecapScreen(props) {
         <Divider />
 
         <Text style={styles.title}>Heure de retrait</Text>
-        {/* composant à faire */}
+
         <TimePicker />
 
         <View

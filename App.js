@@ -11,6 +11,8 @@ import LogScreen from "./screens/LogScreen";
 import LeS from "./screens/LeS";
 import ProductDetailScreen from "./screens/ProductDetailScreen";
 import OrderRecapScreen from "./screens/OrderRecapScreen";
+import OrderFinalScreen from "./screens/OrderFinalScreen";
+import OrderConfirmationScreen from "./screens/OrderConfirmationScreen";
 
 import { Provider } from "react-redux";
 import { createStore, combineReducers } from "redux";
@@ -65,10 +67,13 @@ function App() {
         <Stack.Navigator screenOptions={{ headerShown: false }}>
           <Stack.Screen name="LeS" component={LeS} />
           <Stack.Screen name="BottomNavigator" component={BottomNavigator} />
-          <Stack.Screen name="Menu" component={ProductsScreen} />
-          <Stack.Screen name="Fidélité" component={LoyaltyScreen} />
           <Stack.Screen name="Produit" component={ProductDetailScreen} />
           <Stack.Screen name="Commande" component={OrderRecapScreen} />
+          <Stack.Screen name="Commande Finale" component={OrderFinalScreen} />
+          <Stack.Screen
+            name="Commande Confirmation"
+            component={OrderConfirmationScreen}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>
