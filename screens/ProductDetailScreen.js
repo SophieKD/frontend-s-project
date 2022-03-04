@@ -4,34 +4,34 @@ import { Card, Image } from "react-native-elements";
 import NavCategories from "../components/Products/NavCategories";
 import AddButton from "../components/Products/AddButton";
 import ViewCartButton from "../components/Products/ViewCartButton";
+import { connect } from "react-redux";
 
 function ProductDetailScreen(props) {
+  var productDetailsSelected = props.productDetails.map((product, i) => {
+    return (
+      <View style={{ flex: 1, backgroundColor: "white" }}>
+        <Image source={{ uri: product.img }} containerStyle={styles.item} />
+
+        <View style={styles.container}>
+          <Text style={styles.title}>{product.title}</Text>
+
+          <Text style={styles.price}>{product.price}€</Text>
+
+          <Text style={styles.details}>{product.description}</Text>
+        </View>
+      </View>
+    );
+  });
+
   return (
     <ScrollView style={{ flex: 1, backgroundColor: "white" }}>
       <View style={{ backgroundColor: "#136979", height: 50 }} />
 
       <NavCategories />
 
-      <View style={{ flex: 1, backgroundColor: "white" }}>
-        <Image
-          source={require("../assets/lasagnes-jour.png")}
-          containerStyle={styles.item}
-        />
+      {productDetailsSelected}
 
-        <View style={styles.container}>
-          <Text style={styles.title}>Lasagnes Maison</Text>
-
-          <Text style={styles.price}>9,90€</Text>
-
-          <Text style={styles.details}>
-            Les meilleures lasagnes du monde! A base du fameux ragù à la
-            bolognese, d'un mélange de viandes sélectionnées avec amour, d'une
-            béchamel qui apporte douceur et crémeux, et de parmesan, nos
-            lasagnes cuisent doucement pour en dégager toute la saveur.
-          </Text>
-        </View>
-      </View>
-      <AddButton navigation={props.navigation} />
+      <AddButton />
     </ScrollView>
   );
 }
@@ -70,4 +70,9 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ProductDetailScreen;
+function mapStateToProps(state) {
+  console.log("state ProductDetailScreen", state);
+  return { productDetails: state.productDetails };
+}
+
+export default connect(mapStateToProps, null)(ProductDetailScreen);

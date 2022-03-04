@@ -3,6 +3,7 @@ import { View, Text, ScrollView } from "react-native";
 import { Card } from "react-native-elements";
 import NavCategories from "../components/Products/NavCategories";
 import ViewCartButton from "../components/Products/ViewCartButton";
+import { connect } from "react-redux";
 
 function Products(props, navigation) {
   const [productsCategory, setProductsCategory] = useState([]);
@@ -28,9 +29,8 @@ function Products(props, navigation) {
 
   var productsMap = productsCategory.map((product, i) => {
     return (
-      <View>
+      <View key={i}>
         <View
-          key={i}
           style={{
             backgroundColor: "#acdcdc",
             justifyContent: "center",
@@ -53,7 +53,10 @@ function Products(props, navigation) {
                 <Card.Image
                   style={{ padding: 0, height: 100, width: 150 }}
                   source={{ uri: producto.img }}
-                  onPress={() => props.navigation.navigate("Produit")}
+                  onPress={() => {
+                    props.navigation.navigate("Produit");
+                    props.onImagePress(producto);
+                  }}
                 />
                 <View style={{ flex: 1 }}>
                   <Text
@@ -64,7 +67,7 @@ function Products(props, navigation) {
                   >
                     {producto.title}
                   </Text>
-                  <Text>{producto.description.slice(0, 59) + "..."}</Text>
+                  <Text>{producto.description.slice(0, 56) + "..."}</Text>
                   <Text
                     style={{
                       fontWeight: "bold",
@@ -95,4 +98,13 @@ function Products(props, navigation) {
   );
 }
 
-export default Products;
+function mapDispatchToProps(dispatch) {
+  return {
+    onImagePress: function (productData) {
+      console.log("productData", productData);
+      dispatch({ type: "sendProductDetails", productData });
+    },
+  };
+}
+
+export default connect(null, mapDispatchToProps)(Products);
