@@ -31,6 +31,7 @@ function LocaleStorageLogScreen(props) {
 
   const goToAccountPage = () => {
     console.log("--- press on goToAccountPage detected");
+    props.goToAccountParent();
   };
 
   return (

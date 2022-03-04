@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View, ScrollView } from "react-native";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
@@ -7,11 +7,12 @@ import { connect } from "react-redux";
 import LocalStorageLogScreen from "../components/Account/LocalStorageLogScreen";
 import SignInScreen from "../components/Account/SignInScreen";
 import SignUpScreen from "../components/Account/SignUpScreen";
+import AccountScreen from "../components/Account/AccountScreen";
 
 function LogScreen(props) {
   const [logComponent, setLogComponent] = useState("signIn");
-  const [pseudo, setPseudo] = useState("");
-
+  const [isUserConfirmed, setIsUserConfirmed] = useState(false);
+  console.log("isUserConfirmed =>", isUserConfirmed);
   const [error, setError] = useState({});
 
   useEffect(() => {
@@ -19,9 +20,6 @@ function LogScreen(props) {
       "userLocalStorage",
       function (error, userInLocalStorage) {
         if (userInLocalStorage) {
-          let userInLocalStorageParsed = JSON.parse(userInLocalStorage);
-          let pseudoOfUserInLocalStorage = userInLocalStorageParsed.pseudo;
-          setPseudo(pseudoOfUserInLocalStorage);
           setLogComponent("inLocalStorage");
         }
       }
@@ -42,6 +40,10 @@ function LogScreen(props) {
     setLogComponent("signUp");
   };
 
+  const goToAccountPage = () => {
+    setIsUserConfirmed(true);
+  };
+
   const onPressSignIn = async (email, password) => {
     const data = await fetch(
       "https://ls-project-capsule.herokuapp.com/users/actions/sign-in",
@@ -53,6 +55,7 @@ function LogScreen(props) {
     );
 
     const response = await data.json();
+    console.log("---response =>", response);
 
     if (response.result === true) {
       props.onUserSignIn(response.userLoggedIn);
@@ -61,7 +64,7 @@ function LogScreen(props) {
         JSON.stringify(response.userLoggedIn)
       );
       setLogComponent("inLocalStorage");
-      setPseudo(response.userLoggedIn.pseudo);
+      setIsUserConfirmed(true);
     } else {
       setError(response.error);
     }
@@ -93,7 +96,7 @@ function LogScreen(props) {
         JSON.stringify(response.userLoggedIn)
       );
       setLogComponent("inLocalStorage");
-      setPseudo(response.userLoggedIn.pseudo);
+      setIsUserConfirmed(true);
     } else {
       setError(response.error);
     }
@@ -103,11 +106,21 @@ function LogScreen(props) {
     //  Si pas de commande en cours = page du profil
   };
 
-  if (logComponent === "inLocalStorage") {
+  if (logComponent === "inLocalStorage" && isUserConfirmed === false) {
     loginJSX = (
       <LocalStorageLogScreen
         goToSignInParent={goToSignIn}
         goToSignUpParent={goToSignUp}
+        goToAccountParent={goToAccountPage}
+      />
+    );
+  }
+
+  if (logComponent === "inLocalStorage" && isUserConfirmed === true) {
+    loginJSX = (
+      <AccountScreen
+      // goToSignInParent={goToSignIn}
+      // goToSignUpParent={goToSignUp}
       />
     );
   }
@@ -133,7 +146,11 @@ function LogScreen(props) {
     );
   }
 
-  return <View style={{ flex: 1 }}>{loginJSX}</View>;
+  if (isUserConfirmed) {
+    return <ScrollView>{loginJSX}</ScrollView>;
+  } else {
+    return <View style={styles.container}>{loginJSX}</View>;
+  }
 }
 
 const styles = StyleSheet.create({
