@@ -5,7 +5,7 @@ import OrderValidationButton from "../components/Orders/OrderValidationButton";
 import ProductCard from "../components/Orders/ProductCard";
 import TimePicker from "../components/Orders/TimePicker";
 
-// EN COURS. reste à faire: Timer + Bouton en bas
+// EN COURS. reste à faire: Bouton en bas
 
 function OrderRecapScreen(props) {
   return (

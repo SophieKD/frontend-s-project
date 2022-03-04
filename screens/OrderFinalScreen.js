@@ -11,26 +11,62 @@ function OrderFinalScreen(props) {
     <ScrollView style={{ flex: 1 }}>
       <View>
         <View style={{ backgroundColor: "#136979", height: 50 }} />
-        <Text style={styles.title}>Finaliser la commande</Text>
-        <Text style={{ fontWeight: "bold", fontSize: 17 }}>
-          Retrait prévu :{" "}
-        </Text>
+        <View>
+          <Text style={styles.title}>Finaliser la commande</Text>
+        </View>
+        <Text style={styles.subtitle}>Retrait prévu : </Text>
         <View
           style={{
             flex: 1,
             backgroundColor: "white",
             width: "90%",
             margin: "5%",
+            height: 50,
+            flexWrap: "wrap",
+            flexDirection: "row",
+            alignItems: "center",
+          }}
+        >
+          <Ionicons
+            name="time"
+            size={20}
+            color="#136979"
+            style={{
+              width: "7%",
+              margin: "5%",
+            }}
+          />
+          <Text
+            style={{
+              fontSize: 17,
+              color: "#136979",
+            }}
+          >
+            Vendredi 4 Mars à 12h15
+          </Text>
+        </View>
+        <Divider />
+        <Text style={styles.subtitle}>Payer avec :</Text>
+        <View
+          style={{
+            flex: 1,
+            flexDirection: "row",
+            width: "90%",
+            margin: "5%",
+            flexWrap: "wrap",
           }}
         >
           <Text
             style={{
-              fontWeight: "bold",
-              fontSize: 15,
-              color: "136979",
+              fontSize: 17,
+              color: "black",
+              width: "60%",
+              margin: "5%",
+              justifyContent: "center",
+              alignContent: "center",
             }}
           >
-            Vendredi 4 Mars à 12h15
+            Moyens de paiement
           </Text>
         </View>
       </View>
@@ -40,17 +76,16 @@ function OrderFinalScreen(props) {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "white",
-    width: "80%",
-    margin: "10%",
-  },
   title: {
-    marginBottom: 15,
     fontWeight: "bold",
     fontSize: 20,
     color: "#136979",
+    margin: "5%",
+  },
+  subtitle: {
+    fontWeight: "bold",
+    fontSize: 17,
+    marginLeft: "5%",
   },
 });
 

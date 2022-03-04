@@ -32,7 +32,7 @@ function PaymentButton(props) {
             alignItems: "center",
             padding: 13,
             borderRadius: 30,
-            width: "90%",
+            width: "40%",
             position: "relative",
           }}
           onPress={() => props.navigation.navigate("Commande Confirmation")}

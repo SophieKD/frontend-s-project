@@ -9,7 +9,7 @@ import { connect } from "react-redux";
 function ProductDetailScreen(props) {
   var productDetailsSelected = props.productDetails.map((product, i) => {
     return (
-      <View style={{ flex: 1, backgroundColor: "white" }}>
+      <View key={i} style={{ flex: 1, backgroundColor: "white" }}>
         <Image source={{ uri: product.img }} containerStyle={styles.item} />
 
         <View style={styles.container}>
@@ -31,7 +31,7 @@ function ProductDetailScreen(props) {
 
       {productDetailsSelected}
 
-      <AddButton />
+      <AddButton navigation={props.navigation} />
     </ScrollView>
   );
 }

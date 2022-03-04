@@ -32,7 +32,7 @@ function LoyaltyButton(props) {
             alignItems: "center",
             padding: 13,
             borderRadius: 30,
-            width: "90%",
+            width: "60%",
             position: "relative",
           }}
           onPress={() => props.navigation.navigate("Fidélité")}
