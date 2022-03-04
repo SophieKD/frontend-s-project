@@ -9,7 +9,7 @@ function HomeScreen(props) {
       <Image
         source={require("../assets/Home-bagels.png")}
         containerStyle={styles.item}
-        onPress={() => props.navigation.navigate("Menu")}
+        onPress={() => props.navigation.navigate("Produit")}
       />
 
       <View style={{ flex: 1, flexWrap: "wrap", flexDirection: "row" }}>
