@@ -15,7 +15,7 @@ function PaymentButton(props) {
         position: "center",
         bottom: 10,
         zIndex: 999,
-        backgroundColor: "white",
+        // backgroundColor: "white",
       }}
     >
       <View

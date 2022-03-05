@@ -24,7 +24,7 @@ const items = [
   },
 ];
 
-function NavCategories() {
+function NavCategories(props) {
   return (
     <View
       style={{
