@@ -151,7 +151,7 @@ const styles = StyleSheet.create({
 
 function mapStateToProps(state) {
   console.log("state OrderRecapScreen", state);
-  return { productsAdded: state.productDetails };
+  return { productsAdded: state.productsAdded };
 }
 
 export default connect(mapStateToProps, null)(OrderRecapScreen);
