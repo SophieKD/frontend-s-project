@@ -15,25 +15,14 @@ function OrderFinalScreen(props) {
           <Text style={styles.title}>Finaliser la commande</Text>
         </View>
         <Text style={styles.subtitle}>Retrait prévu : </Text>
-        <View
-          style={{
-            flex: 1,
-            backgroundColor: "white",
-            width: "90%",
-            margin: "5%",
-            height: 50,
-            flexWrap: "wrap",
-            flexDirection: "row",
-            alignItems: "center",
-          }}
-        >
+        <View style={styles.view}>
           <Ionicons
             name="time"
-            size={20}
+            size={27}
             color="#136979"
             style={{
               width: "7%",
-              margin: "5%",
+              margin: "3%",
             }}
           />
           <Text
@@ -47,27 +36,47 @@ function OrderFinalScreen(props) {
         </View>
         <Divider />
         <Text style={styles.subtitle}>Payer avec :</Text>
-        <View
-          style={{
-            flex: 1,
-            flexDirection: "row",
-            width: "90%",
-            margin: "5%",
-            flexWrap: "wrap",
-          }}
-        >
+        <View style={styles.view}>
           <Text
             style={{
               fontSize: 17,
               color: "black",
-              width: "60%",
+              width: "75%",
               margin: "5%",
-              justifyContent: "center",
-              alignContent: "center",
             }}
           >
-            Moyens de paiement
+            Ajouter une carte bancaire
           </Text>
+          <Ionicons
+            name="chevron-forward-circle"
+            size={27}
+            color="#136979"
+            style={{
+              width: "7%",
+              margin: "3%",
+            }}
+          />
+        </View>
+        <View style={styles.view}>
+          <Text
+            style={{
+              fontSize: 17,
+              color: "black",
+              width: "75%",
+              margin: "5%",
+            }}
+          >
+            Utiliser ma cagnotte
+          </Text>
+          {/* <Ionicons
+                name="chevron-forward-circle"
+                size={27}
+                color="#136979"
+                style={{
+                width: "7%",
+                margin: "3%",
+                }}
+            /> */}
         </View>
       </View>
       <PaymentButton navigation={props.navigation} />
@@ -80,12 +89,24 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: 20,
     color: "#136979",
-    margin: "5%",
+    marginLeft: "5%",
+    marginTop: "5%",
   },
   subtitle: {
     fontWeight: "bold",
     fontSize: 17,
     marginLeft: "5%",
+    marginTop: "5%",
+  },
+  view: {
+    flex: 1,
+    backgroundColor: "white",
+    width: "83%",
+    margin: "5%",
+    height: 50,
+    flexWrap: "wrap",
+    flexDirection: "row",
+    alignItems: "center",
   },
 });
 
