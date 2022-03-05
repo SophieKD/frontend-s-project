@@ -37,16 +37,6 @@ function OrderFinalScreen(props) {
         <Divider />
         <Text style={styles.subtitle}>Payer avec :</Text>
         <View style={styles.view}>
-          <Text
-            style={{
-              fontSize: 17,
-              color: "black",
-              width: "75%",
-              margin: "5%",
-            }}
-          >
-            Ajouter une carte bancaire
-          </Text>
           <Ionicons
             name="chevron-forward-circle"
             size={27}
@@ -56,27 +46,71 @@ function OrderFinalScreen(props) {
               margin: "3%",
             }}
           />
-        </View>
-        <View style={styles.view}>
           <Text
             style={{
               fontSize: 17,
               color: "black",
-              width: "75%",
-              margin: "5%",
+            }}
+          >
+            Ajouter une carte bancaire
+          </Text>
+        </View>
+        <View style={styles.view}>
+          <Ionicons
+            name="wallet"
+            size={27}
+            color="#136979"
+            style={{
+              width: "7%",
+              margin: "3%",
+            }}
+          />
+          <Text
+            style={{
+              fontSize: 17,
+              color: "black",
             }}
           >
             Utiliser ma cagnotte
           </Text>
-          {/* <Ionicons
-                name="chevron-forward-circle"
-                size={27}
-                color="#136979"
-                style={{
-                width: "7%",
-                margin: "3%",
-                }}
-            /> */}
+          <Text style={styles.wallettext}> 7€</Text>
+        </View>
+        <Divider />
+        <Text style={styles.subtitle}>Détail de la commande</Text>
+        <View style={styles.view}>
+          {/* SOPHIE : EN COURS A REGLER */}
+          <Text
+            style={{
+              fontSize: 17,
+              color: "black",
+              //   width: "10%",
+              margin: "5%",
+            }}
+          >
+            1
+          </Text>
+          <Text
+            style={{
+              fontWeight: "bold",
+              fontSize: 17,
+              color: "black",
+              width: "40%",
+              margin: "5%",
+            }}
+          >
+            Lasagnes Maison
+          </Text>
+          <Text
+            style={{
+              fontWeight: "bold",
+              fontSize: 15,
+              color: "black",
+              width: "20%",
+              margin: "5%",
+            }}
+          >
+            9,90€
+          </Text>
         </View>
       </View>
       <PaymentButton navigation={props.navigation} />
@@ -97,16 +131,24 @@ const styles = StyleSheet.create({
     fontSize: 17,
     marginLeft: "5%",
     marginTop: "5%",
+    marginBottom: "5%",
   },
   view: {
     flex: 1,
     backgroundColor: "white",
-    width: "83%",
+    width: "90%",
     margin: "5%",
     height: 50,
     flexWrap: "wrap",
     flexDirection: "row",
     alignItems: "center",
+    marginTop: "0%",
+  },
+  wallettext: {
+    fontWeight: "bold",
+    fontSize: 20,
+    color: "#136979",
+    marginLeft: "30%",
   },
 });
 

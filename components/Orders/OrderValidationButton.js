@@ -5,56 +5,56 @@ import { Button, ButtonGroup, withTheme, Text } from "react-native-elements";
 //SOPHIE: Bouton à faire apparaitre en bas
 function OrderValidationButton(props) {
   return (
-    // <ScrollView style={{ flex: 1 }}>
-    <View
-      style={{
-        flex: 1,
-        alignItems: "center",
-        justifyContent: "center",
-        flexDirection: "row",
-        position: "center",
-        bottom: 10,
-        zIndex: 999,
-        backgroundColor: "white",
-      }}
-    >
+    <ScrollView style={{ flex: 1 }}>
       <View
         style={{
-          flexDirection: "row",
+          flex: 1,
+          alignItems: "center",
           justifyContent: "center",
-          width: "100%",
+          flexDirection: "row",
+          position: "center",
+          bottom: 10,
+          zIndex: 999,
+          // backgroundColor: "white",
         }}
       >
-        <TouchableOpacity
+        <View
           style={{
-            marginTop: 10,
-            backgroundColor: "#136979",
-            alignItems: "center",
-            padding: 13,
-            borderRadius: 30,
-            width: "90%",
-            position: "relative",
+            flexDirection: "row",
+            justifyContent: "center",
+            width: "100%",
           }}
-          onPress={() => props.navigation.navigate("Commande Finale")}
-          // onPress={() => {
-          //   addOrderToMongoDB();
-          //   setModalVisible(false);
-          // }}
         >
-          <Text
+          <TouchableOpacity
             style={{
-              color: "white",
-              fontSize: 20,
-              fontWeight: "bold",
-              textAlign: "right",
+              marginTop: 10,
+              backgroundColor: "#136979",
+              alignItems: "center",
+              padding: 13,
+              borderRadius: 30,
+              width: "90%",
+              position: "relative",
             }}
+            onPress={() => props.navigation.navigate("Commande Finale")}
+            // onPress={() => {
+            //   addOrderToMongoDB();
+            //   setModalVisible(false);
+            // }}
           >
-            Valider ma commande
-          </Text>
-        </TouchableOpacity>
+            <Text
+              style={{
+                color: "white",
+                fontSize: 20,
+                fontWeight: "bold",
+                textAlign: "right",
+              }}
+            >
+              Valider ma commande
+            </Text>
+          </TouchableOpacity>
+        </View>
       </View>
-    </View>
-    // </ScrollView>
+    </ScrollView>
   );
 }
 
