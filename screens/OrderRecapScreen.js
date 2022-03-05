@@ -125,7 +125,7 @@ function OrderRecapScreen(props) {
       <View
         style={{
           flex: 1,
-          backgroundColor: "white",
+          //   backgroundColor: "white",
         }}
       >
         <OrderValidationButton navigation={props.navigation} />
