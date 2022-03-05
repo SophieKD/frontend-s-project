@@ -5,12 +5,36 @@ import { Card, Image } from "react-native-elements";
 // Sophie à Finaliser:Image 1 size + Card enlever marges et contour
 function HomeScreen(props) {
   return (
-    <ScrollView style={{ flex: 1, marginTop: 10 }}>
+    <ScrollView style={{ flex: 1 }}>
+      <View style={{ backgroundColor: "#136979", height: 50 }} />
       <Image
         source={require("../assets/Home-bagels.png")}
         containerStyle={styles.item}
         onPress={() => props.navigation.navigate("Commande")}
       />
+
+      {/* Test image sans Card ===> pas d'affichage */}
+      {/* <View
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          flexWrap: "wrap",
+          alignContent: "center",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      > */}
+      {/* <Image
+        source={require("../assets/home-platdujour.png")}
+        style={{ width: "46%", margin: "2%" }}
+        onPress={() => props.navigation.navigate("Menu")}
+      />
+      <Image
+        source={require("../assets/home-platdujour.png")}
+        style={{ width: "46%", margin: "2%" }}
+        onPress={() => props.navigation.navigate("Menu")}
+      /> */}
+      {/* </View> */}
 
       <View style={{ flex: 1, flexWrap: "wrap", flexDirection: "row" }}>
         <Card containerStyle={{ width: "46%", margin: "2%" }}>
@@ -60,6 +84,10 @@ const styles = StyleSheet.create({
     aspectRatio: 1,
     width: "100%",
     flex: 1,
+  },
+  img: {
+    width: "46%",
+    margin: "2%",
   },
 });
 
