@@ -78,38 +78,105 @@ function OrderFinalScreen(props) {
         <Divider />
         <Text style={styles.subtitle}>Détail de la commande</Text>
         <View style={styles.view}>
-          {/* SOPHIE : EN COURS A REGLER */}
           <Text
             style={{
               fontSize: 17,
               color: "black",
-              //   width: "10%",
-              margin: "5%",
+              marginLeft: "5%",
+              marginTop: "6%",
             }}
           >
             1
           </Text>
           <Text
             style={{
-              fontWeight: "bold",
               fontSize: 17,
               color: "black",
-              width: "40%",
-              margin: "5%",
+              marginLeft: "5%",
             }}
           >
             Lasagnes Maison
           </Text>
+        </View>
+        <View>
           <Text
             style={{
+              fontSize: 20,
               fontWeight: "bold",
-              fontSize: 15,
-              color: "black",
-              width: "20%",
+              color: "#ff4d6d",
               margin: "5%",
+              marginTop: "0%",
             }}
           >
-            9,90€
+            Vous allez gagner 14 S en validant cette commande
+          </Text>
+        </View>
+
+        <View
+          style={{
+            flex: 1,
+            width: "90%",
+            margin: "5%",
+            height: 50,
+            flexWrap: "wrap",
+            flexDirection: "row",
+            alignItems: "center",
+            marginTop: "0%",
+          }}
+        >
+          <Text
+            style={{
+              fontSize: 20,
+              fontWeight: "bold",
+              color: "black",
+              marginLeft: "5%",
+              marginTop: "5%",
+            }}
+          >
+            Montant de la commande
+          </Text>
+          <Text
+            style={{
+              fontSize: 20,
+              color: "black",
+              marginLeft: "9%",
+              fontWeight: "bold",
+            }}
+          >
+            13,80€
+          </Text>
+        </View>
+        <View
+          style={{
+            flex: 1,
+            width: "90%",
+            margin: "5%",
+            height: 50,
+            flexWrap: "wrap",
+            flexDirection: "row",
+            alignItems: "center",
+            marginTop: "0%",
+          }}
+        >
+          <Text
+            style={{
+              fontSize: 20,
+              fontWeight: "bold",
+              color: "black",
+              marginLeft: "5%",
+            }}
+          >
+            Total à régler
+          </Text>
+          <Text
+            style={{
+              fontSize: 20,
+              color: "black",
+              marginLeft: "40%",
+              fontWeight: "bold",
+            }}
+          >
+            13,80€
           </Text>
         </View>
       </View>
