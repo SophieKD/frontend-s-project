@@ -80,9 +80,9 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    onButtonAddPress: function (productData) {
-      console.log("productData AddButton", productData);
-      dispatch({ type: "sendProductDetails", productData });
+    onButtonAddPress: function (productAddData) {
+      console.log("productAddData AddButton", productAddData);
+      dispatch({ type: "addProductToBasket", productAddData });
     },
   };
 }

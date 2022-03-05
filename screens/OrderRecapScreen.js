@@ -9,7 +9,7 @@ import { connect } from "react-redux";
 // EN COURS. reste à faire: Bouton en bas
 
 function OrderRecapScreen(props) {
-  var productOrderRecap = props.productDetails.map((product, i) => {
+  var productOrderRecap = props.productsAdded.map((product, i) => {
     console.log("product productOrderRecap", product);
     return (
       <View
@@ -151,7 +151,7 @@ const styles = StyleSheet.create({
 
 function mapStateToProps(state) {
   console.log("state OrderRecapScreen", state);
-  return { productDetails: state.productDetails };
+  return { productsAdded: state.productDetails };
 }
 
 export default connect(mapStateToProps, null)(OrderRecapScreen);
