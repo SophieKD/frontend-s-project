@@ -15,7 +15,6 @@ function LoyaltyButton(props) {
         position: "center",
         bottom: 10,
         zIndex: 999,
-        backgroundColor: "white",
       }}
     >
       <View
@@ -28,6 +27,7 @@ function LoyaltyButton(props) {
         <TouchableOpacity
           style={{
             marginTop: 10,
+            marginBottom: 10,
             backgroundColor: "#ffb3c1",
             alignItems: "center",
             padding: 13,
@@ -45,7 +45,6 @@ function LoyaltyButton(props) {
             style={{
               color: "white",
               fontSize: 20,
-              fontWeight: "bold",
               textAlign: "right",
             }}
           >

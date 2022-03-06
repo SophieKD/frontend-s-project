@@ -3,7 +3,7 @@ import { StyleSheet, View, TouchableOpacity, ScrollView } from "react-native";
 import { Button, ButtonGroup, withTheme, Text } from "react-native-elements";
 
 //SOPHIE: Bouton à faire apparaitre en bas
-function PaymentButton(props) {
+function LoyaltyWinSButton(props) {
   return (
     // <ScrollView style={{ flex: 1 }}>
     <View
@@ -27,14 +27,14 @@ function PaymentButton(props) {
         <TouchableOpacity
           style={{
             marginTop: 10,
-            backgroundColor: "#136979",
+            backgroundColor: "#ff4d6d",
             alignItems: "center",
             padding: 13,
             borderRadius: 30,
             width: "90%",
             position: "relative",
           }}
-          onPress={() => props.navigation.navigate("Commande Confirmation")}
+          onPress={() => props.navigation.navigate("Fidélité")}
           // onPress={() => {
           //   addOrderToMongoDB();
           //   setModalVisible(false);
@@ -48,7 +48,7 @@ function PaymentButton(props) {
               textAlign: "right",
             }}
           >
-            Payer
+            Gagnez des S !
           </Text>
         </TouchableOpacity>
       </View>
@@ -65,4 +65,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default PaymentButton;
+export default LoyaltyWinSButton;
