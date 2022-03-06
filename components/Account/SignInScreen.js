@@ -26,6 +26,9 @@ function SignInScreen(props) {
 
   return (
     <View style={styles.container}>
+      <Text style={{ fontWeight: "bold", fontSize: 20, marginBottom: 12 }}>
+        Connectes Toi
+      </Text>
       <Input
         label={"Email"}
         labelStyle={{ color: "black", fontSize: 15 }}
@@ -83,6 +86,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     marginTop: 25,
+    width: "100%",
   },
 });
 
