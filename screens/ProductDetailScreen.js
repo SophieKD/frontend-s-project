@@ -3,7 +3,6 @@ import { View, Text, ScrollView, StyleSheet } from "react-native";
 import { Card, Image } from "react-native-elements";
 import NavCategories from "../components/Products/NavCategories";
 import AddButton from "../components/Products/AddButton";
-import ViewCartButton from "../components/Products/ViewCartButton";
 import { connect } from "react-redux";
 
 function ProductDetailScreen(props) {

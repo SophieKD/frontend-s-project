@@ -6,7 +6,7 @@ import ProductCard from "../components/Orders/ProductCard";
 import TimePicker from "../components/Orders/TimePicker";
 import { connect } from "react-redux";
 
-// EN COURS. reste à faire: Bouton en bas
+// Reste à faire: Bouton en bas
 
 function OrderRecapScreen(props) {
   var productOrderRecap = props.productsAdded.map((product, i) => {

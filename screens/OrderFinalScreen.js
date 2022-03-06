@@ -1,11 +1,9 @@
 import React from "react";
 import { View, Text, ScrollView, StyleSheet } from "react-native";
-import { Card, Image } from "react-native-elements";
 import { Divider } from "react-native-elements";
 import PaymentButton from "../components/Orders/PaymentButton";
 import { Ionicons } from "@expo/vector-icons";
 
-// SOPHIE : A FAIRE + creation Button PAYER
 function OrderFinalScreen(props) {
   return (
     <ScrollView style={{ flex: 1 }}>
@@ -98,7 +96,23 @@ function OrderFinalScreen(props) {
             Lasagnes Maison
           </Text>
         </View>
-        <View>
+        <View
+          style={{
+            alignItems: "center",
+          }}
+        >
+          <Text
+            style={{
+              fontSize: 20,
+              fontWeight: "bold",
+              color: "#ff4d6d",
+              margin: "5%",
+              marginTop: "0%",
+              marginBottom: "0%",
+            }}
+          >
+            Vous allez gagner 14S
+          </Text>
           <Text
             style={{
               fontSize: 20,
@@ -108,7 +122,7 @@ function OrderFinalScreen(props) {
               marginTop: "0%",
             }}
           >
-            Vous allez gagner 14 S en validant cette commande
+            en validant cette commande
           </Text>
         </View>
 
@@ -126,7 +140,7 @@ function OrderFinalScreen(props) {
         >
           <Text
             style={{
-              fontSize: 20,
+              fontSize: 17,
               fontWeight: "bold",
               color: "black",
               marginLeft: "5%",
@@ -137,9 +151,9 @@ function OrderFinalScreen(props) {
           </Text>
           <Text
             style={{
-              fontSize: 20,
+              fontSize: 17,
               color: "black",
-              marginLeft: "9%",
+              marginLeft: "10%",
               fontWeight: "bold",
             }}
           >
@@ -172,7 +186,7 @@ function OrderFinalScreen(props) {
             style={{
               fontSize: 20,
               color: "black",
-              marginLeft: "40%",
+              marginLeft: "30%",
               fontWeight: "bold",
             }}
           >
