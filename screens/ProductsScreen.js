@@ -10,7 +10,7 @@ function Products(props, navigation) {
   console.log("productsCategory", productsCategory);
 
   const [products, setProducts] = useState([]);
-  console.log("productsCategory", productsCategory);
+  console.log("products", products);
 
   useEffect(() => {
     async function loadProductsCategory() {

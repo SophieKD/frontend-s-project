@@ -19,8 +19,14 @@ import { createStore, combineReducers } from "redux";
 import userLoggedIn from "./reducers/user";
 import productDetails from "./reducers/producDetailReduc";
 import productsAdded from "./reducers/productAddReducer";
+import productExtraDetails from "./reducers/addExtraReduc";
 const store = createStore(
-  combineReducers({ userLoggedIn, productDetails, productsAdded })
+  combineReducers({
+    userLoggedIn,
+    productDetails,
+    productsAdded,
+    productExtraDetails,
+  })
 );
 
 import { Ionicons } from "@expo/vector-icons";
