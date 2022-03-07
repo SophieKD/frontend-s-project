@@ -12,7 +12,6 @@ import AccountScreen from "../components/Account/AccountScreen";
 function LogScreen(props) {
   const [logComponent, setLogComponent] = useState("signIn");
   const [isUserConfirmed, setIsUserConfirmed] = useState(false);
-  console.log("isUserConfirmed =>", isUserConfirmed);
   const [error, setError] = useState({});
 
   useEffect(() => {
@@ -31,6 +30,7 @@ function LogScreen(props) {
     props.logOutReducer();
     setError({});
     setLogComponent("signIn");
+    setIsUserConfirmed(false);
   };
 
   const goToSignUp = () => {
@@ -38,6 +38,7 @@ function LogScreen(props) {
     props.logOutReducer();
     setError({});
     setLogComponent("signUp");
+    setIsUserConfirmed(false);
   };
 
   const goToAccountPage = () => {
@@ -56,6 +57,7 @@ function LogScreen(props) {
 
     const response = await data.json();
     console.log("---response =>", response);
+    console.log("---userloggedin =>", response.userLoggedIn);
 
     if (response.result === true) {
       props.onUserSignIn(response.userLoggedIn);
@@ -117,12 +119,7 @@ function LogScreen(props) {
   }
 
   if (logComponent === "inLocalStorage" && isUserConfirmed === true) {
-    loginJSX = (
-      <AccountScreen
-      // goToSignInParent={goToSignIn}
-      // goToSignUpParent={goToSignUp}
-      />
-    );
+    loginJSX = <AccountScreen goToSignInParent={goToSignIn} />;
   }
 
   if (logComponent === "signIn") {
