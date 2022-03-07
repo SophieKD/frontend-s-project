@@ -87,15 +87,16 @@ function Products(props, navigation) {
   });
 
   return (
-    <ScrollView style={{ flex: 1 }}>
-      <View style={{ backgroundColor: "#136979", height: 50 }} />
+    <View style={{ flex: 1 }}>
+      <ScrollView style={{ flex: 1 }}>
+        <View style={{ backgroundColor: "#136979", height: 50 }} />
 
-      <NavCategories />
+        <NavCategories />
 
-      {productsMap}
-
+        {productsMap}
+      </ScrollView>
       <ViewCartButton navigation={props.navigation} />
-    </ScrollView>
+    </View>
   );
 }
 

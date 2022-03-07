@@ -19,6 +19,7 @@ function ViewCartButton(props) {
     <View
       style={{
         flex: 1,
+        backgroundColor: "white",
         alignItems: "center",
         justifyContent: "center",
         flexDirection: "row",
