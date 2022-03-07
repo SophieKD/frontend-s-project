@@ -21,6 +21,8 @@ function OrderRecapScreen(props) {
           width: "90%",
           margin: "5%",
           flexWrap: "wrap",
+          marginBottom: "0%",
+          marginTop: "0%",
         }}
       >
         <Text
@@ -70,15 +72,35 @@ function OrderRecapScreen(props) {
 
         {productOrderRecap}
 
-        <Divider />
+        <Divider style={{ marginTop: "5%" }} />
 
-        <Text style={styles.title}>Un petit extra ?</Text>
+        <Text
+          style={{
+            fontWeight: "bold",
+            fontSize: 20,
+            color: "#136979",
+            margin: "5%",
+            marginBottom: "0%",
+          }}
+        >
+          Un petit extra ?
+        </Text>
 
         <ProductCard />
 
         <Divider />
 
-        <Text style={styles.title}>Heure de retrait</Text>
+        <Text
+          style={{
+            fontWeight: "bold",
+            fontSize: 20,
+            color: "#136979",
+            margin: "5%",
+            marginBottom: "0%",
+          }}
+        >
+          Heure de retrait
+        </Text>
 
         <TimePicker />
 
@@ -122,7 +144,6 @@ function OrderRecapScreen(props) {
       <View
         style={{
           flex: 1,
-          backgroundColor: "white",
         }}
       >
         <OrderValidationButton navigation={props.navigation} />
@@ -137,13 +158,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: "#136979",
     margin: "5%",
-    marginBottom: 0,
   },
-  //   horizontalText: {
-  //     textAlign: "center",
-  //     fontSize: 16,
-  //     marginVertical: 10,
-  //   },
 });
 
 function mapStateToProps(state) {
