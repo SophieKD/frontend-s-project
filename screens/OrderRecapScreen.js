@@ -8,56 +8,113 @@ import { connect } from "react-redux";
 
 // Reste à faire: Bouton en bas
 
+var countProducts = 0;
+var totalOrderAmount = 0;
+
 function OrderRecapScreen(props) {
   var productOrderRecap = props.productsAdded.map((product, i) => {
     console.log("product productOrderRecap", product);
+    totalOrderAmount += product.price;
     return (
-      <View
-        key={i}
-        style={{
-          flex: 1,
-          backgroundColor: "white",
-          flexDirection: "row",
-          width: "90%",
-          margin: "5%",
-          flexWrap: "wrap",
-        }}
-      >
-        <Text
+      <View key={i}>
+        <View
           style={{
-            fontWeight: "bold",
-            fontSize: 15,
-            color: "black",
-            width: "10%",
+            flex: 1,
+            backgroundColor: "white",
+            flexDirection: "row",
+            width: "90%",
             margin: "5%",
-            justifyContent: "center",
-            alignContent: "center",
+            flexWrap: "wrap",
           }}
         >
-          1
-        </Text>
-        <Text
-          style={{
-            fontWeight: "bold",
-            fontSize: 15,
-            color: "black",
-            width: "40%",
-            margin: "5%",
-          }}
-        >
-          {product.title}
-        </Text>
-        <Text
-          style={{
-            fontWeight: "bold",
-            fontSize: 15,
-            color: "black",
-            width: "20%",
-            margin: "5%",
-          }}
-        >
-          {product.price}€
-        </Text>
+          <Text
+            style={{
+              fontWeight: "bold",
+              fontSize: 15,
+              color: "black",
+              width: "10%",
+              margin: "5%",
+              justifyContent: "center",
+              alignContent: "center",
+            }}
+          >
+            {(countProducts += 1)}
+          </Text>
+          <Text
+            style={{
+              fontWeight: "bold",
+              fontSize: 15,
+              color: "black",
+              width: "40%",
+              margin: "5%",
+            }}
+          >
+            {product.title}
+          </Text>
+          <Text
+            style={{
+              fontWeight: "bold",
+              fontSize: 15,
+              color: "black",
+              width: "20%",
+              margin: "5%",
+            }}
+          >
+            {product.price}€
+          </Text>
+        </View>
+        {props.productExtraDetails.map((extra, j) => {
+          totalOrderAmount += extra.price;
+          return (
+            <View
+              key={j}
+              style={{
+                flex: 1,
+                backgroundColor: "white",
+                flexDirection: "row",
+                width: "90%",
+                margin: "5%",
+                flexWrap: "wrap",
+              }}
+            >
+              <Text
+                style={{
+                  fontWeight: "bold",
+                  fontSize: 15,
+                  color: "black",
+                  width: "10%",
+                  margin: "5%",
+                  justifyContent: "center",
+                  alignContent: "center",
+                }}
+              >
+                {(countProducts += 1)}
+              </Text>
+              <Text
+                style={{
+                  fontWeight: "bold",
+                  fontSize: 15,
+                  color: "black",
+                  width: "40%",
+                  margin: "5%",
+                }}
+              >
+                {extra.title}
+              </Text>
+              <Text
+                style={{
+                  fontWeight: "bold",
+                  fontSize: 15,
+                  color: "black",
+                  width: "20%",
+                  margin: "5%",
+                }}
+              >
+                {extra.price}€
+              </Text>
+            </View>
+          );
+        })}
       </View>
     );
   });
@@ -113,7 +170,7 @@ function OrderRecapScreen(props) {
               margin: "5%",
             }}
           >
-            9,90€
+            {totalOrderAmount.toFixed(2)}€
           </Text>
         </View>
       </View>
@@ -139,17 +196,19 @@ const styles = StyleSheet.create({
     margin: "5%",
     marginBottom: 0,
   },
-  //   horizontalText: {
-  //     textAlign: "center",
-  //     fontSize: 16,
-  //     marginVertical: 10,
-  //   },
+  horizontalText: {
+    textAlign: "center",
+    fontSize: 16,
+    marginVertical: 10,
+  },
 });
 
 function mapStateToProps(state) {
   console.log("state OrderRecapScreen", state);
-  return { productsAdded: state.productsAdded };
+  return {
+    productsAdded: state.productsAdded,
+    productExtraDetails: state.productExtraDetails,
+  };
 }
 
 export default connect(mapStateToProps, null)(OrderRecapScreen);
-// export default OrderRecapScreen;

@@ -1,6 +1,6 @@
 import React from "react";
-import { StyleSheet, View, TouchableOpacity } from "react-native";
-import { Button, ButtonGroup, withTheme, Text } from "react-native-elements";
+import { StyleSheet, View, TouchableOpacity, Text } from "react-native";
+import { Button, ButtonGroup, withTheme } from "react-native-elements";
 import { connect } from "react-redux";
 
 // Sophie : a afficher uniquement si des produits dans le panier
@@ -59,7 +59,7 @@ function ViewCartButton(props) {
               textAlign: "right",
             }}
           >
-            Voir la commande: {orderAmount}€
+            Voir la commande: {orderAmount.toFixed(2)}€
           </Text>
         </TouchableOpacity>
       </View>
