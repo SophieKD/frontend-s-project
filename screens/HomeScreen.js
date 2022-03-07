@@ -1,49 +1,49 @@
 import React from "react";
-import { StyleSheet, View, Text, ScrollView } from "react-native";
-import { Card, Image } from "react-native-elements";
+import {
+  StyleSheet,
+  View,
+  Text,
+  ScrollView,
+  Image,
+  TouchableOpacity,
+} from "react-native";
+import { Card } from "react-native-elements";
 import HomeSlider from "../components/Products/HomeSlider";
 
-// Sophie à Finaliser:Card enlever marges et contour
 function HomeScreen(props) {
   return (
     <ScrollView style={{ flex: 1 }}>
       <View style={{ backgroundColor: "#136979", height: 50 }} />
       <HomeSlider />
-      {/* TEST sans Card : mais ne s'affiche pas */}
-      {/* <View
+
+      {/* Sophie à Finaliser:Image : ajouter les OnPress ou Card enlever marges et contour */}
+      <View
         style={{
           flex: 1,
           flexWrap: "wrap",
-          alignItems: "flex-start",
+          flexDirection: "row",
+          justifyContent: "center",
         }}
       >
-        <View
+        <Image
           style={{
-            flex: 1,
-            justifyContent: "space-around",
-            alignItems: "center",
-            alignContent: "space-between",
-            marginLeft: "2%",
-            marginRight: "1%",
-            width: "46%",
+            margin: "3%",
+            height: 190,
+            width: "44%",
           }}
-        >
-          <Image source={require("../assets/home-platdujour.png")} />
-        </View>
-        <View
+          source={require("../assets/home-platdujour.png")}
+        />
+
+        <Image
           style={{
-            flex: 1,
-            alignContent: "space-around",
-            alignItems: "center",
-            alignSelf: "flex-start",
-            marginLeft: "1%",
-            marginRight: "2%",
-            width: "46%",
+            margin: "3%",
+            width: "44%",
+            height: 190,
           }}
-        >
-          <Image source={require("../assets/home-platdujour.png")} />
-        </View>
-      </View> */}
+          source={require("../assets/home-platdujour.png")}
+        />
+      </View>
+
       <View style={{ flex: 1, flexWrap: "wrap", flexDirection: "row" }}>
         <Card containerStyle={{ width: "46%", margin: "2%" }}>
           <Card.Image
@@ -96,11 +96,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#f7f7fb",
-  },
-  item: {
-    aspectRatio: 1,
-    width: "100%",
-    flex: 1,
   },
 });
 
