@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, ScrollView } from "react-native";
+import { View, Text, ScrollView, Image } from "react-native";
 import { Card } from "react-native-elements";
 import NavCategories from "../components/Products/NavCategories";
 import ViewCartButton from "../components/Products/ViewCartButton";
@@ -87,15 +87,16 @@ function Products(props, navigation) {
   });
 
   return (
-    <ScrollView style={{ flex: 1 }}>
-      <View style={{ backgroundColor: "#136979", height: 50 }} />
+    <View style={{ flex: 1 }}>
+      <ScrollView style={{ flex: 1 }}>
+        <View style={{ backgroundColor: "#136979", height: 50 }} />
 
-      <NavCategories />
+        <NavCategories />
 
-      {productsMap}
-
+        {productsMap}
+      </ScrollView>
       <ViewCartButton navigation={props.navigation} />
-    </ScrollView>
+    </View>
   );
 }
 

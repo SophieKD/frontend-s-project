@@ -12,10 +12,8 @@ function OrderValidationButton(props) {
           alignItems: "center",
           justifyContent: "center",
           flexDirection: "row",
-          position: "center",
           bottom: 10,
           zIndex: 999,
-          // backgroundColor: "white",
         }}
       >
         <View
