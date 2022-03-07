@@ -21,7 +21,6 @@ function ViewCartButton(props) {
         flex: 1,
         alignItems: "center",
         justifyContent: "center",
-
         flexDirection: "row",
         position: "absolute",
         bottom: 10,

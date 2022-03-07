@@ -11,7 +11,7 @@ const items = [
     text: "Sandwichs",
   },
   {
-    text: "Paninis",
+    text: "Bowls",
   },
   {
     text: "Desserts",
