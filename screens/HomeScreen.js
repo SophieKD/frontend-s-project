@@ -6,6 +6,7 @@ import {
   ScrollView,
   Image,
   TouchableOpacity,
+  ImageBackground,
 } from "react-native";
 import { Card } from "react-native-elements";
 import HomeSlider from "../components/Products/HomeSlider";
