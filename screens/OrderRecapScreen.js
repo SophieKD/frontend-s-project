@@ -67,18 +67,15 @@ function OrderRecapScreen(props) {
       <View>
         <View style={{ backgroundColor: "#136979", height: 50 }} />
         <Text style={styles.title}>Ma commande</Text>
-        {/* Recap commande */}
 
         {productOrderRecap}
 
-        {/* Divider */}
         <Divider />
 
         <Text style={styles.title}>Un petit extra ?</Text>
 
         <ProductCard />
 
-        {/* Divider */}
         <Divider />
 
         <Text style={styles.title}>Heure de retrait</Text>
@@ -125,7 +122,7 @@ function OrderRecapScreen(props) {
       <View
         style={{
           flex: 1,
-          //   backgroundColor: "white",
+          backgroundColor: "white",
         }}
       >
         <OrderValidationButton navigation={props.navigation} />
@@ -155,3 +152,4 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, null)(OrderRecapScreen);
+// export default OrderRecapScreen;
