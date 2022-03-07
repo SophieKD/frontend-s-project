@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, View, TouchableOpacity } from "react-native";
-import { Button, ButtonGroup, withTheme, Text } from "react-native-elements";
+import { Text } from "react-native-elements";
 
 // Sophie : a afficher uniquement si des produits dans le panier
 
@@ -11,7 +11,6 @@ function ViewCartButton(props) {
         flex: 1,
         alignItems: "center",
         justifyContent: "center",
-
         flexDirection: "row",
         position: "absolute",
         bottom: 10,

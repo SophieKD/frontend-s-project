@@ -12,7 +12,7 @@ function PaymentButton(props) {
         alignItems: "center",
         justifyContent: "center",
         flexDirection: "row",
-        position: "center",
+        // position: "center", ne fonctionne pas sur android
         bottom: 10,
         zIndex: 999,
       }}
