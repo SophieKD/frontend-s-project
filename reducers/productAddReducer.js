@@ -1,5 +1,5 @@
 export default function (productsAdded = [], action) {
-  console.log("productsAdded", productsAdded);
+  // console.log("productsAdded", productsAdded);
   if (action.type == "addProductToBasket") {
     var productsAddedCopy = [...productsAdded];
     productsAddedCopy.push(action.productAddData);
