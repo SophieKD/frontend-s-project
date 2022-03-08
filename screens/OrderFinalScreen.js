@@ -3,8 +3,69 @@ import { View, Text, ScrollView, StyleSheet } from "react-native";
 import { Divider } from "react-native-elements";
 import PaymentButton from "../components/Orders/PaymentButton";
 import { Ionicons } from "@expo/vector-icons";
+import { connect } from "react-redux";
 
 function OrderFinalScreen(props) {
+  var FinalTotalOrderAmount = 0;
+
+  var finalOrderRecap = props.productsAdded.map((product, i) => {
+    FinalTotalOrderAmount += product.price;
+
+    return (
+      <View key={i} style={styles.view}>
+        <Text
+          style={{
+            fontSize: 17,
+            color: "black",
+            marginLeft: "5%",
+            marginTop: "6%",
+          }}
+        >
+          1
+        </Text>
+        <Text
+          style={{
+            fontSize: 17,
+            color: "black",
+            marginLeft: "5%",
+          }}
+        >
+          {product.title}
+        </Text>
+      </View>
+    );
+  });
+
+  var finalOrderRecapExtra = props.productExtraDetails.map(
+    (productExtra, i) => {
+      FinalTotalOrderAmount += productExtra.price;
+
+      return (
+        <View key={i} style={styles.view}>
+          <Text
+            style={{
+              fontSize: 17,
+              color: "black",
+              marginLeft: "5%",
+              marginTop: "6%",
+            }}
+          >
+            1
+          </Text>
+          <Text
+            style={{
+              fontSize: 17,
+              color: "black",
+              marginLeft: "5%",
+            }}
+          >
+            {productExtra.title}
+          </Text>
+        </View>
+      );
+    }
+  );
+
   return (
     <ScrollView style={{ flex: 1 }}>
       <View>
@@ -74,28 +135,12 @@ function OrderFinalScreen(props) {
           <Text style={styles.wallettext}> 7€</Text>
         </View>
         <Divider />
+
         <Text style={styles.subtitle}>Détail de la commande</Text>
-        <View style={styles.view}>
-          <Text
-            style={{
-              fontSize: 17,
-              color: "black",
-              marginLeft: "5%",
-              marginTop: "6%",
-            }}
-          >
-            1
-          </Text>
-          <Text
-            style={{
-              fontSize: 17,
-              color: "black",
-              marginLeft: "5%",
-            }}
-          >
-            Lasagnes Maison
-          </Text>
-        </View>
+
+        {finalOrderRecap}
+        {finalOrderRecapExtra}
+
         <View
           style={{
             alignItems: "center",
@@ -157,7 +202,7 @@ function OrderFinalScreen(props) {
               fontWeight: "bold",
             }}
           >
-            13,80€
+            {FinalTotalOrderAmount.toFixed(2)}€
           </Text>
         </View>
         <View
@@ -190,11 +235,12 @@ function OrderFinalScreen(props) {
               fontWeight: "bold",
             }}
           >
-            13,80€
+            {FinalTotalOrderAmount.toFixed(2)}€
           </Text>
         </View>
+
+        <PaymentButton navigation={props.navigation} />
       </View>
-      <PaymentButton navigation={props.navigation} />
     </ScrollView>
   );
 }
@@ -233,4 +279,13 @@ const styles = StyleSheet.create({
   },
 });
 
-export default OrderFinalScreen;
+function mapStateToProps(state) {
+  console.log("state OrderFinalScreen", state);
+  return {
+    productsAdded: state.productsAdded,
+    productExtraDetails: state.productExtraDetails,
+    userLoggedIn: state.userLoggedIn,
+  };
+}
+
+export default connect(mapStateToProps, null)(OrderFinalScreen);

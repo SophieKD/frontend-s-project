@@ -137,4 +137,16 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, null)(OrderValidationButton);
+function mapDispatchToProps(dispatch) {
+  return {
+    onValidationPress: function (orderData) {
+      console.log("orderData OrderRecapScreen", orderData);
+      dispatch({ type: "confirmOrder", orderData });
+    },
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(OrderValidationButton);
