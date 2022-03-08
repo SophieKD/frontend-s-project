@@ -52,7 +52,7 @@ function AccountScreen(props) {
     );
 
     const getOrders = async (token) => {
-      const url = `https://ls-project-capsule.herokuapp.com//orders/user/${token}`;
+      const url = `https://ls-project-capsule.herokuapp.com/orders/user/${token}`;
       let rawOrders = await fetch(url);
       console.log("---rawOrders", rawOrders);
       let ordersResponse = await rawOrders.json();
