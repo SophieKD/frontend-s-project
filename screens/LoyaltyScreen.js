@@ -25,7 +25,7 @@ function LoyaltyScreen(props) {
     );
 
     const getSpoints = async (token) => {
-      const url = `http://localhost:3000/user/my-s-points/${token}`;
+      const url = `https://ls-project-capsule.herokuapp.com/user/my-s-points/${token}`;
       let rawSpoints = await fetch(url);
       console.log("---rawSpoints", rawSpoints);
       let spointsResponse = await rawSpoints.json();
