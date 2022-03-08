@@ -16,8 +16,6 @@ function HomeScreen(props) {
       <View style={{ backgroundColor: "#136979", height: 50 }} />
       <HomeSlider />
 
-      {/* Sophie à Finaliser:Image : ajouter les OnPress ou Card enlever marges et contour */}
-
       <View
         style={{
           flex: 1,

@@ -144,7 +144,8 @@ function LogScreen(props) {
   }
 
   if (isUserConfirmed) {
-    return <ScrollView>{loginJSX}</ScrollView>;
+    return;
+    <ScrollView>{loginJSX}</ScrollView>;
   } else {
     return <View style={styles.container}>{loginJSX}</View>;
   }
@@ -153,9 +154,9 @@ function LogScreen(props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    marginTop: 25,
+    // alignItems: "center",
+    // justifyContent: "center",
+    // marginTop: 25,
   },
 });
 
