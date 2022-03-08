@@ -84,6 +84,7 @@ function App() {
             name="Commande Confirmation"
             component={OrderConfirmationScreen}
           />
+          <Stack.Screen name="Log" component={LogScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>

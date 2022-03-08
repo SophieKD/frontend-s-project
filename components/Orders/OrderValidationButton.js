@@ -1,59 +1,125 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { StyleSheet, View, TouchableOpacity, ScrollView } from "react-native";
 import { Button, ButtonGroup, withTheme, Text } from "react-native-elements";
+import { connect } from "react-redux";
 
 //SOPHIE: Bouton à faire apparaitre en bas
 function OrderValidationButton(props) {
-  return (
-    <ScrollView style={{ flex: 1 }}>
-      <View
-        style={{
-          flex: 1,
-          alignItems: "center",
-          justifyContent: "center",
-          flexDirection: "row",
-          bottom: 10,
-          zIndex: 999,
-        }}
-      >
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  console.log("isLoggedIn OrderValidationButton", isLoggedIn);
+
+  var onValidationPress = () => {
+    if (props.userLoggedIn.token !== undefined) {
+      setIsLoggedIn(true);
+    }
+  };
+
+  if (isLoggedIn === true) {
+    return (
+      <ScrollView style={{ flex: 1 }}>
         <View
           style={{
-            flexDirection: "row",
+            flex: 1,
+            alignItems: "center",
             justifyContent: "center",
-            width: "100%",
+            flexDirection: "row",
+            bottom: 10,
+            zIndex: 999,
           }}
         >
-          <TouchableOpacity
+          <View
             style={{
-              marginTop: 10,
-              backgroundColor: "#136979",
-              alignItems: "center",
-              padding: 13,
-              borderRadius: 30,
-              width: "90%",
-              position: "relative",
+              flexDirection: "row",
+              justifyContent: "center",
+              width: "100%",
             }}
-            onPress={() => props.navigation.navigate("Commande Finale")}
-            // onPress={() => {
-            //   addOrderToMongoDB();
-            //   setModalVisible(false);
-            // }}
           >
-            <Text
+            <TouchableOpacity
               style={{
-                color: "white",
-                fontSize: 20,
-                fontWeight: "bold",
-                textAlign: "right",
+                marginTop: 10,
+                backgroundColor: "#136979",
+                alignItems: "center",
+                padding: 13,
+                borderRadius: 30,
+                width: "90%",
+                position: "relative",
               }}
+              onPress={() => props.navigation.navigate("Commande Finale")}
+              // onPress={() => {
+              //   addOrderToMongoDB();
+              //   setModalVisible(false);
+              // }}
             >
-              Valider ma commande
-            </Text>
-          </TouchableOpacity>
+              <Text
+                style={{
+                  color: "white",
+                  fontSize: 20,
+                  fontWeight: "bold",
+                  textAlign: "right",
+                }}
+              >
+                Valider ma commande
+              </Text>
+            </TouchableOpacity>
+          </View>
         </View>
-      </View>
-    </ScrollView>
-  );
+      </ScrollView>
+    );
+  } else {
+    return (
+      <ScrollView style={{ flex: 1 }}>
+        <View
+          style={{
+            flex: 1,
+            alignItems: "center",
+            justifyContent: "center",
+            flexDirection: "row",
+            bottom: 10,
+            zIndex: 999,
+          }}
+        >
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "center",
+              width: "100%",
+            }}
+          >
+            <TouchableOpacity
+              style={{
+                marginTop: 10,
+                backgroundColor: "#136979",
+                alignItems: "center",
+                padding: 13,
+                borderRadius: 30,
+                width: "90%",
+                position: "relative",
+              }}
+              onPress={() => {
+                props.navigation.navigate("Log");
+                onValidationPress();
+              }}
+              // onPress={() => {
+              //   addOrderToMongoDB();
+              //   setModalVisible(false);
+              // }}
+            >
+              <Text
+                style={{
+                  color: "white",
+                  fontSize: 20,
+                  fontWeight: "bold",
+                  textAlign: "right",
+                }}
+              >
+                Valider ma commande
+              </Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </ScrollView>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
@@ -64,4 +130,11 @@ const styles = StyleSheet.create({
   },
 });
 
-export default OrderValidationButton;
+function mapStateToProps(state) {
+  console.log("state OrderValidationButton", state);
+  return {
+    userLoggedIn: state.userLoggedIn,
+  };
+}
+
+export default connect(mapStateToProps, null)(OrderValidationButton);
