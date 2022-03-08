@@ -20,12 +20,10 @@ function ViewCartButton(props) {
       style={{
         flex: 1,
         backgroundColor: "white",
-        alignItems: "center",
-        justifyContent: "center",
         flexDirection: "row",
         position: "absolute",
-        bottom: 10,
-        zIndex: 999,
+        bottom: 5,
+        // zIndex: 999,
       }}
     >
       <View
@@ -37,7 +35,8 @@ function ViewCartButton(props) {
       >
         <TouchableOpacity
           style={{
-            marginTop: 20,
+            marginTop: 10,
+            marginBottom: 10,
             backgroundColor: "#136979",
             alignItems: "center",
             padding: 13,
@@ -66,14 +65,6 @@ function ViewCartButton(props) {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
 
 function mapStateToProps(state) {
   console.log("state OrderRecapScreen", state);

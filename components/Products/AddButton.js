@@ -41,22 +41,6 @@ function AddButton(props) {
         flexDirection: "row",
       }}
     >
-      {/* BUTTON -+ / Border radius ? et encadrement */}
-      {/* <View style={styles.container}>
-        <ButtonGroup
-          innerBorderStyle={{ color: "#F7F7FB" }}
-          buttons={buttons}
-          containerStyle={{ height: 30 }}
-          buttonContainerStyle={{
-            backgroundColor: "#F7F7FB",
-            borderColor: "#F7F7FB",
-          }}
-          textStyle={{ color: "black" }}
-        />
-      </View> */}
-
-      {/* BUTTON AJOUTER */}
-
       {productDetailsSelectedPrice}
     </View>
   );
