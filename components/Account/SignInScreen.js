@@ -33,7 +33,7 @@ function SignInScreen(props) {
           flexWrap: "wrap",
           flexDirection: "row",
           justifyContent: "center",
-          marginTop: "15%",
+          marginTop: "10%",
         }}
       >
         <Image source={require("../../assets/logo-s-2.png")} />
@@ -45,7 +45,7 @@ function SignInScreen(props) {
             fontWeight: "bold",
             color: "#136979",
             fontSize: 20,
-            marginTop: "5%",
+
             marginLeft: "5%",
             marginRight: "5%",
           }}

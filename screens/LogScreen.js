@@ -144,8 +144,7 @@ function LogScreen(props) {
   }
 
   if (isUserConfirmed) {
-    return;
-    <ScrollView>{loginJSX}</ScrollView>;
+    return <ScrollView>{loginJSX}</ScrollView>;
   } else {
     return <View style={styles.container}>{loginJSX}</View>;
   }
