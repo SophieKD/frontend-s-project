@@ -5,13 +5,12 @@ import { connect } from "react-redux";
 
 // Sophie : a afficher uniquement si des produits dans le panier
 
-var orderAmount = 0;
-
 function ViewCartButton(props) {
+  var orderAmount = 0;
   var orderCheckButton = props.productsAdded.map((order, i) => {
-    {
-      orderAmount += order.price;
-    }
+    console.log("order orderCheckButton", order);
+
+    orderAmount += order.price;
   });
   console.log("orderCheckButton", orderCheckButton);
 

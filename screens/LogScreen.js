@@ -162,9 +162,11 @@ const styles = StyleSheet.create({
 function mapDispatchToProps(dispatch) {
   return {
     onUserSignUp: function (userSignedUp) {
+      console.log("userSignedUp", userSignedUp);
       dispatch({ type: "SignUp", userSignedUp });
     },
     onUserSignIn: function (userSignedIn) {
+      console.log("userSignedIn", userSignedIn);
       dispatch({ type: "SignIn", userSignedIn });
     },
     logOutReducer: function () {

@@ -8,13 +8,16 @@ import { connect } from "react-redux";
 
 // Reste à faire: Bouton en bas
 
-var countProducts = 0;
-var totalOrderAmount = 0;
-
 function OrderRecapScreen(props) {
+  console.log("props.productExtraDetails", props.productExtraDetails);
+  // var countProducts = 0;
+  var totalOrderAmount = 0;
+
   var productOrderRecap = props.productsAdded.map((product, i) => {
     console.log("product productOrderRecap", product);
+
     totalOrderAmount += product.price;
+
     return (
       <View>
         <View
@@ -41,7 +44,7 @@ function OrderRecapScreen(props) {
               alignContent: "center",
             }}
           >
-            {(countProducts += 1)}
+            {/* {(countProducts += 1)} */}1
           </Text>
           <Text
             style={{
@@ -66,6 +69,18 @@ function OrderRecapScreen(props) {
             {product.price}€
           </Text>
         </View>
+      </View>
+    );
+  });
+
+  return (
+    <ScrollView style={{ flex: 1 }}>
+      <View>
+        <View style={{ backgroundColor: "#136979", height: 50 }} />
+        <Text style={styles.title}>Ma commande</Text>
+
+        {productOrderRecap}
+
         {props.productExtraDetails.map((extra, j) => {
           totalOrderAmount += extra.price;
           return (
@@ -91,7 +106,7 @@ function OrderRecapScreen(props) {
                   alignContent: "center",
                 }}
               >
-                {(countProducts += 1)}
+                {/* {(countProducts += 1)} */}1
               </Text>
               <Text
                 style={{
@@ -118,17 +133,6 @@ function OrderRecapScreen(props) {
             </View>
           );
         })}
-      </View>
-    );
-  });
-
-  return (
-    <ScrollView style={{ flex: 1 }}>
-      <View>
-        <View style={{ backgroundColor: "#136979", height: 50 }} />
-        <Text style={styles.title}>Ma commande</Text>
-
-        {productOrderRecap}
 
         <Divider style={{ marginTop: "5%" }} />
 
