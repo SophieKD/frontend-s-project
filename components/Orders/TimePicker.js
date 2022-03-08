@@ -21,19 +21,12 @@ function TimePicker() {
     setMode(currentMode);
   };
 
-  //   const showDatepicker = () => {
-  //     showMode("date");
-  //   };
-
   const showTimepicker = () => {
     showMode("time");
   };
 
   return (
     <View>
-      {/* <View>
-        <Button onPress={showDatepicker} title="Show date picker!" />
-      </View> */}
       <View>
         <Button
           buttonStyle={{
@@ -58,7 +51,7 @@ function TimePicker() {
           is24Hour={true}
           display="default"
           onChange={onChange}
-          // display="spinner"
+          display="spinner"
           textColor="#136979"
           locale="fr-FR"
           minuteInterval={15}
