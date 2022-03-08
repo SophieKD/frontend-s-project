@@ -1,10 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { StyleSheet, View, Text, Image } from "react-native";
+import { StyleSheet, View, Text, Image, ScrollView } from "react-native";
 import { Divider, ListItem, Button, Overlay } from "react-native-elements";
 import CameraScreen from "./CameraScreen";
 
-import { Ionicons } from "@expo/vector-icons";
-import { Entypo } from "@expo/vector-icons";
+import {
+  Entypo,
+  MaterialCommunityIcons,
+  Ionicons,
+  FontAwesome5,
+  FontAwesome,
+} from "@expo/vector-icons";
 
 import {
   Collapse,
@@ -28,7 +33,6 @@ function AccountScreen(props) {
   );
   const [orders, setOrders] = useState([]);
   console.log("---orders =>", orders);
-
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -90,249 +94,345 @@ function AccountScreen(props) {
   }
 
   return (
-    <View>
-      <Overlay isVisible={visible} fullScreen={true}>
-        {cameraDisplay}
-      </Overlay>
-      <View style={styles.container}>
-        <Image
-          source={{ uri: uri }}
-          style={{
-            height: 160,
-            width: 160,
-            margin: 15,
-          }}
-        />
+    <ScrollView style={{ flex: 1 }}>
+      <View style={{ backgroundColor: "#136979", height: 50 }} />
+      <View>
+        <Overlay isVisible={visible} fullScreen={true}>
+          {cameraDisplay}
+        </Overlay>
+        <View style={styles.container}>
+          <Image
+            source={{ uri: uri }}
+            style={{
+              height: 160,
+              width: 160,
+              margin: 5,
+            }}
+          />
+          <Button
+            buttonStyle={{
+              marginBottom: 15,
+              backgroundColor: "#136979",
+              borderRadius: 30,
+            }}
+            title="Snappe-Toi!"
+            type="solid"
+            containerStyle={{
+              width: "40%",
+              marginHorizontal: 50,
+              marginVertical: 10,
+            }}
+            titleStyle={{
+              color: "white",
+              fontSize: 20,
+            }}
+            onPress={() => onPressSnap()}
+          />
+          <Text
+            style={{
+              fontWeight: "bold",
+              fontSize: 25,
+              marginBottom: 10,
+              color: "#136979",
+            }}
+          >
+            {pseudo}
+          </Text>
+        </View>
+        <Collapse style={{ marginTop: 15 }}>
+          <CollapseHeader>
+            <View style={styles.view}>
+              <MaterialCommunityIcons
+                name="account"
+                size={27}
+                color="#136979"
+                style={{
+                  width: "11%",
+                  margin: "3%",
+                }}
+              />
+              <Text
+                style={{
+                  marginLeft: 0,
+                  marginBottom: 5,
+                  fontSize: 18,
+                }}
+              >
+                Mon profil
+              </Text>
+            </View>
+          </CollapseHeader>
+          <CollapseBody>
+            <ListItem>
+              <ListItem.Content>
+                <ListItem.Title
+                  style={{ marginLeft: 15, fontSize: 15, marginBottom: 3 }}
+                >
+                  Prénom: {firstname}
+                </ListItem.Title>
+                <ListItem.Title
+                  style={{ marginLeft: 15, fontSize: 15, marginBottom: 3 }}
+                >
+                  Nom: {lastname}
+                </ListItem.Title>
+                <ListItem.Title
+                  style={{ marginLeft: 15, fontSize: 15, marginBottom: 3 }}
+                >
+                  Mobile: {mobile}
+                </ListItem.Title>
+                <ListItem.Title
+                  style={{ marginLeft: 15, fontSize: 15, marginBottom: 3 }}
+                >
+                  Email: {email}
+                </ListItem.Title>
+              </ListItem.Content>
+            </ListItem>
+          </CollapseBody>
+        </Collapse>
+
+        <Collapse style={{ marginTop: 15 }}>
+          <CollapseHeader>
+            <View style={styles.view}>
+              <FontAwesome5
+                name="list-alt"
+                size={27}
+                color="#136979"
+                style={{
+                  width: "11%",
+                  margin: "3%",
+                }}
+              />
+              <Text
+                style={{
+                  marginLeft: 0,
+                  fontSize: 18,
+                  marginBottom: 5,
+                }}
+              >
+                Mes commandes
+              </Text>
+            </View>
+          </CollapseHeader>
+          <CollapseBody>
+            {orders.map((order, i) => {
+              let statusPayment = (
+                <Ionicons name="checkmark-done-sharp" size={20} color="green" />
+              );
+              if (order.status_payment === false) {
+                statusPayment = (
+                  <Entypo name="circle-with-cross" size={20} color="red" />
+                );
+              }
+              let statusDelivery = (
+                <Ionicons name="checkmark-done-sharp" size={20} color="green" />
+              );
+              if (order.status_delivery === false) {
+                statusDelivery = (
+                  <Entypo name="circle-with-cross" size={20} color="red" />
+                );
+              }
+              let statusPrep = (
+                <Ionicons name="checkmark-done-sharp" size={20} color="green" />
+              );
+              if (order.status_preparation === false) {
+                statusPrep = (
+                  <Entypo name="circle-with-cross" size={20} color="red" />
+                );
+              }
+
+              let totalOrder = 0;
+              for (let k = 0; k < order.products.length; k++) {
+                console.log(
+                  "---order.products[k].productID",
+                  order.products[k]
+                );
+                totalOrder =
+                  order.products[k].productID.price * order.products[k].qty +
+                  totalOrder;
+              }
+
+              return (
+                <ListItem key={i}>
+                  <ListItem.Content>
+                    <ListItem.Title
+                      style={{
+                        marginLeft: 15,
+                        fontSize: 15,
+                        marginBottom: 3,
+                        color: "#136979",
+                        fontWeight: "bold",
+                      }}
+                    >
+                      Date de Commande: {order.date_insert}
+                    </ListItem.Title>
+                    <ListItem.Title
+                      style={{ marginLeft: 15, fontSize: 15, marginBottom: 3 }}
+                    >
+                      Paiement effectué: {statusPayment}
+                    </ListItem.Title>
+                    <ListItem.Title
+                      style={{ marginLeft: 15, fontSize: 15, marginBottom: 3 }}
+                    >
+                      Commande préparée: {statusPrep}
+                    </ListItem.Title>
+                    <ListItem.Title
+                      style={{ marginLeft: 15, fontSize: 15, marginBottom: 3 }}
+                    >
+                      Commande récupérée: {statusDelivery}
+                    </ListItem.Title>
+
+                    <DataTable>
+                      <DataTable.Header>
+                        <DataTable.Title>Produit(s)</DataTable.Title>
+                        <DataTable.Title numeric>Quantité</DataTable.Title>
+                        <DataTable.Title numeric>Prix</DataTable.Title>
+                      </DataTable.Header>
+
+                      {order.products.map((product, j) => {
+                        // console.log("---product", product);
+                        // console.log("---product.productID", product.productID);
+                        // console.log(
+                        //   "---product.productID.title",
+                        //   product.productID.title
+                        // );
+                        // console.log(
+                        //   "---product.productID.price",
+                        //   product.productID.price
+                        // );
+                        // console.log("---product.qty", product.qty);
+                        // console.log("---totalOrder", totalOrder);
+                        return (
+                          <DataTable.Row key={j}>
+                            <DataTable.Cell>
+                              {product.productID.title}
+                            </DataTable.Cell>
+                            <DataTable.Cell numeric>
+                              {product.qty}
+                            </DataTable.Cell>
+
+                            <DataTable.Cell numeric>
+                              {product.productID.price}€
+                            </DataTable.Cell>
+                          </DataTable.Row>
+                        );
+                      })}
+                      <DataTable.Row>
+                        <DataTable.Cell>Total:</DataTable.Cell>
+
+                        <DataTable.Cell numeric>{totalOrder}€</DataTable.Cell>
+                      </DataTable.Row>
+                    </DataTable>
+                  </ListItem.Content>
+                </ListItem>
+              );
+            })}
+          </CollapseBody>
+        </Collapse>
+
+        <Collapse style={{ marginTop: 15, marginBottom: 5 }}>
+          <CollapseHeader>
+            <View style={styles.view}>
+              <FontAwesome5
+                name="piggy-bank"
+                size={27}
+                color="#136979"
+                style={{
+                  width: "11%",
+                  margin: "3%",
+                }}
+              />
+              <Text
+                style={{
+                  marginLeft: 0,
+                  fontSize: 18,
+                  marginBottom: 5,
+                }}
+              >
+                Ma cagnotte
+              </Text>
+            </View>
+          </CollapseHeader>
+          <CollapseBody>
+            <Text style={{ marginLeft: 30, marginTop: 5 }}>Ta daa!</Text>
+          </CollapseBody>
+        </Collapse>
+
+        <Collapse style={{ marginTop: 15, marginBottom: 5 }}>
+          <CollapseHeader>
+            <View style={styles.view}>
+              <FontAwesome
+                name="group"
+                size={27}
+                color="#136979"
+                style={{
+                  width: "11%",
+                  margin: "3%",
+                }}
+              />
+              <Text
+                style={{
+                  marginLeft: 0,
+                  fontSize: 18,
+                  marginBottom: 5,
+                }}
+              >
+                Mes S
+              </Text>
+            </View>
+          </CollapseHeader>
+          <CollapseBody>
+            <Text style={{ marginLeft: 30, marginTop: 5 }}>Ta daa!</Text>
+          </CollapseBody>
+        </Collapse>
+
+        <Collapse style={{ marginTop: 15, marginBottom: 5 }}>
+          <CollapseHeader>
+            <View style={styles.view}>
+              <FontAwesome
+                name="bell"
+                size={27}
+                color="#136979"
+                style={{
+                  width: "11%",
+                  margin: "3%",
+                }}
+              />
+              <Text
+                style={{
+                  marginLeft: 0,
+                  fontSize: 18,
+                  marginBottom: 5,
+                }}
+              >
+                Mes notifications
+              </Text>
+            </View>
+          </CollapseHeader>
+          <CollapseBody>
+            <Text style={{ marginLeft: 30, marginTop: 5 }}>Ta daa!</Text>
+          </CollapseBody>
+        </Collapse>
+
         <Button
-          buttonStyle={{ marginBottom: 15 }}
-          title="Snappes-Toi!"
+          buttonStyle={{
+            marginTop: 30,
+            backgroundColor: "#136979",
+            borderRadius: 30,
+          }}
+          title="Déconnexion"
           type="solid"
-          onPress={() => onPressSnap()}
+          containerStyle={{
+            width: "60%",
+            alignSelf: "center",
+          }}
+          titleStyle={{
+            color: "white",
+            fontSize: 20,
+          }}
+          onPress={() => goToSignIn()}
         />
-        <Text style={{ fontWeight: "bold", fontSize: 25, marginBottom: 10 }}>
-          {pseudo}
-        </Text>
       </View>
-      <Collapse style={{ marginTop: 15 }}>
-        <CollapseHeader>
-          <Text
-            style={{
-              marginLeft: 20,
-              marginBottom: 5,
-              fontSize: 18,
-              fontWeight: "bold",
-            }}
-          >
-            Mon profil
-          </Text>
-        </CollapseHeader>
-        <CollapseBody>
-          <ListItem>
-            <ListItem.Content>
-              <ListItem.Title
-                style={{ marginLeft: 15, fontSize: 15, marginBottom: 3 }}
-              >
-                Prénom: {firstname}
-              </ListItem.Title>
-              <ListItem.Title
-                style={{ marginLeft: 15, fontSize: 15, marginBottom: 3 }}
-              >
-                Nom: {lastname}
-              </ListItem.Title>
-              <ListItem.Title
-                style={{ marginLeft: 15, fontSize: 15, marginBottom: 3 }}
-              >
-                Mobile: {mobile}
-              </ListItem.Title>
-              <ListItem.Title
-                style={{ marginLeft: 15, fontSize: 15, marginBottom: 3 }}
-              >
-                Email: {email}
-              </ListItem.Title>
-            </ListItem.Content>
-          </ListItem>
-        </CollapseBody>
-      </Collapse>
-      <Divider />
-      <Collapse style={{ marginTop: 15 }}>
-        <CollapseHeader>
-          <Text
-            style={{
-              marginLeft: 20,
-              fontSize: 18,
-              fontWeight: "bold",
-              marginBottom: 5,
-            }}
-          >
-            Mes commandes
-          </Text>
-        </CollapseHeader>
-        <CollapseBody>
-          {orders.map((order, i) => {
-            let statusPayment = (
-              <Ionicons name="checkmark-done-sharp" size={20} color="green" />
-            );
-            if (order.status_payment === false) {
-              statusPayment = (
-                <Entypo name="circle-with-cross" size={20} color="red" />
-              );
-            }
-            let statusDelivery = (
-              <Ionicons name="checkmark-done-sharp" size={20} color="green" />
-            );
-            if (order.status_delivery === false) {
-              statusDelivery = (
-                <Entypo name="circle-with-cross" size={20} color="red" />
-              );
-            }
-            let statusPrep = (
-              <Ionicons name="checkmark-done-sharp" size={20} color="green" />
-            );
-            if (order.status_preparation === false) {
-              statusPrep = (
-                <Entypo name="circle-with-cross" size={20} color="red" />
-              );
-            }
-
-            let totalOrder = 0;
-            for (let k = 0; k < order.products.length; k++) {
-              console.log("---order.products[k].productID", order.products[k]);
-              totalOrder =
-                order.products[k].productID.price * order.products[k].qty +
-                totalOrder;
-            }
-
-            return (
-              <ListItem key={i}>
-                <ListItem.Content>
-                  <ListItem.Title
-                    style={{ marginLeft: 15, fontSize: 15, marginBottom: 3 }}
-                  >
-                    Date de Commande: {order.date_insert}
-                  </ListItem.Title>
-                  <ListItem.Title
-                    style={{ marginLeft: 15, fontSize: 15, marginBottom: 3 }}
-                  >
-                    Paiement effectué: {statusPayment}
-                  </ListItem.Title>
-                  <ListItem.Title
-                    style={{ marginLeft: 15, fontSize: 15, marginBottom: 3 }}
-                  >
-                    Commande préparée: {statusPrep}
-                  </ListItem.Title>
-                  <ListItem.Title
-                    style={{ marginLeft: 15, fontSize: 15, marginBottom: 3 }}
-                  >
-                    Commande récupérée: {statusDelivery}
-                  </ListItem.Title>
-
-                  <DataTable>
-                    <DataTable.Header>
-                      <DataTable.Title>Produit(s)</DataTable.Title>
-                      <DataTable.Title numeric>Quantité</DataTable.Title>
-                      <DataTable.Title numeric>Prix</DataTable.Title>
-                    </DataTable.Header>
-
-                    {order.products.map((product, j) => {
-                      // console.log("---product", product);
-                      // console.log("---product.productID", product.productID);
-                      // console.log(
-                      //   "---product.productID.title",
-                      //   product.productID.title
-                      // );
-                      // console.log(
-                      //   "---product.productID.price",
-                      //   product.productID.price
-                      // );
-                      // console.log("---product.qty", product.qty);
-                      // console.log("---totalOrder", totalOrder);
-                      return (
-                        <DataTable.Row key={j}>
-                          <DataTable.Cell>
-                            {product.productID.title}
-                          </DataTable.Cell>
-                          <DataTable.Cell numeric>{product.qty}</DataTable.Cell>
-
-                          <DataTable.Cell numeric>
-                            {product.productID.price}€
-                          </DataTable.Cell>
-                        </DataTable.Row>
-                      );
-                    })}
-                    <DataTable.Row>
-                      <DataTable.Cell>Total:</DataTable.Cell>
-
-                      <DataTable.Cell numeric>{totalOrder}€</DataTable.Cell>
-                    </DataTable.Row>
-                  </DataTable>
-                </ListItem.Content>
-              </ListItem>
-            );
-          })}
-        </CollapseBody>
-      </Collapse>
-      <Divider />
-      <Collapse style={{ marginTop: 15, marginBottom: 5 }}>
-        <CollapseHeader>
-          <Text
-            style={{
-              marginLeft: 20,
-              fontSize: 18,
-              fontWeight: "bold",
-              marginBottom: 5,
-            }}
-          >
-            Ma cagnotte
-          </Text>
-        </CollapseHeader>
-        <CollapseBody>
-          <Text style={{ marginLeft: 30, marginTop: 5 }}>Ta daa!</Text>
-        </CollapseBody>
-      </Collapse>
-      <Divider />
-      <Collapse style={{ marginTop: 15, marginBottom: 5 }}>
-        <CollapseHeader>
-          <Text
-            style={{
-              marginLeft: 20,
-              fontSize: 18,
-              fontWeight: "bold",
-              marginBottom: 5,
-            }}
-          >
-            Mes S
-          </Text>
-        </CollapseHeader>
-        <CollapseBody>
-          <Text style={{ marginLeft: 30, marginTop: 5 }}>Ta daa!</Text>
-        </CollapseBody>
-      </Collapse>
-      <Divider />
-      <Collapse style={{ marginTop: 15, marginBottom: 5 }}>
-        <CollapseHeader>
-          <Text
-            style={{
-              marginLeft: 20,
-              fontSize: 18,
-              fontWeight: "bold",
-              marginBottom: 5,
-            }}
-          >
-            Mes notifications
-          </Text>
-        </CollapseHeader>
-        <CollapseBody>
-          <Text style={{ marginLeft: 30, marginTop: 5 }}>Ta daa!</Text>
-        </CollapseBody>
-      </Collapse>
-      <Divider />
-      <Button
-        buttonStyle={{ marginTop: 15, width: "auto", alignSelf: "center" }}
-        title="Log Out"
-        type="solid"
-        onPress={() => goToSignIn()}
-      />
-    </View>
+    </ScrollView>
   );
 }
 
@@ -341,6 +441,18 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     marginTop: 25,
+  },
+  view: {
+    flex: 1,
+    backgroundColor: "white",
+    width: "90%",
+    margin: "5%",
+    height: 50,
+    flexWrap: "wrap",
+    flexDirection: "row",
+    alignItems: "center",
+    marginTop: "0%",
+    marginBottom: "0%",
   },
 });
 
