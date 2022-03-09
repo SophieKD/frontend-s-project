@@ -1,6 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, ScrollView, Image } from "react-native";
-import { Card } from "react-native-elements";
+import {
+  View,
+  Text,
+  ScrollView,
+  StyleSheet,
+  TouchableOpacity,
+} from "react-native";
+import { Card, Image } from "react-native-elements";
 import NavCategories from "../components/Products/NavCategories";
 import ViewCartButton from "../components/Products/ViewCartButton";
 import { connect } from "react-redux";
@@ -48,52 +54,86 @@ function Products(props, navigation) {
       <View key={i}>
         <View
           style={{
-            backgroundColor: "#acdcdc",
+            backgroundColor: "#136979",
             justifyContent: "center",
-            height: 30,
+            height: 40,
+            marginBottom: 5,
+            marginTop: 10,
           }}
         >
           <Text
             style={{
               marginLeft: 20,
               fontWeight: "bold",
+              color: "white",
+              fontSize: 17,
             }}
           >
             {product.category}
           </Text>
         </View>
-        <View style={{ flex: 1, flexWrap: "wrap", flexDirection: "row" }}>
+        <View
+          style={{
+            flex: 1,
+            flexWrap: "wrap",
+            flexDirection: "row",
+            marginTop: "2%",
+            marginBottom: "2%",
+          }}
+        >
           {product.products.map((producto, j) => {
             return (
-              <Card key={j} containerStyle={{ width: "46%", margin: "2%" }}>
-                <Card.Image
-                  style={{ padding: 0, height: 100, width: 150 }}
-                  source={{ uri: producto.img }}
+              <View
+                key={j}
+                style={{
+                  width: "46%",
+                  margin: "2%",
+                  justifyContent: "center",
+                }}
+              >
+                <TouchableOpacity
                   onPress={() => {
                     props.navigation.navigate("Produit");
                     props.onImagePress(producto);
                   }}
-                />
-                <View style={{ flex: 1 }}>
-                  <Text
-                    style={{
-                      marginBottom: 15,
-                      fontWeight: "bold",
-                    }}
-                  >
-                    {producto.title}
-                  </Text>
-                  <Text>{producto.description.slice(0, 56) + "..."}</Text>
-                  <Text
-                    style={{
-                      fontWeight: "bold",
-                      textAlignVertical: "bottom",
-                    }}
-                  >
-                    {producto.price}€
-                  </Text>
-                </View>
-              </Card>
+                  style={{
+                    flex: 1,
+                    flexDirection: "row",
+                  }}
+                >
+                  <View>
+                    <View>
+                      <Image
+                        style={{ height: 190, width: "100%" }}
+                        source={{ uri: producto.img }}
+                      />
+                    </View>
+                    <View style={{ padding: 10, backgroundColor: "white" }}>
+                      <Text
+                        style={{
+                          fontWeight: "bold",
+                          color: "#136979",
+                          fontSize: 15,
+                        }}
+                      >
+                        {producto.title}
+                      </Text>
+                      <Text style={{ paddingTop: 5, fontSize: 15 }}>
+                        {producto.description.slice(0, 56) + "..."}
+                      </Text>
+                      <Text
+                        style={{
+                          fontWeight: "bold",
+                          paddingTop: 10,
+                          fontSize: 15,
+                        }}
+                      >
+                        {producto.price}€
+                      </Text>
+                    </View>
+                  </View>
+                </TouchableOpacity>
+              </View>
             );
           })}
         </View>
