@@ -8,28 +8,22 @@ import { connect } from "react-redux";
 function ViewCartButton(props) {
   var orderAmount = 0;
   var orderCheckButton = props.productsAdded.map((order, i) => {
-    console.log("order orderCheckButton", order);
+    // console.log("order orderCheckButton", order);
 
     orderAmount += order.price;
   });
-  console.log("orderCheckButton", orderCheckButton);
+  // console.log("orderCheckButton", orderCheckButton);
+  // console.log("---orderAmount =>", orderAmount);
 
-  return (
-    <View
-      style={{
-        flex: 1,
-        backgroundColor: "white",
-        flexDirection: "row",
-        position: "absolute",
-        bottom: 5,
-        // zIndex: 999,
-      }}
-    >
+  let displayButton;
+  if (orderAmount > 0) {
+    displayButton = (
       <View
         style={{
           flexDirection: "row",
           justifyContent: "center",
           width: "100%",
+          backgroundColor: "transparent",
         }}
       >
         <TouchableOpacity
@@ -61,13 +55,23 @@ function ViewCartButton(props) {
           </Text>
         </TouchableOpacity>
       </View>
+    );
+  }
+
+  return (
+    <View
+      style={{
+        flex: 1,
+        backgroundColor: "transparent",
+        flexDirection: "row",
+        position: "absolute",
+        bottom: 0,
+        // zIndex: 999,
+      }}
+    >
+      {displayButton}
     </View>
   );
 }
 
-function mapStateToProps(state) {
-  console.log("state OrderRecapScreen", state);
-  return { productsAdded: state.productsAdded };
-}
-
-export default connect(mapStateToProps, null)(ViewCartButton);
+export default ViewCartButton;
