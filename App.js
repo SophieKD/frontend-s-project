@@ -6,7 +6,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import HomeScreen from "./screens/HomeScreen";
 import ProductsScreen from "./screens/ProductsScreen";
 import LoyaltyScreen from "./screens/LoyaltyScreen";
-import AccountScreen from "./screens/AccountScreen";
+// import AccountScreen from "./screens/AccountScreen";
 import LogScreen from "./screens/LogScreen";
 import LeS from "./screens/LeS";
 import ProductDetailScreen from "./screens/ProductDetailScreen";
@@ -84,6 +84,7 @@ function App() {
             name="Commande Confirmation"
             component={OrderConfirmationScreen}
           />
+          <Stack.Screen name="Log" component={LogScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>
