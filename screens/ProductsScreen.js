@@ -74,7 +74,6 @@ function Products(props, navigation) {
                   width: "46%",
                   margin: "2%",
                   justifyContent: "center",
-                  alignContent: "center",
                 }}
               >
                 <TouchableOpacity
