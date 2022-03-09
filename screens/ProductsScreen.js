@@ -12,6 +12,11 @@ function Products(props, navigation) {
   const [products, setProducts] = useState([]);
   console.log("products", products);
 
+  const [orderAmount, setOrderAmount] = useState(0);
+  console.log("---orderAmount in ProductScreen =>", orderAmount);
+
+  console.log("-props", props);
+
   useEffect(() => {
     async function loadProductsCategory() {
       var rawResponse = await fetch(
@@ -27,8 +32,18 @@ function Products(props, navigation) {
     loadProductsCategory();
   }, []);
 
+  let marginBottomScrollView = { flex: 1, paddingBottom: "2%" };
+  if (props.productsAdded.length > 0) {
+    marginBottomScrollView = { flex: 1, paddingBottom: 70 };
+    console.log("---marginBottomScrollView", marginBottomScrollView);
+  }
+
+  const activMarginBottom = (orderAmount) => {
+    setOrderAmount(orderAmount);
+  };
+
   var productsMap = productsCategory.map((product, i) => {
-    console.log("product productsMap", product);
+    // console.log("product productsMap", product);
     return (
       <View key={i}>
         <View
@@ -94,10 +109,18 @@ function Products(props, navigation) {
         <NavCategories />
 
         {productsMap}
+        <View style={marginBottomScrollView}></View>
       </ScrollView>
-      <ViewCartButton navigation={props.navigation} />
+      <ViewCartButton
+        navigation={props.navigation}
+        productsAdded={props.productsAdded}
+      />
     </View>
   );
+}
+function mapStateToProps(state) {
+  console.log("state OrderRecapScreen", state);
+  return { productsAdded: state.productsAdded };
 }
 
 function mapDispatchToProps(dispatch) {
@@ -109,4 +132,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(null, mapDispatchToProps)(Products);
+export default connect(mapStateToProps, mapDispatchToProps)(Products);
