@@ -7,7 +7,7 @@ import {
   // Image,
   TouchableOpacity,
 } from "react-native";
-import { Card, Image } from "react-native-elements";
+import { Image } from "react-native-elements";
 import HomeSlider from "../components/Products/HomeSlider";
 
 function HomeScreen(props) {
