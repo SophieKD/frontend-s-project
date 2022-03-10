@@ -18,9 +18,6 @@ function Products(props, navigation) {
   const [products, setProducts] = useState([]);
   console.log("products", products);
 
-  const [orderAmount, setOrderAmount] = useState(0);
-  console.log("---orderAmount in ProductScreen =>", orderAmount);
-
   console.log("-props", props);
 
   useEffect(() => {
@@ -43,10 +40,6 @@ function Products(props, navigation) {
     marginBottomScrollView = { flex: 1, paddingBottom: 70 };
     console.log("---marginBottomScrollView", marginBottomScrollView);
   }
-
-  const activMarginBottom = (orderAmount) => {
-    setOrderAmount(orderAmount);
-  };
 
   var productsMap = productsCategory.map((product, i) => {
     // console.log("product productsMap", product);

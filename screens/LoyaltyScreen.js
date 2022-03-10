@@ -7,10 +7,10 @@ import {
   MaterialCommunityIcons,
   Fontisto,
 } from "@expo/vector-icons";
-import { Divider } from "react-native-elements";
 
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { connect } from "react-redux";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
 import ProgressBar from "../components/Loyalty/ProgressBar";
 
 function LoyaltyScreen(props) {
@@ -29,6 +29,8 @@ function LoyaltyScreen(props) {
           setPseudo(user.pseudo);
           setToken(user.token);
           getSpoints(user.token);
+        } else {
+          setSpoints(0);
         }
       }
     );
@@ -41,7 +43,44 @@ function LoyaltyScreen(props) {
       console.log("---ordersResponse =>", spointsResponse);
       setSpoints(spointsResponse.spoints);
     };
-  }, []);
+  }, [props.isUserLoggedIn]);
+
+  let countToDisplay = "50S";
+  let delta = 50 - spoints;
+  let productGranted = "cookie";
+  let productReward = "cookie";
+  let sReward;
+  if (spoints >= 50) {
+    countToDisplay = "250 S";
+    delta = 250 - spoints;
+    productGranted = "cookie";
+    productReward = "plat du jour";
+    sReward = (
+      <Text style={styles.sReward}>
+        <MaterialCommunityIcons name="party-popper" size={24} color="#136979" />
+        1 {productGranted} offert
+        <MaterialCommunityIcons name="party-popper" size={24} color="#136979" />
+      </Text>
+    );
+  }
+
+  let spointsBeforeReward = (
+    <Text style={styles.text}>
+      Plus que {delta} S pour 1 {productReward} offert !
+    </Text>
+  );
+
+  if (spoints >= 250) {
+    spointsBeforeReward = undefined;
+    productGranted = "cookie ou 1 plat du jour";
+    sReward = (
+      <Text style={styles.sReward}>
+        <MaterialCommunityIcons name="party-popper" size={24} color="#136979" />
+        1 {productGranted} offert !
+        <MaterialCommunityIcons name="party-popper" size={24} color="#136979" />
+      </Text>
+    );
+  }
 
   return (
     <ScrollView style={{ flex: 1 }}>
@@ -54,14 +93,15 @@ function LoyaltyScreen(props) {
       </View>
 
       <View>
-        <ProgressBar />
+        <ProgressBar spointsToChild={spoints} />
       </View>
       <View>
-        <Text style={styles.details}>{spoints}/250S</Text>
+        <Text style={styles.details}>
+          {spoints}/{countToDisplay}
+        </Text>
+        {sReward}
       </View>
-      <View>
-        <Text style={styles.text}>Plus que 90S pour un cookie offert !</Text>
-      </View>
+      <View>{spointsBeforeReward}</View>
 
       <View style={{ marginBottom: "3%", marginTop: "5%" }}>
         <Image source={require("../assets/recompenses.png")} />
@@ -92,7 +132,7 @@ function LoyaltyScreen(props) {
             color: "#ff4d6d",
           }}
         >
-          1€ dépensé = 1S
+          1€ dépensé = 1 S
         </Text>
       </View>
 
@@ -114,7 +154,7 @@ function LoyaltyScreen(props) {
             color: "#ff4d6d",
           }}
         >
-          Une boisson offerte dès votre 1ère commande !
+          1 boisson offerte dès votre 1ère commande !
         </Text>
       </View>
 
@@ -136,10 +176,10 @@ function LoyaltyScreen(props) {
             color: "#ff4d6d",
           }}
         >
-          50S = 1 cookie offert !
+          50 S = 1 cookie offert !
         </Text>
       </View>
-      {/* 520S*/}
+      {/* 520S */}
       <View style={styles.view}>
         <MaterialCommunityIcons
           name="gift"
@@ -157,7 +197,7 @@ function LoyaltyScreen(props) {
             color: "#ff4d6d",
           }}
         >
-          250S = 1 Menu du Jour offert !
+          250 S = 1 Menu du Jour offert !
         </Text>
       </View>
     </ScrollView>
@@ -200,6 +240,17 @@ const styles = StyleSheet.create({
     marginBottom: "3%",
     flex: 1,
     textAlign: "right",
+  },
+  sReward: {
+    fontSize: 17,
+    color: "#136979",
+    fontWeight: "bold",
+    marginLeft: "5%",
+    marginTop: "1%",
+    marginRight: "6%",
+    marginBottom: "3%",
+    flex: 1,
+    textAlign: "center",
   },
   text: {
     fontSize: 17,
