@@ -4,6 +4,7 @@ import LoyaltyButton from "../components/Orders/LoyaltyButton";
 import { Ionicons, FontAwesome5 } from "@expo/vector-icons";
 import { Divider } from "react-native-elements";
 import LoyaltyWinSButton from "../components/Orders/LoyaltyWinSButton";
+import { connect } from "react-redux";
 
 // SOPHIE : A FAIRE + creation Button "gagnez des S"
 function OrderConfirmationScreen(props) {
@@ -206,4 +207,13 @@ const styles = StyleSheet.create({
   },
 });
 
-export default OrderConfirmationScreen;
+function mapStateToProps(state) {
+  console.log("state OrderConfirmationScreen", state);
+  return {
+    productsAdded: state.productsAdded,
+    productExtraDetails: state.productExtraDetails,
+    userLoggedIn: state.userLoggedIn,
+  };
+}
+
+export default connect(mapStateToProps, null)(OrderConfirmationScreen);
