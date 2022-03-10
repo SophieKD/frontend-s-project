@@ -58,7 +58,7 @@ function OrderConfirmationScreen(props) {
     );
   });
 
-  var finalConfirmationExtra = props.productsAdded.map((extra, i) => {
+  var finalConfirmationExtra = props.productsExtraDetails.map((extra, i) => {
     finalConfirmationAmount += extra.price * extra.qty;
     return (
       <View
@@ -131,7 +131,7 @@ function OrderConfirmationScreen(props) {
               color: "#136979",
             }}
           >
-            Vendredi 11 Mars à 17h45
+            Vendredi 11 Mars à 18h00
           </Text>
         </View>
 
@@ -222,11 +222,11 @@ function OrderConfirmationScreen(props) {
               marginTop: "0%",
             }}
           >
-            Vous avez obtenu 14S
+            Vous avez obtenu {Math.round(finalConfirmationAmount)}S
           </Text>
         </View>
       </View>
-      <LoyaltyButton navigation={props.navigation} />
+
       <LoyaltyWinSButton navigation={props.navigation} />
     </ScrollView>
   );
@@ -267,10 +267,12 @@ const styles = StyleSheet.create({
 });
 
 function mapStateToProps(state) {
-  console.log("state OrderConfirmationScreen", state);
+  // console.log("state OrderConfirmationScreen", state);
+  console.log("------------productsAdded=>", state.productsAdded);
+  console.log("------------productsExtraDetails=>", state.productExtraDetails);
   return {
     productsAdded: state.productsAdded,
-    productExtraDetails: state.productExtraDetails,
+    productsExtraDetails: state.productExtraDetails,
     userLoggedIn: state.userLoggedIn,
   };
 }

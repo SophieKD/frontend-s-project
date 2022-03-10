@@ -90,7 +90,7 @@ function OrderFinalScreen(props) {
               color: "#136979",
             }}
           >
-            Vendredi 4 Mars à 12h15
+            Vendredi 11 Mars à 18h00
           </Text>
         </View>
         <Divider />
@@ -114,7 +114,7 @@ function OrderFinalScreen(props) {
             Ajouter une carte bancaire
           </Text>
         </View>
-        <View style={styles.view}>
+        {/* <View style={styles.view}>
           <Ionicons
             name="wallet"
             size={27}
@@ -133,7 +133,7 @@ function OrderFinalScreen(props) {
             Utiliser ma cagnotte
           </Text>
           <Text style={styles.wallettext}> 7€</Text>
-        </View>
+        </View> */}
         <Divider />
 
         <Text style={styles.subtitle}>Détail de la commande</Text>
@@ -156,7 +156,7 @@ function OrderFinalScreen(props) {
               marginBottom: "0%",
             }}
           >
-            Vous allez gagner 14S
+            Vous allez gagner {Math.round(finalTotalOrderAmount)} S
           </Text>
           <Text
             style={{

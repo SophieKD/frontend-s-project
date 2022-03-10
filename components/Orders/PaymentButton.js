@@ -79,8 +79,8 @@ function PaymentButton(props) {
             position: "relative",
           }}
           onPress={() => {
-            props.navigation.navigate("Commande Confirmation");
             onPaymentButtonPress();
+            props.navigation.navigate("Commande Confirmation");
           }}
           // onPress={() => {
           //   addOrderToMongoDB();

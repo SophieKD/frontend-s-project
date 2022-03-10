@@ -28,7 +28,7 @@ function Products(props, navigation) {
     async function loadProductsCategory() {
       console.log("#01");
       var rawResponse = await fetch(
-        "http://ls-project-capsule.herokuapp.com/products-find-by-category"
+        "https://ls-project-capsule.herokuapp.com/products-find-by-category"
       );
       console.log("rawResponse", rawResponse);
 
@@ -45,10 +45,6 @@ function Products(props, navigation) {
     marginBottomScrollView = { flex: 1, paddingBottom: 70 };
     console.log("---marginBottomScrollView", marginBottomScrollView);
   }
-
-  // const activMarginBottom = (orderAmount) => {
-  //   setOrderAmount(orderAmount);
-  // };
 
   var productsMap = productsCategory.map((product, i) => {
     // console.log("product productsMap", product);

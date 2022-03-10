@@ -8,10 +8,13 @@ import LocalStorageLogScreen from "../components/Account/LocalStorageLogScreen";
 import SignInScreen from "../components/Account/SignInScreen";
 import SignUpScreen from "../components/Account/SignUpScreen";
 import AccountScreen from "../components/Account/AccountScreen";
+import OrderFinalScreen from "./OrderFinalScreen";
 
 function LogScreen(props) {
   const [logComponent, setLogComponent] = useState("signIn");
   const [isUserConfirmed, setIsUserConfirmed] = useState(false);
+  const [isInOrderProcess, setIsInOrderProcess] = useState(false);
+  console.log("---inInOrderProcess =>", isInOrderProcess);
   const [error, setError] = useState({});
 
   useEffect(() => {
@@ -24,6 +27,10 @@ function LogScreen(props) {
       }
     );
   }, []);
+
+  if (props.productsAdded.length > 0 && isInOrderProcess === false) {
+    setIsInOrderProcess(true);
+  }
 
   const goToSignIn = () => {
     AsyncStorage.removeItem("userLocalStorage");
@@ -102,13 +109,17 @@ function LogScreen(props) {
     } else {
       setError(response.error);
     }
-
-    //Par la suite cette fonction enverra un lien vers:
-    //  Si commande en cours = page relative à la commande
-    //  Si pas de commande en cours = page du profil
   };
 
-  if (logComponent === "inLocalStorage" && isUserConfirmed === false) {
+  if (isInOrderProcess === true && logComponent === "inLocalStorage") {
+    loginJSX = <OrderFinalScreen navigation={props.navigation} />;
+  }
+
+  if (
+    logComponent === "inLocalStorage" &&
+    isUserConfirmed === false &&
+    isInOrderProcess === false
+  ) {
     loginJSX = (
       <LocalStorageLogScreen
         goToSignInParent={goToSignIn}
@@ -118,7 +129,11 @@ function LogScreen(props) {
     );
   }
 
-  if (logComponent === "inLocalStorage" && isUserConfirmed === true) {
+  if (
+    logComponent === "inLocalStorage" &&
+    isUserConfirmed === true &&
+    isInOrderProcess === false
+  ) {
     loginJSX = <AccountScreen goToSignInParent={goToSignIn} />;
   }
 
@@ -159,6 +174,11 @@ const styles = StyleSheet.create({
   },
 });
 
+function mapStateToProps(state) {
+  // console.log("state OrderRecapScreen", state);
+  return { productsAdded: state.productsAdded };
+}
+
 function mapDispatchToProps(dispatch) {
   return {
     onUserSignUp: function (userSignedUp) {
@@ -175,4 +195,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(null, mapDispatchToProps)(LogScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(LogScreen);
