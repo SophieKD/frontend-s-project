@@ -3,8 +3,6 @@ import { StyleSheet, View, ScrollView, Platform, Text } from "react-native";
 import { Button, ButtonGroup, withTheme } from "react-native-elements";
 import DateTimePicker from "@react-native-community/datetimepicker";
 
-// Sophie : à Faire
-
 function TimePicker() {
   const [date, setDate] = useState(new Date(1598051730000));
   const [mode, setMode] = useState("time");
@@ -40,7 +38,7 @@ function TimePicker() {
           }}
           titleStyle={{ color: "black" }}
           onPress={showTimepicker}
-          title="On vous prépare tout çà pour quelle heure ?"
+          title="Choisissez votre heure de retrait"
         />
       </View>
       {show && (
@@ -49,9 +47,9 @@ function TimePicker() {
           value={date}
           mode={mode}
           is24Hour={true}
-          display="default"
+          // display="default"
           onChange={onChange}
-          // display="spinner"
+          display="spinner"
           textColor="#136979"
           locale="fr-FR"
           minuteInterval={15}

@@ -131,6 +131,7 @@ function HomeScreen(props) {
             source={require("../assets/home-ptitdej.png")}
           />
         </TouchableOpacity>
+        <View style={{ backgroundColor: "#f7f7fb", height: 100 }}></View>
       </View>
     </ScrollView>
   );

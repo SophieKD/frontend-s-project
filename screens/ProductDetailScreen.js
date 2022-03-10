@@ -32,6 +32,7 @@ function ProductDetailScreen(props) {
       {productDetailsSelected}
 
       <AddButton navigation={props.navigation} />
+      <View style={{ backgroundColor: "#white", height: 100 }}></View>
     </ScrollView>
   );
 }

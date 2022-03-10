@@ -6,7 +6,6 @@ import { Divider } from "react-native-elements";
 import LoyaltyWinSButton from "../components/Orders/LoyaltyWinSButton";
 import { connect } from "react-redux";
 
-// SOPHIE : A FAIRE + creation Button "gagnez des S"
 function OrderConfirmationScreen(props) {
   return (
     <ScrollView style={{ flex: 1 }}>
@@ -32,7 +31,7 @@ function OrderConfirmationScreen(props) {
               color: "#136979",
             }}
           >
-            Vendredi 4 Mars à 12h15
+            Vendredi 11 Mars à 17h45
           </Text>
         </View>
 

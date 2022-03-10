@@ -188,6 +188,7 @@ function SignUpScreen(props) {
         >
           Cliquez ici pour vous connecter !
         </Text>
+        <View style={{ height: 50 }}></View>
       </View>
     </ScrollView>
   );

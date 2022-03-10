@@ -29,7 +29,8 @@ function AccountScreen(props) {
   const [email, setEmail] = useState("");
   const [token, setToken] = useState("");
   const [uri, setUri] = useState(
-    "https://res.cloudinary.com/ds8shlqh0/image/upload/v1646644747/blankpp_vaslek.jpg"
+    // "https://res.cloudinary.com/ds8shlqh0/image/upload/v1646644747/blankpp_vaslek.jpg"
+    "https://res.cloudinary.com/dybetiefg/image/upload/v1646911499/Ajouter_des_lignes_dans_le_corps_du_texte_mrhmcy.png"
   );
   const [orders, setOrders] = useState([]);
   console.log("---orders =>", orders);
