@@ -7,6 +7,106 @@ import LoyaltyWinSButton from "../components/Orders/LoyaltyWinSButton";
 import { connect } from "react-redux";
 
 function OrderConfirmationScreen(props) {
+  var finalConfirmationAmount = 0;
+
+  var finalConfirmation = props.productsAdded.map((product, i) => {
+    finalConfirmationAmount += product.price * product.qty;
+    return (
+      <View
+        key={i}
+        style={{
+          flex: 1,
+          width: "90%",
+          margin: "5%",
+          height: 50,
+          flexWrap: "wrap",
+          flexDirection: "row",
+          alignItems: "center",
+          marginTop: "0%",
+          marginBottom: "0%",
+        }}
+      >
+        <Text
+          style={{
+            fontSize: 17,
+            color: "black",
+            marginLeft: "5%",
+            marginTop: "6%",
+          }}
+        >
+          {product.qty}
+        </Text>
+        <Text
+          style={{
+            fontSize: 17,
+            color: "black",
+            marginLeft: "5%",
+          }}
+        >
+          {product.title}
+        </Text>
+        <Text
+          style={{
+            fontSize: 17,
+            color: "black",
+            marginLeft: "30%",
+          }}
+        >
+          {product.price}€
+        </Text>
+      </View>
+    );
+  });
+
+  var finalConfirmationExtra = props.productsAdded.map((extra, i) => {
+    finalConfirmationAmount += extra.price * extra.qty;
+    return (
+      <View
+        key={i}
+        style={{
+          flex: 1,
+          width: "90%",
+          margin: "5%",
+          height: 50,
+          flexWrap: "wrap",
+          flexDirection: "row",
+          alignItems: "center",
+          marginTop: "0%",
+          marginBottom: "0%",
+        }}
+      >
+        <Text
+          style={{
+            fontSize: 17,
+            color: "black",
+            marginLeft: "5%",
+            marginTop: "6%",
+          }}
+        >
+          {extra.qty}
+        </Text>
+        <Text
+          style={{
+            fontSize: 17,
+            color: "black",
+            marginLeft: "5%",
+          }}
+        >
+          {extra.title}
+        </Text>
+        <Text
+          style={{
+            fontSize: 17,
+            color: "black",
+            marginLeft: "30%",
+          }}
+        >
+          {extra.price}€
+        </Text>
+      </View>
+    );
+  });
+
   return (
     <ScrollView style={{ flex: 1 }}>
       <View>
@@ -38,48 +138,8 @@ function OrderConfirmationScreen(props) {
         <Divider />
 
         <Text style={styles.subtitle}>Rappel de votre commande</Text>
-        <View
-          style={{
-            flex: 1,
-            width: "90%",
-            margin: "5%",
-            height: 50,
-            flexWrap: "wrap",
-            flexDirection: "row",
-            alignItems: "center",
-            marginTop: "0%",
-            marginBottom: "0%",
-          }}
-        >
-          <Text
-            style={{
-              fontSize: 17,
-              color: "black",
-              marginLeft: "5%",
-              marginTop: "6%",
-            }}
-          >
-            1
-          </Text>
-          <Text
-            style={{
-              fontSize: 17,
-              color: "black",
-              marginLeft: "5%",
-            }}
-          >
-            Lasagnes Maison
-          </Text>
-          <Text
-            style={{
-              fontSize: 17,
-              color: "black",
-              marginLeft: "30%",
-            }}
-          >
-            9,90€
-          </Text>
-        </View>
+        {finalConfirmation}
+        {finalConfirmationExtra}
 
         <View
           style={{
@@ -111,7 +171,7 @@ function OrderConfirmationScreen(props) {
               fontWeight: "bold",
             }}
           >
-            13,80€
+            {finalConfirmationAmount.toFixed(2)}€
           </Text>
         </View>
 
@@ -144,7 +204,7 @@ function OrderConfirmationScreen(props) {
               marginLeft: "10%",
             }}
           >
-            13,80€
+            {finalConfirmationAmount.toFixed(2)}€
           </Text>
         </View>
 

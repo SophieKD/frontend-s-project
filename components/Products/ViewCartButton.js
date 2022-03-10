@@ -10,7 +10,11 @@ function ViewCartButton(props) {
   var orderCheckButton = props.productsAdded.map((order, i) => {
     // console.log("order orderCheckButton", order);
 
-    orderAmount += order.price;
+    orderAmount += order.price * order.qty;
+  });
+
+  var orderCheckButton = props.productExtraDetails.map((extra, i) => {
+    orderAmount += extra.price * extra.qty;
   });
   // console.log("orderCheckButton", orderCheckButton);
   // console.log("---orderAmount =>", orderAmount);
@@ -74,4 +78,12 @@ function ViewCartButton(props) {
   );
 }
 
-export default ViewCartButton;
+function mapStateToProps(state) {
+  // console.log("state OrderRecapScreen", state);
+  return {
+    productsAdded: state.productsAdded,
+    productExtraDetails: state.productExtraDetails,
+  };
+}
+
+export default connect(mapStateToProps, null)(ViewCartButton);

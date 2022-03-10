@@ -131,7 +131,7 @@ const styles = StyleSheet.create({
 });
 
 function mapStateToProps(state) {
-  console.log("state OrderValidationButton", state);
+  // console.log("state OrderValidationButton", state);
   return {
     userLoggedIn: state.userLoggedIn,
   };

@@ -12,17 +12,17 @@ import { connect } from "react-redux";
 // Sophie optimize style : prix à mettre en bas aligné à la photo
 function ProductCard(props) {
   const [productsCategory, setProductsCategory] = useState([]);
-  console.log("productsCategory ProductCard", productsCategory);
+  // console.log("productsCategory ProductCard", productsCategory);
 
   useEffect(() => {
     async function loadProductsCategory() {
       var rawResponse = await fetch(
         "https://ls-project-capsule.herokuapp.com/products-find-by-category"
       );
-      console.log("rawResponse ProductCard", rawResponse);
+      // console.log("rawResponse ProductCard", rawResponse);
 
       var response = await rawResponse.json();
-      console.log("response ProductCard", response);
+      // console.log("response ProductCard", response);
 
       setProductsCategory(response.data);
     }
@@ -30,7 +30,7 @@ function ProductCard(props) {
   }, []);
 
   var productExtra = productsCategory.map((product, i) => {
-    console.log("product productExtra", product);
+    // console.log("product productExtra", product);
     return (
       <View key={i} style={styles.container}>
         {product.products.map((producto, j) => {
@@ -120,7 +120,7 @@ const styles = StyleSheet.create({
 function mapDispatchToProps(dispatch) {
   return {
     onAddExtraPress: function (productExtra) {
-      console.log("productExtra ProductCard", productExtra);
+      // console.log("productExtra ProductCard", productExtra);
       dispatch({ type: "sendProductExtra", productExtra });
     },
   };
