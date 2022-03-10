@@ -46,13 +46,10 @@ function Products(props, navigation) {
     console.log("---marginBottomScrollView", marginBottomScrollView);
   }
 
-<<<<<<< HEAD
-=======
   // const activMarginBottom = (orderAmount) => {
   //   setOrderAmount(orderAmount);
   // };
 
->>>>>>> calado
   var productsMap = productsCategory.map((product, i) => {
     // console.log("product productsMap", product);
     return (

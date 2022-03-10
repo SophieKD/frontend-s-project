@@ -58,7 +58,7 @@ function OrderConfirmationScreen(props) {
     );
   });
 
-  var finalConfirmationExtra = props.productsAdded.map((extra, i) => {
+  var finalConfirmationExtra = props.productExtraDetails.map((extra, i) => {
     finalConfirmationAmount += extra.price * extra.qty;
     return (
       <View
