@@ -66,7 +66,9 @@ function mapDispatchToProps(dispatch) {
   return {
     onButtonAddPress: function (productAddData) {
       console.log("productAddData AddButton", productAddData);
+
       dispatch({ type: "addProductToBasket", productAddData });
+      dispatch({ type: "increaseProductQty", productAddData });
     },
   };
 }

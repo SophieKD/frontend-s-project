@@ -1,9 +1,42 @@
 import React from "react";
 import { StyleSheet, View, TouchableOpacity, ScrollView } from "react-native";
 import { Button, ButtonGroup, withTheme, Text } from "react-native-elements";
+import { connect } from "react-redux";
 
 //SOPHIE: Bouton à faire apparaitre en bas
 function PaymentButton(props) {
+  var onPaymentButtonPress = async () => {
+    var token = props.userLoggedIn.token;
+    var products = [props.productsAdded, props.productExtraDetails];
+    var date_insert = new Date();
+    var status_payment = false;
+    var date_payment = "";
+    var time_picker = "2022-03-04T23:00:00.000+00:00";
+    var status_delivery = false;
+    var status_preparation = false;
+
+    const dataPayment = await fetch(
+      "https://ls-project-capsule.herokuapp.com/orders",
+      {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          token: token,
+          products: products,
+          date_insert: date_insert,
+          status_payment: status_payment,
+          date_payment: date_payment,
+          time_picker: time_picker,
+          status_delivery: status_delivery,
+          status_preparation: status_preparation,
+        }),
+      }
+    );
+  };
+
   return (
     // <ScrollView style={{ flex: 1 }}>
     <View
@@ -34,7 +67,10 @@ function PaymentButton(props) {
             width: "90%",
             position: "relative",
           }}
-          onPress={() => props.navigation.navigate("Commande Confirmation")}
+          onPress={() => {
+            props.navigation.navigate("Commande Confirmation");
+            onPaymentButtonPress();
+          }}
           // onPress={() => {
           //   addOrderToMongoDB();
           //   setModalVisible(false);
@@ -65,4 +101,13 @@ const styles = StyleSheet.create({
   },
 });
 
-export default PaymentButton;
+function mapStateToProps(state) {
+  console.log("state PaymentButton", state);
+  return {
+    productsAdded: state.productsAdded,
+    productExtraDetails: state.productExtraDetails,
+    userLoggedIn: state.userLoggedIn,
+  };
+}
+
+export default connect(mapStateToProps, null)(PaymentButton);
