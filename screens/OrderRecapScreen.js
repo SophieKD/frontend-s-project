@@ -6,8 +6,6 @@ import ProductCard from "../components/Orders/ProductCard";
 import TimePicker from "../components/Orders/TimePicker";
 import { connect } from "react-redux";
 
-// Reste à faire: Bouton en bas
-
 function OrderRecapScreen(props) {
   console.log("props.productExtraDetails", props.productExtraDetails);
   // var countProducts = 0;
@@ -19,9 +17,8 @@ function OrderRecapScreen(props) {
     totalOrderAmount += product.price;
 
     return (
-      <View>
+      <View key={i}>
         <View
-          key={i}
           style={{
             flex: 1,
             backgroundColor: "white",
@@ -38,7 +35,7 @@ function OrderRecapScreen(props) {
               fontWeight: "bold",
               fontSize: 15,
               color: "black",
-              width: "10%",
+              width: "6%",
               margin: "5%",
               justifyContent: "center",
               alignContent: "center",
@@ -51,7 +48,7 @@ function OrderRecapScreen(props) {
               fontWeight: "bold",
               fontSize: 15,
               color: "black",
-              width: "40%",
+              width: "45%",
               margin: "5%",
             }}
           >
@@ -62,7 +59,7 @@ function OrderRecapScreen(props) {
               fontWeight: "bold",
               fontSize: 15,
               color: "black",
-              width: "20%",
+              width: "15%",
               margin: "5%",
             }}
           >
@@ -150,7 +147,7 @@ function OrderRecapScreen(props) {
 
         <ProductCard />
 
-        <Divider />
+        <Divider style={{ marginTop: "5%" }} />
 
         <Text
           style={{
@@ -209,6 +206,7 @@ function OrderRecapScreen(props) {
         }}
       >
         <OrderValidationButton navigation={props.navigation} />
+        <View style={{ height: 50 }}></View>
       </View>
     </ScrollView>
   );

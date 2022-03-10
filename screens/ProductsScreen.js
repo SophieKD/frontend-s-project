@@ -18,9 +18,6 @@ function Products(props, navigation) {
   const [products, setProducts] = useState([]);
   console.log("products", products);
 
-  const [orderAmount, setOrderAmount] = useState(0);
-  console.log("---orderAmount in ProductScreen =>", orderAmount);
-
   console.log("-props", props);
 
   useEffect(() => {
@@ -43,10 +40,6 @@ function Products(props, navigation) {
     marginBottomScrollView = { flex: 1, paddingBottom: 70 };
     console.log("---marginBottomScrollView", marginBottomScrollView);
   }
-
-  const activMarginBottom = (orderAmount) => {
-    setOrderAmount(orderAmount);
-  };
 
   var productsMap = productsCategory.map((product, i) => {
     // console.log("product productsMap", product);
@@ -79,6 +72,7 @@ function Products(props, navigation) {
             flexDirection: "row",
             marginTop: "2%",
             marginBottom: "2%",
+            justifyContent: "center",
           }}
         >
           {product.products.map((producto, j) => {
@@ -88,7 +82,6 @@ function Products(props, navigation) {
                 style={{
                   width: "46%",
                   margin: "2%",
-                  justifyContent: "center",
                 }}
               >
                 <TouchableOpacity
@@ -101,31 +94,37 @@ function Products(props, navigation) {
                     flexDirection: "row",
                   }}
                 >
-                  <View>
-                    <View>
-                      <Image
-                        style={{ height: 190, width: "100%" }}
-                        source={{ uri: producto.img }}
-                      />
-                    </View>
-                    <View style={{ padding: 10, backgroundColor: "white" }}>
+                  <View style={{ flex: 1 }}>
+                    <Image
+                      style={{ height: 200, width: "100%" }}
+                      source={{ uri: producto.img }}
+                    />
+
+                    <View
+                      style={{
+                        padding: 10,
+                        backgroundColor: "white",
+                        width: "100%",
+                      }}
+                    >
                       <Text
                         style={{
                           fontWeight: "bold",
                           color: "#136979",
-                          fontSize: 15,
+                          fontSize: 17,
                         }}
                       >
                         {producto.title}
                       </Text>
                       <Text style={{ paddingTop: 5, fontSize: 15 }}>
-                        {producto.description.slice(0, 56) + "..."}
+                        {producto.description.slice(0, 55) + "..."}
                       </Text>
                       <Text
                         style={{
                           fontWeight: "bold",
                           paddingTop: 10,
-                          fontSize: 15,
+                          fontSize: 17,
+                          color: "#136979",
                         }}
                       >
                         {producto.price}€

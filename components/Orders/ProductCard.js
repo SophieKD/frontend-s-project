@@ -37,16 +37,16 @@ function ProductCard(props) {
           if (producto.title === "Cookie") {
             return (
               <View key={j} style={styles.menuItemStyle}>
-                <View>
-                  <Image
-                    source={require("../../assets/cookie.png")}
-                    style={{
-                      width: 75,
-                      height: 75,
-                      borderRadius: 8,
-                    }}
-                  />
-                </View>
+                {/* <View> */}
+                <Image
+                  source={require("../../assets/cookie.png")}
+                  style={{
+                    width: 75,
+                    height: 75,
+                    borderRadius: 8,
+                  }}
+                />
+                {/* </View> */}
                 <View style={{ width: 240 }}>
                   <Text style={styles.titleStyle}>{producto.title}</Text>
                   <View style={{ flex: 1, flexDirection: "row" }}>
@@ -56,6 +56,7 @@ function ProductCard(props) {
                         textAlignVertical: "bottom",
                         fontSize: 15,
                         color: "#136979",
+                        padding: 10,
                       }}
                     >
                       {producto.price}€
@@ -67,7 +68,7 @@ function ProductCard(props) {
                         alignItems: "center",
                         padding: 13,
                         borderRadius: 30,
-                        marginLeft: 100,
+                        marginLeft: 110,
                       }}
                       onPress={() => props.onAddExtraPress(producto)}
                     >
@@ -99,17 +100,20 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "white",
     width: "90%",
-    margin: "5%",
+    marginLeft: "5%",
+    marginBottom: "2%",
+    marginTop: "0%",
   },
   menuItemStyle: {
     flexDirection: "row",
-    justifyContent: "space-between",
-    margin: 20,
+    // justifyContent: "space-between",
+    padding: 10,
   },
   titleStyle: {
     fontWeight: "bold",
     marginBottom: 15,
     fontSize: 15,
+    marginLeft: 10,
   },
 });
 
