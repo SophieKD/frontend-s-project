@@ -9,14 +9,14 @@ import { connect } from "react-redux";
 // Reste à faire: Bouton en bas
 
 function OrderRecapScreen(props) {
-  console.log("props.productExtraDetails", props.productExtraDetails);
-  // var countProducts = 0;
+  // console.log("props.productExtraDetails", props.productExtraDetails);
+
   var totalOrderAmount = 0;
 
   var productOrderRecap = props.productsAdded.map((product, i) => {
-    console.log("product productOrderRecap", product);
+    // console.log("product productOrderRecap", product);
 
-    totalOrderAmount += product.price;
+    totalOrderAmount += product.price * product.qty;
 
     return (
       <View>
@@ -44,7 +44,7 @@ function OrderRecapScreen(props) {
               alignContent: "center",
             }}
           >
-            {/* {(countProducts += 1)} */}1
+            {product.qty}
           </Text>
           <Text
             style={{
@@ -82,7 +82,7 @@ function OrderRecapScreen(props) {
         {productOrderRecap}
 
         {props.productExtraDetails.map((extra, j) => {
-          totalOrderAmount += extra.price;
+          totalOrderAmount += extra.price * extra.qty;
           return (
             <View
               key={j}
@@ -106,7 +106,7 @@ function OrderRecapScreen(props) {
                   alignContent: "center",
                 }}
               >
-                {/* {(countProducts += 1)} */}1
+                {extra.qty}
               </Text>
               <Text
                 style={{
@@ -224,7 +224,7 @@ const styles = StyleSheet.create({
 });
 
 function mapStateToProps(state) {
-  console.log("state OrderRecapScreen", state);
+  // console.log("state OrderRecapScreen", state);
   return {
     productsAdded: state.productsAdded,
     productExtraDetails: state.productExtraDetails,

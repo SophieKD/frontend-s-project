@@ -6,10 +6,10 @@ import { Ionicons } from "@expo/vector-icons";
 import { connect } from "react-redux";
 
 function OrderFinalScreen(props) {
-  var FinalTotalOrderAmount = 0;
+  var finalTotalOrderAmount = 0;
 
   var finalOrderRecap = props.productsAdded.map((product, i) => {
-    FinalTotalOrderAmount += product.price;
+    finalTotalOrderAmount += product.price * product.qty;
 
     return (
       <View key={i} style={styles.view}>
@@ -21,7 +21,7 @@ function OrderFinalScreen(props) {
             marginTop: "6%",
           }}
         >
-          1
+          {product.qty}
         </Text>
         <Text
           style={{
@@ -38,7 +38,7 @@ function OrderFinalScreen(props) {
 
   var finalOrderRecapExtra = props.productExtraDetails.map(
     (productExtra, i) => {
-      FinalTotalOrderAmount += productExtra.price;
+      finalTotalOrderAmount += productExtra.price * productExtra.qty;
 
       return (
         <View key={i} style={styles.view}>
@@ -50,7 +50,7 @@ function OrderFinalScreen(props) {
               marginTop: "6%",
             }}
           >
-            1
+            {productExtra.qty}
           </Text>
           <Text
             style={{
@@ -202,7 +202,7 @@ function OrderFinalScreen(props) {
               fontWeight: "bold",
             }}
           >
-            {FinalTotalOrderAmount.toFixed(2)}€
+            {finalTotalOrderAmount.toFixed(2)}€
           </Text>
         </View>
         <View
@@ -235,7 +235,7 @@ function OrderFinalScreen(props) {
               fontWeight: "bold",
             }}
           >
-            {FinalTotalOrderAmount.toFixed(2)}€
+            {finalTotalOrderAmount.toFixed(2)}€
           </Text>
         </View>
 

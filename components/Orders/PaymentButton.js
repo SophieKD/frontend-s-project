@@ -7,7 +7,18 @@ import { connect } from "react-redux";
 function PaymentButton(props) {
   var onPaymentButtonPress = async () => {
     var token = props.userLoggedIn.token;
-    var products = [props.productsAdded, props.productExtraDetails];
+
+    var products = [];
+
+    var finalProductsOrder = props.productsAdded.map((product, i) => {
+      products.push({ productID: product._id, qty: product.qty });
+    });
+
+    var finalExtraOrder = props.productExtraDetails.map((extra, i) => {
+      products.push({ productID: extra._id, qty: extra.qty });
+    });
+
+    console.log("----products", products);
     var date_insert = new Date();
     var status_payment = false;
     var date_payment = "";

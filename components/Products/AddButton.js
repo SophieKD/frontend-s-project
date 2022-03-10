@@ -68,7 +68,7 @@ function mapDispatchToProps(dispatch) {
       console.log("productAddData AddButton", productAddData);
 
       dispatch({ type: "addProductToBasket", productAddData });
-      dispatch({ type: "increaseProductQty", productAddData });
+      // dispatch({ type: "increaseProductQty", productAddData });
     },
   };
 }

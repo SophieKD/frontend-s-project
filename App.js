@@ -20,14 +20,13 @@ import userLoggedIn from "./reducers/user";
 import productDetails from "./reducers/producDetailReduc";
 import productsAdded from "./reducers/productAddReducer";
 import productExtraDetails from "./reducers/addExtraReduc";
-import qty from "./reducers/increaseQtyReduc";
+
 const store = createStore(
   combineReducers({
     userLoggedIn,
     productDetails,
     productsAdded,
     productExtraDetails,
-    qty,
   })
 );
 

@@ -13,25 +13,26 @@ import { connect } from "react-redux";
 
 function Products(props, navigation) {
   const [productsCategory, setProductsCategory] = useState([]);
-  console.log("productsCategory", productsCategory);
+  // console.log("productsCategory", productsCategory);
 
   const [products, setProducts] = useState([]);
-  console.log("products", products);
+  // console.log("products", products);
 
   const [orderAmount, setOrderAmount] = useState(0);
   console.log("---orderAmount in ProductScreen =>", orderAmount);
 
-  console.log("-props", props);
+  // console.log("-props", props);
 
   useEffect(() => {
     async function loadProductsCategory() {
+      console.log("#01");
       var rawResponse = await fetch(
-        "https://ls-project-capsule.herokuapp.com/products-find-by-category"
+        "http://ls-project-capsule.herokuapp.com/products-find-by-category"
       );
       console.log("rawResponse", rawResponse);
 
       var response = await rawResponse.json();
-      console.log("response", response);
+      console.log("response 222222", response);
 
       setProductsCategory(response.data);
     }
@@ -44,9 +45,9 @@ function Products(props, navigation) {
     console.log("---marginBottomScrollView", marginBottomScrollView);
   }
 
-  const activMarginBottom = (orderAmount) => {
-    setOrderAmount(orderAmount);
-  };
+  // const activMarginBottom = (orderAmount) => {
+  //   setOrderAmount(orderAmount);
+  // };
 
   var productsMap = productsCategory.map((product, i) => {
     // console.log("product productsMap", product);
@@ -159,7 +160,7 @@ function Products(props, navigation) {
   );
 }
 function mapStateToProps(state) {
-  console.log("state OrderRecapScreen", state);
+  // console.log("state OrderRecapScreen", state);
   return { productsAdded: state.productsAdded };
 }
 
