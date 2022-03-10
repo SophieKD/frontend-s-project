@@ -49,7 +49,7 @@ function LoyaltyScreen(props) {
       <View>
         <Text style={styles.title}>Mes avantages fidélité</Text>
       </View>
-      <Text
+      {/* <Text
         style={{
           fontWeight: "bold",
           fontSize: 18,
@@ -59,10 +59,10 @@ function LoyaltyScreen(props) {
         }}
       >
         Mon cumul de S
-      </Text>
-      {/* <View style={{ marginBottom: "3%" }}>
+      </Text> */}
+      <View style={{ marginBottom: "3%" }}>
         <Image source={require("../assets/s-titre1.png")} />
-      </View> */}
+      </View>
 
       <View>
         <ProgressBar />
@@ -76,7 +76,7 @@ function LoyaltyScreen(props) {
 
       <Divider style={{ marginTop: "5%" }} />
 
-      <Text
+      {/* <Text
         style={{
           fontWeight: "bold",
           fontSize: 18,
@@ -87,10 +87,10 @@ function LoyaltyScreen(props) {
         }}
       >
         Mes récompenses
-      </Text>
-      {/* <View style={{ marginBottom: "3%", marginTop: "5%" }}>
+      </Text> */}
+      <View style={{ marginBottom: "3%", marginTop: "5%" }}>
         <Image source={require("../assets/recompenses.png")} />
-      </View> */}
+      </View>
       <View>
         <Text style={styles.titreRecomp}>Collectez des S</Text>
         <Text style={styles.soustitreRecomp}>
@@ -106,14 +106,14 @@ function LoyaltyScreen(props) {
           size={30}
           color="#136979"
           style={{
-            width: "12%",
+            width: "10%",
             margin: "3%",
           }}
         />
         <Text
           style={{
-            fontSize: 18,
-            // fontWeight: "bold",
+            fontSize: 16,
+            fontWeight: "bold",
             color: "#ff4d6d",
           }}
         >
@@ -128,18 +128,18 @@ function LoyaltyScreen(props) {
           size={30}
           color="#136979"
           style={{
-            width: "12%",
+            width: "10%",
             margin: "3%",
           }}
         />
         <Text
           style={{
-            fontSize: 18,
-            // fontWeight: "bold",
+            fontSize: 16,
+            fontWeight: "bold",
             color: "#ff4d6d",
           }}
         >
-          1ère commande = 1 boisson offerte !
+          1ère commande = 1 boisson offerte
         </Text>
       </View>
 
@@ -150,14 +150,14 @@ function LoyaltyScreen(props) {
           size={30}
           color="#136979"
           style={{
-            width: "12%",
+            width: "10%",
             margin: "3%",
           }}
         />
         <Text
           style={{
-            fontSize: 18,
-            // fontWeight: "bold",
+            fontSize: 16,
+            fontWeight: "bold",
             color: "#ff4d6d",
           }}
         >
@@ -171,14 +171,14 @@ function LoyaltyScreen(props) {
           size={30}
           color="#136979"
           style={{
-            width: "12%",
+            width: "10%",
             margin: "3%",
           }}
         />
         <Text
           style={{
-            fontSize: 18,
-            // fontWeight: "bold",
+            fontSize: 16,
+            fontWeight: "bold",
             color: "#ff4d6d",
           }}
         >

@@ -47,9 +47,9 @@ function TimePicker() {
           value={date}
           mode={mode}
           is24Hour={true}
-          // display="default"
+          display="default"
           onChange={onChange}
-          display="spinner"
+          // display="spinner"
           textColor="#136979"
           locale="fr-FR"
           minuteInterval={15}
