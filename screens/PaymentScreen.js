@@ -10,7 +10,7 @@ import PaymentButton from "../components/Orders/PaymentButton";
 function PaymentScreen(props) {
   const fetchPaymentIntentClientSecret = async () => {
     const response = await fetch(
-      `http://localhost:3000/create-payment-intent`,
+      `https://ls-project-capsule.herokuapp.com/create-payment-intent`,
       {
         method: "POST",
         headers: {
