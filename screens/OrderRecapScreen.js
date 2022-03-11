@@ -177,7 +177,7 @@ function OrderRecapScreen(props) {
               fontWeight: "bold",
               fontSize: 20,
               color: "black",
-              width: "60%",
+              width: "50%",
               margin: "5%",
               justifyContent: "center",
               alignContent: "center",
@@ -190,7 +190,7 @@ function OrderRecapScreen(props) {
               fontWeight: "bold",
               fontSize: 20,
               color: "black",
-              width: "20%",
+              width: "25%",
               margin: "5%",
             }}
           >
