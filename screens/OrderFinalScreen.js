@@ -185,40 +185,6 @@ function OrderFinalScreen(props) {
         >
           <Text
             style={{
-              fontSize: 17,
-              fontWeight: "bold",
-              color: "black",
-              marginLeft: "5%",
-              marginTop: "5%",
-            }}
-          >
-            Montant de la commande
-          </Text>
-          <Text
-            style={{
-              fontSize: 17,
-              color: "black",
-              marginLeft: "10%",
-              fontWeight: "bold",
-            }}
-          >
-            {finalTotalOrderAmount.toFixed(2)}€
-          </Text>
-        </View>
-        <View
-          style={{
-            flex: 1,
-            width: "90%",
-            margin: "5%",
-            height: 50,
-            flexWrap: "wrap",
-            flexDirection: "row",
-            alignItems: "center",
-            marginTop: "0%",
-          }}
-        >
-          <Text
-            style={{
               fontSize: 20,
               fontWeight: "bold",
               color: "black",

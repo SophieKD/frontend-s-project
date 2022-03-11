@@ -49,7 +49,8 @@ function OrderConfirmationScreen(props) {
           style={{
             fontSize: 17,
             color: "black",
-            marginLeft: "30%",
+            // marginLeft: "30%",
+            alignItems: "flex-end",
           }}
         >
           {product.price}€
