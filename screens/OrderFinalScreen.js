@@ -1,10 +1,11 @@
 import React from "react";
-import { View, Text, ScrollView, StyleSheet } from "react-native";
+import { View, Text, ScrollView, StyleSheet, Button } from "react-native";
 import { Divider } from "react-native-elements";
 import PaymentButton from "../components/Orders/PaymentButton";
 import { Ionicons } from "@expo/vector-icons";
 import { connect } from "react-redux";
 import PaymentScreen from "./PaymentScreen";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 function OrderFinalScreen(props) {
   var finalTotalOrderAmount = 0;
@@ -252,6 +253,12 @@ function OrderFinalScreen(props) {
         Payer avec :
       </Text>
       <PaymentScreen navigation={props.navigation} />
+      {/* <Button
+        title={"clear"}
+        onPress={() => {
+          AsyncStorage.clear();
+        }}
+      /> */}
     </ScrollView>
   );
 }

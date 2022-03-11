@@ -5,8 +5,8 @@ import { Button, ButtonGroup, withTheme, Text } from "react-native-elements";
 function ProgressBar(props) {
   const [spoints, setSpoints] = useState(props.spointsToChild);
 
-  console.log("---props.spointToChild =>", props.spointsToChild);
-  console.log("---spoints =>", spoints);
+  // console.log("---props.spointToChild =>", props.spointsToChild);
+  // console.log("---spoints =>", spoints);
 
   useEffect(() => {
     setSpoints(props.spointsToChild);
@@ -17,7 +17,7 @@ function ProgressBar(props) {
     countToDisplayforTheStatusBar = 250;
   }
   let statusBar = `${(spoints * 100) / countToDisplayforTheStatusBar}%`;
-  console.log("---statusBar =>", statusBar);
+  // console.log("---statusBar =>", statusBar);
 
   return (
     <View style={styles.containerStyles}>

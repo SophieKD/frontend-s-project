@@ -221,7 +221,12 @@ function AccountScreen(props) {
               );
               if (order.status_payment === false) {
                 statusPayment = (
-                  <Entypo name="circle-with-cross" size={20} color="red" />
+                  // <Entypo name="circle-with-cross" size={20} color="red" />
+                  <Ionicons
+                    name="checkmark-done-sharp"
+                    size={20}
+                    color="green"
+                  />
                 );
               }
               let statusDelivery = (
@@ -229,7 +234,12 @@ function AccountScreen(props) {
               );
               if (order.status_delivery === false) {
                 statusDelivery = (
-                  <Entypo name="circle-with-cross" size={20} color="red" />
+                  // <Entypo name="circle-with-cross" size={20} color="red" />
+                  <Ionicons
+                    name="checkmark-done-sharp"
+                    size={20}
+                    color="green"
+                  />
                 );
               }
               let statusPrep = (
@@ -237,7 +247,12 @@ function AccountScreen(props) {
               );
               if (order.status_preparation === false) {
                 statusPrep = (
-                  <Entypo name="circle-with-cross" size={20} color="red" />
+                  // <Entypo name="circle-with-cross" size={20} color="red" />
+                  <Ionicons
+                    name="checkmark-done-sharp"
+                    size={20}
+                    color="green"
+                  />
                 );
               }
 

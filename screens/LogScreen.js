@@ -12,12 +12,15 @@ import OrderFinalScreen from "./OrderFinalScreen";
 
 function LogScreen(props) {
   const [logComponent, setLogComponent] = useState("signIn");
+  console.log("---logComponent =>", logComponent);
+
   const [isUserConfirmed, setIsUserConfirmed] = useState(false);
   const [isInOrderProcess, setIsInOrderProcess] = useState(false);
   console.log("---inInOrderProcess =>", isInOrderProcess);
   const [error, setError] = useState({});
 
   useEffect(() => {
+    console.log("#01234");
     AsyncStorage.getItem(
       "userLocalStorage",
       function (error, userInLocalStorage) {
@@ -26,10 +29,14 @@ function LogScreen(props) {
         }
       }
     );
-  }, []);
+  }, [props.productsAdded]);
+
+  // console.log("----productsAdded in LogScreen", props.productsAdded);
 
   if (props.productsAdded.length > 0 && isInOrderProcess === false) {
     setIsInOrderProcess(true);
+  } else if (props.productsAdded.length === 0 && isInOrderProcess === true) {
+    setIsInOrderProcess(false);
   }
 
   const goToSignIn = () => {

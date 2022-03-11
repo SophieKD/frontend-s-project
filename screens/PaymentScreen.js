@@ -7,6 +7,8 @@ import {
 } from "@stripe/stripe-react-native";
 import PaymentButton from "../components/Orders/PaymentButton";
 
+import { connect } from "react-redux";
+
 function PaymentScreen(props) {
   const fetchPaymentIntentClientSecret = async () => {
     const response = await fetch(

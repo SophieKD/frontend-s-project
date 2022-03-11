@@ -18,7 +18,7 @@ function Products(props, navigation) {
   const [products, setProducts] = useState([]);
   // console.log("products", products);
 
-  console.log("-props", props);
+  // console.log("-props", props);
   const [orderAmount, setOrderAmount] = useState(0);
   console.log("---orderAmount in ProductScreen =>", orderAmount);
 
@@ -33,7 +33,7 @@ function Products(props, navigation) {
       console.log("rawResponse", rawResponse);
 
       var response = await rawResponse.json();
-      console.log("response 222222", response);
+      // console.log("response 222222", response);
 
       setProductsCategory(response.data);
     }

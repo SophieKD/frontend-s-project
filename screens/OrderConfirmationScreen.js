@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, ScrollView, StyleSheet } from "react-native";
+import { View, Text, ScrollView, StyleSheet, Button } from "react-native";
 import LoyaltyButton from "../components/Orders/LoyaltyButton";
 import { Ionicons, FontAwesome5 } from "@expo/vector-icons";
 import { Divider } from "react-native-elements";
@@ -8,6 +8,10 @@ import { connect } from "react-redux";
 import ConfettiCannon from "react-native-confetti-cannon";
 
 function OrderConfirmationScreen(props) {
+  const resetOrder = () => {
+    props.onValidationPress();
+  };
+
   var finalConfirmationAmount = 0;
 
   var finalConfirmation = props.productsAdded.map((product, i) => {
@@ -227,7 +231,10 @@ function OrderConfirmationScreen(props) {
             Vous avez obtenu {Math.round(finalConfirmationAmount)}S
           </Text>
         </View>
-        <LoyaltyWinSButton navigation={props.navigation} />
+        <LoyaltyWinSButton
+          navigation={props.navigation}
+          resetOrderParent={resetOrder}
+        />
       </View>
 
       <ConfettiCannon
@@ -286,4 +293,18 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, null)(OrderConfirmationScreen);
+function mapDispatchToProps(dispatch) {
+  return {
+    onValidationPress: function (orderData) {
+      console.log("orderData OrderRecapScreen", orderData);
+      dispatch({ type: "confirmOrder", orderData });
+      dispatch({ type: "reset" });
+      dispatch({ type: "resetExtra" });
+    },
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(OrderConfirmationScreen);

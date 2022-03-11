@@ -4,6 +4,10 @@ import { Button, ButtonGroup, withTheme, Text } from "react-native-elements";
 
 //SOPHIE: Bouton à faire apparaitre en bas
 function LoyaltyWinSButton(props) {
+  const resetOrder = () => {
+    props.resetOrderParent();
+  };
+
   return (
     // <ScrollView style={{ flex: 1 }}>
     <View
@@ -34,7 +38,10 @@ function LoyaltyWinSButton(props) {
             width: "90%",
             position: "relative",
           }}
-          onPress={() => props.navigation.navigate("Fidélité")}
+          onPress={() => {
+            props.navigation.navigate("Fidélité");
+            resetOrder();
+          }}
           // onPress={() => {
           //   addOrderToMongoDB();
           //   setModalVisible(false);

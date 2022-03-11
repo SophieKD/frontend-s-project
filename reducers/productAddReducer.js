@@ -1,6 +1,6 @@
 export default function (productsAdded = [], action) {
   // console.log("--action", action);
-  // console.log("--productsAdded", productsAdded);
+  console.log("+++productsAdded", productsAdded);
   if (action.type == "addProductToBasket") {
     var productsAddedCopy = [...productsAdded];
 
@@ -19,6 +19,9 @@ export default function (productsAdded = [], action) {
     }
 
     return productsAddedCopy;
+  } else if (action.type === "reset") {
+    console.log("+++productsAdded 2", productsAdded);
+    return [];
   } else {
     return productsAdded;
   }

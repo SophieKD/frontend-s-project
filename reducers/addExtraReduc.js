@@ -17,6 +17,8 @@ export default function (productExtraDetails = [], action) {
       action.productExtra.qty = 1;
       return [action.productExtra];
     }
+  } else if (action.type === "resetExtra") {
+    return [];
   } else {
     return productExtraDetails;
   }
