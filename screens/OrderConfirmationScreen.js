@@ -5,6 +5,7 @@ import { Ionicons, FontAwesome5 } from "@expo/vector-icons";
 import { Divider } from "react-native-elements";
 import LoyaltyWinSButton from "../components/Orders/LoyaltyWinSButton";
 import { connect } from "react-redux";
+import ConfettiCannon from "react-native-confetti-cannon";
 
 function OrderConfirmationScreen(props) {
   var finalConfirmationAmount = 0;
@@ -109,7 +110,7 @@ function OrderConfirmationScreen(props) {
 
   return (
     <ScrollView style={{ flex: 1 }}>
-      <View>
+      <View style={{ flex: 1, paddingBottom: 165 }}>
         <View style={{ backgroundColor: "#136979", height: 50 }} />
         <View>
           <Text style={styles.title}>Merci pour votre commande</Text>
@@ -225,9 +226,16 @@ function OrderConfirmationScreen(props) {
             Vous avez obtenu {Math.round(finalConfirmationAmount)}S
           </Text>
         </View>
+        <LoyaltyWinSButton navigation={props.navigation} />
       </View>
 
-      <LoyaltyWinSButton navigation={props.navigation} />
+      <ConfettiCannon
+        count={200}
+        origin={{ x: -10, y: -100 }}
+        // autoStart={false}
+        fadeOut={true}
+        fallSpeed={5000}
+      />
     </ScrollView>
   );
 }

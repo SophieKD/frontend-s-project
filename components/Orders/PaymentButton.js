@@ -46,6 +46,7 @@ function PaymentButton(props) {
         }),
       }
     );
+    props.handlePayPressParent();
   };
 
   return (
@@ -80,7 +81,6 @@ function PaymentButton(props) {
           }}
           onPress={() => {
             onPaymentButtonPress();
-            props.navigation.navigate("Commande Confirmation");
           }}
           // onPress={() => {
           //   addOrderToMongoDB();

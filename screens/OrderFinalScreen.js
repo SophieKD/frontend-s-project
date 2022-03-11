@@ -4,6 +4,7 @@ import { Divider } from "react-native-elements";
 import PaymentButton from "../components/Orders/PaymentButton";
 import { Ionicons } from "@expo/vector-icons";
 import { connect } from "react-redux";
+import PaymentScreen from "./PaymentScreen";
 
 function OrderFinalScreen(props) {
   var finalTotalOrderAmount = 0;
@@ -93,10 +94,8 @@ function OrderFinalScreen(props) {
             Vendredi 11 Mars à 18h00
           </Text>
         </View>
-        <Divider />
-        <Text style={styles.subtitle}>Payer avec :</Text>
-        <View style={styles.view}>
-          <Ionicons
+        {/* <View style={styles.view}> */}
+        {/* <Ionicons
             name="chevron-forward-circle"
             size={27}
             color="#136979"
@@ -104,16 +103,17 @@ function OrderFinalScreen(props) {
               width: "7%",
               margin: "3%",
             }}
-          />
-          <Text
+          /> */}
+
+        {/* <Text
             style={{
               fontSize: 17,
               color: "black",
             }}
           >
             Ajouter une carte bancaire
-          </Text>
-        </View>
+          </Text> */}
+        {/* </View> */}
         {/* <View style={styles.view}>
           <Ionicons
             name="wallet"
@@ -171,7 +171,7 @@ function OrderFinalScreen(props) {
           </Text>
         </View>
 
-        <View
+        {/* <View
           style={{
             flex: 1,
             width: "90%",
@@ -204,7 +204,7 @@ function OrderFinalScreen(props) {
           >
             {finalTotalOrderAmount.toFixed(2)}€
           </Text>
-        </View>
+        </View> */}
         <View
           style={{
             flex: 1,
@@ -238,9 +238,20 @@ function OrderFinalScreen(props) {
             {finalTotalOrderAmount.toFixed(2)}€
           </Text>
         </View>
-
-        <PaymentButton navigation={props.navigation} />
       </View>
+      <Divider />
+      <Text
+        style={{
+          fontWeight: "bold",
+          fontSize: 17,
+          marginLeft: "5%",
+          marginTop: "5%",
+          // marginBottom: "5%",
+        }}
+      >
+        Payer avec :
+      </Text>
+      <PaymentScreen navigation={props.navigation} />
     </ScrollView>
   );
 }

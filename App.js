@@ -21,6 +21,8 @@ import productDetails from "./reducers/producDetailReduc";
 import productsAdded from "./reducers/productAddReducer";
 import productExtraDetails from "./reducers/addExtraReduc";
 
+import { StripeProvider } from "@stripe/stripe-react-native";
+
 const store = createStore(
   combineReducers({
     userLoggedIn,
@@ -31,6 +33,7 @@ const store = createStore(
 );
 
 import { Ionicons } from "@expo/vector-icons";
+import PaymentScreen from "./screens/PaymentScreen";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -73,22 +76,29 @@ const BottomNavigator = () => {
 
 function App() {
   return (
-    <Provider store={store}>
-      <NavigationContainer>
-        <Stack.Navigator screenOptions={{ headerShown: false }}>
-          <Stack.Screen name="LeS" component={LeS} />
-          <Stack.Screen name="BottomNavigator" component={BottomNavigator} />
-          <Stack.Screen name="Produit" component={ProductDetailScreen} />
-          <Stack.Screen name="Commande" component={OrderRecapScreen} />
-          <Stack.Screen name="Commande Finale" component={OrderFinalScreen} />
-          <Stack.Screen
-            name="Commande Confirmation"
-            component={OrderConfirmationScreen}
-          />
-          <Stack.Screen name="Log" component={LogScreen} />
-        </Stack.Navigator>
-      </NavigationContainer>
-    </Provider>
+    <StripeProvider
+      publishableKey="pk_test_51KHmV0CkoFyczhrXkIlKCGhL5qAKmjuARTwe5ZqoXQfpnLckB5JmBHRIn053KHTQsRsPsH1GGYA0ZMMkr1LRDcrz00DD4OEYrw"
+      // urlScheme="your-url-scheme" // required for 3D Secure and bank redirects
+      // merchantIdentifier="merchant.com.{{YOUR_APP_NAME}}" // required for Apple Pay
+    >
+      <Provider store={store}>
+        <NavigationContainer>
+          <Stack.Navigator screenOptions={{ headerShown: false }}>
+            <Stack.Screen name="LeS" component={LeS} />
+            <Stack.Screen name="BottomNavigator" component={BottomNavigator} />
+            <Stack.Screen name="Produit" component={ProductDetailScreen} />
+            <Stack.Screen name="Commande" component={OrderRecapScreen} />
+            <Stack.Screen name="Commande Finale" component={OrderFinalScreen} />
+            <Stack.Screen
+              name="Commande Confirmation"
+              component={OrderConfirmationScreen}
+            />
+            <Stack.Screen name="Log" component={LogScreen} />
+            <Stack.Screen name="Stripe" component={PaymentScreen} />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </Provider>
+    </StripeProvider>
   );
 }
 
