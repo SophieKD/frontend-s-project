@@ -187,11 +187,10 @@ function OrderRecapScreen(props) {
           </Text>
           <Text
             style={{
-              flex: 1,
               fontWeight: "bold",
               fontSize: 20,
               color: "black",
-              // width: "25%",
+              width: "25%",
               margin: "5%",
               alignItems: "flex-end",
             }}

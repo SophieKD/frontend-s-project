@@ -23,6 +23,7 @@ function OrderConfirmationScreen(props) {
           flexWrap: "wrap",
           flexDirection: "row",
           alignItems: "center",
+          // justifyContent: "space-between",
           marginTop: "0%",
           marginBottom: "0%",
         }}
@@ -50,8 +51,9 @@ function OrderConfirmationScreen(props) {
           style={{
             fontSize: 17,
             color: "black",
+            flex: 1,
+            textAlign: "right",
             // marginLeft: "30%",
-            alignItems: "flex-end",
           }}
         >
           {product.price}€
@@ -100,7 +102,8 @@ function OrderConfirmationScreen(props) {
           style={{
             fontSize: 17,
             color: "black",
-            marginLeft: "30%",
+            flex: 1,
+            textAlign: "right",
           }}
         >
           {extra.price}€
@@ -133,7 +136,7 @@ function OrderConfirmationScreen(props) {
               color: "#136979",
             }}
           >
-            Vendredi 11 Mars à 18h00
+            Vendredi 11 Mars à 12h15
           </Text>
         </View>
 
@@ -169,8 +172,10 @@ function OrderConfirmationScreen(props) {
             style={{
               fontSize: 17,
               color: "#136979",
-              marginLeft: "12%",
+              // marginLeft: "12%",
               fontWeight: "bold",
+              flex: 1,
+              textAlign: "right",
             }}
           >
             {finalConfirmationAmount.toFixed(2)}€
@@ -197,7 +202,7 @@ function OrderConfirmationScreen(props) {
               marginLeft: "5%",
             }}
           >
-            497470XXXXXX7454
+            424242XXXXXX4242
           </Text>
           <Text
             style={{
